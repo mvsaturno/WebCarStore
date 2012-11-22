@@ -23,19 +23,7 @@ public class Revenda {
     public Revenda() {
     }
 
-    public Revenda(int id, String nome, String email, String setor, String endereco, String fone, String CNPJ, Date data_cadastro) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.setor = setor;
-        this.endereco = endereco;
-        this.fone = fone;
-        this.CNPJ = CNPJ;
-        this.data_cadastro = data_cadastro;
-    }
-    
-    public Revenda(String nome, String email, String setor, String endereco, 
-            String fone, String CNPJ, Date data_cadastro) {
+    public Revenda(String nome, String email, String setor, String endereco, String fone, String CNPJ, Date data_cadastro) {
         this.nome = nome;
         this.email = email;
         this.setor = setor;
