@@ -10,13 +10,14 @@
 
 <html>   
     <head>
-        <title>WebCar Store - Login</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+        <title>WebCar Store - Módulo Administrador</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <style>
-            
-            
-        </style>
+        <!--Carrega JQuery e JS do menu de imagens-->
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/menu.navega.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/estilos.css" />
     </head>
     <body>
         <div id="tudo">
@@ -31,7 +32,7 @@
                     <div class="text"> 
                         Bem-vindo:<br/>
                         <span>Usuário Usarêncio</span><br/>
-                        <a href="#">Sair</a>
+                        <a href="index.jsp">Sair</a>
                     </div>
                 </div>
             </div>
