@@ -74,7 +74,7 @@ public class RevendaDAO implements InterfaceDAO{
     public void editar(Object obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+    /*
     public Revenda pesquisarLogin(String login) throws SQLException {
         Connection conexao = DBConnection.getInstance();
         Revenda usuario = null;
@@ -87,5 +87,5 @@ public class RevendaDAO implements InterfaceDAO{
         }
         pstmt.close();
         return usuario;
-    }
+    }*/
 }
