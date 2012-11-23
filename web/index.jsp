@@ -20,7 +20,7 @@
             <h2>WebCar Store</h2>
             <h6>Acesso ao sistema:</h6>
 
-            <form method="post" action="cms_admin.jsp"> 
+            <form method="post" action="TrataLogin"> 
                 <fieldset>   
             
                     <input name="login" type="text" size="40" placeholder="E-mail ou usuário" required autofocus/><br/>
@@ -29,7 +29,7 @@
                     
                     <a href="#">Esqueceu sua senha?</a> <br/><br/>
                     
-                    <input type="checkbox" />Lembrar-me neste computador <br/><br/>
+                    <input type="checkbox" name="lembrar" />Lembrar-me neste computador <br/><br/>
 
                     <input name="Login" type="submit" value="Login"/>
 
