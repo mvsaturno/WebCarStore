@@ -4,7 +4,9 @@
     Author     : Saturno
 --%>
 
+<%@page import="model.Usuario"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -31,7 +33,7 @@
                     <img src="img/user.png" alt="NomeUsuário" border="0" />
                     <div class="text"> 
                         Bem-vindo:<br/>
-                        <span>Usuário Usarêncio</span><br/>
+                        <span>Usuário <%=usuario.getNome()%></span><br/>
                         <a href="index.jsp">Sair</a>
                     </div>
                 </div>

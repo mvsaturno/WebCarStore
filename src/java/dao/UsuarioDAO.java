@@ -90,7 +90,7 @@ public class UsuarioDAO implements InterfaceDAO{
             usuario = new Usuario();
             usuario.setId(rs.getInt("id"));
             usuario.setNome(rs.getString("nome"));
-            usuario.setLogin(rs.getString("login"));
+            usuario.setLogin(rs.getString("email"));
             usuario.setSenha(rs.getString("senha"));
         }
         pstmt.close();

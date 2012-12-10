@@ -51,7 +51,7 @@ public class MailSender {
         props.put("mail.smtp.host", host); //server SMTP do GMAIL  
         props.put("mail.smtp.auth", "true"); //ativa autenticacao  
 
-        String from = "winget.cs@gmail.com.br";
+        String from = "winget.cs@gmail.com";
         props.put("mail.smtp.user", from); //usuario ou seja, a conta que esta enviando o email (tem que ser do GMAIL)  
         props.put("mail.debug", "true");
         props.put("mail.smtp.port", porta); //porta  

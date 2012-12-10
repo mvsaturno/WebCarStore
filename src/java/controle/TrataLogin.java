@@ -33,10 +33,10 @@ public class TrataLogin extends Comando {
             HttpSession session = getRequest().getSession(true);
             session.setAttribute("usuario", user);
             //Redireciona para outra página
-            getResponse().sendRedirect("menu.jsp");
+            getResponse().sendRedirect("cms_admin.jsp");
         } else {
             out.println("<h1> Ocorreu um erro durante o processo de autenticação </h1>");
-            RequestDispatcher rd = getRequest().getRequestDispatcher("/login.jsp");
+            RequestDispatcher rd = getRequest().getRequestDispatcher("/index.jsp");
             //rd.include(getRequest(), getResponse());
             rd.forward(getRequest(), getResponse());
         }
