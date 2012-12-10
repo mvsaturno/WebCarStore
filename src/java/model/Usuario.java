@@ -14,8 +14,8 @@ public class Usuario {
     private String login;
     private String senha;
     private int permissao; //Testaremos a permissão pelo número: 1-administrador, 2-gerente, 3-vendedor, 4-cliente.
-    private String data_nasc;
     private Revenda revenda;
+    private int ativo;
 
     public Usuario() {
     }
@@ -25,7 +25,6 @@ public class Usuario {
         this.login = login;
         this.senha = senha;
         this.permissao = permissao;
-        this.data_nasc = data_nasc;
         this.revenda = revenda;
     }
 
@@ -45,9 +44,6 @@ public class Usuario {
         return permissao;
     }
 
-    public String getData_nasc() {
-        return data_nasc;
-    }
 
     public Revenda getRevenda() {
         return revenda;
@@ -57,9 +53,6 @@ public class Usuario {
         return senha;
     }
 
-    public void setData_nasc(String data_nasc) {
-        this.data_nasc = data_nasc;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -84,6 +77,15 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public int getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+    
 
     @Override
     public String toString() {

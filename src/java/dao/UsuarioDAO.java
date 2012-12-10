@@ -35,10 +35,11 @@ public class UsuarioDAO implements InterfaceDAO{
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
-        stmt.setString(1, user.getNome());
+        stmt.setString(4, user.getNome());
         stmt.setString(2, user.getLogin());
-        stmt.setString(3, user.getSenha());
-        stmt.setString(4, user.getData_nasc());
+        stmt.setString(5, user.getSenha());
+        stmt.setInt(3, user.getPermissao());
+        stmt.setInt(6, 1);
         stmt.execute();
         conexao.close();
     }
@@ -58,11 +59,11 @@ public class UsuarioDAO implements InterfaceDAO{
         
         while (rs.next()){
             Usuario usuario = new Usuario();
-            usuario.setId(rs.getInt(1));
-            usuario.setNome(rs.getString(2));
-            usuario.setLogin(rs.getString(3));
-            usuario.setSenha(rs.getString(4));
-            usuario.setData_nasc(rs.getString(5));
+            usuario.setId(rs.getInt("id_usuario"));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setLogin(rs.getString("email"));
+            usuario.setSenha(rs.getString("senha"));
+            usuario.setPermissao(rs.getInt("tipo_usuario"));
             userList.add(usuario);
         }
         pstmt.close();
@@ -88,10 +89,11 @@ public class UsuarioDAO implements InterfaceDAO{
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()){
             usuario = new Usuario();
-            usuario.setId(rs.getInt("id"));
+            usuario.setId(rs.getInt("id_usuario"));
             usuario.setNome(rs.getString("nome"));
             usuario.setLogin(rs.getString("email"));
             usuario.setSenha(rs.getString("senha"));
+            usuario.setPermissao(rs.getInt("tipo_usuario"));
         }
         pstmt.close();
         return usuario;
