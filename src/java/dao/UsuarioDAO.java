@@ -34,12 +34,11 @@ public class UsuarioDAO implements InterfaceDAO{
         String sql = (String) dados.get("Insert.Usuario");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        
-        stmt.setString(4, user.getNome());
-        stmt.setString(2, user.getLogin());
-        stmt.setString(5, user.getSenha());
-        stmt.setInt(3, user.getPermissao());
-        stmt.setInt(6, 1);
+   
+        stmt.setString(1, user.getLogin());
+        stmt.setInt(2, user.getPermissao());
+        stmt.setString(3, user.getNome());
+        stmt.setString(4, user.getSenha());     
         stmt.execute();
         conexao.close();
     }
