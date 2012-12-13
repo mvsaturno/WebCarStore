@@ -56,14 +56,14 @@
                     <label for="permissao">Permissão:</label>
                     <input type="text" list="permissoes" size="50">                  
                     <datalist id="permissoes" >
-                        <option> Administrador </option>
-                        <option> Revenda </option>
-                        <option> Vendedor </option>    
+                        <option value="1"> Administrador </option>
+                        <option value="2"> Revenda </option>
+                        <option value="3"> Vendedor </option>    
                     </datalist><br/> 
                 
                     <label for="nascimento">Data de Nascimento:</label>
                     <input name="nascimento" type="date" size="50" required /><br/>
-                
+                    <input type="hidden" name="cmd" value='trataCadastroUsuario'>
                     <input name="Salvar" type="submit" value="Salvar"/>
                
         </fieldset>                  
