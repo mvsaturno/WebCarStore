@@ -41,28 +41,26 @@
 
 <div class="divs" id="cadastrarUsuario">
     <h3>Cadastro de Usuário:</h3>    
-    <form method="post" action="#">
+    <form method="post" action="FrontController">
         <fieldset>   
                  
-                    <label for="nome">Nome completo:</label>
-                    <input name="nome" type="text" size="50" required autofocus/><br/>
+                    <label for="cad_nome">Nome completo:</label>
+                    <input name="cad_nome" type="text" size="50" required autofocus/><br/>
                 
-                    <label for="login">Login:</label>
-                    <input name="login" type="text" size="50" required/><br/>
+                    <label for="cad_login">Login:</label>
+                    <input name="cad_login" type="text" size="50" required/><br/>
                 
-                    <label for="senha">Senha:</label>
-                    <input name="senha" type="password" size="50" required/><br/>
+                    <label for="cad_senha">Senha:</label>
+                    <input name="cad_senha" type="password" size="50" required/><br/>
                 
-                    <label for="permissao">Permissão:</label>
-                    <input type="text" list="permissoes" size="50">                  
-                    <datalist id="permissoes" >
+                    <label for="cad_permissao">Permissão:</label>
+                    <input type="text" list="cad_permissoes" size="50">                  
+                    <datalist id="cad_permissoes" >
                         <option value="1"> Administrador </option>
                         <option value="2"> Revenda </option>
                         <option value="3"> Vendedor </option>    
                     </datalist><br/> 
                 
-                    <label for="nascimento">Data de Nascimento:</label>
-                    <input name="nascimento" type="date" size="50" required /><br/>
                     <input type="hidden" name="cmd" value='trataCadastroUsuario'>
                     <input name="Salvar" type="submit" value="Salvar"/>
                
