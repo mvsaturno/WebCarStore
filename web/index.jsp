@@ -3,7 +3,38 @@
     Created on : 26/10/2012, 23:58:36
     Author     : Saturno
 --%>
+<%
+/*Cookie mCookies[] = request.getCookies();
+ if(!(mCookies == null)){
+        Cookie getCookieLogin = null;
+        Cookie getCookieSenha = null;
 
+        for(int i = 0; i < mCookies.length; i++){
+        if(mCookies[i].getName().equals("usuario")){
+        getCookieLogin = mCookies[i];
+        }
+        
+        if(mCookies[i].getName().equals("senha")){
+        getCookieSenha = mCookies[i];
+        }
+        
+        }
+        
+        String login = getCookieLogin.getValue();
+        String senha = getCookieSenha.getValue();
+        
+        if(login != null && senha != null){
+            request.setAttribute("usuario", login);
+            request.setAttribute("senha", senha);
+            request.setAttribute("cmd", "trataLogin");
+            request.setAttribute("lembrar", "true");
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("FrontController.java"); 
+            dispatcher.forward(request,response); 
+        }
+ }*/
+
+%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">

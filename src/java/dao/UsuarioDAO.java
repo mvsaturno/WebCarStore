@@ -97,4 +97,16 @@ public class UsuarioDAO implements InterfaceDAO{
         pstmt.close();
         return usuario;
     }
+    
+    /*public int permissaoUsuario(String login, String senha) throws SQLException{
+        Connection conexao = DBConnection.getInstance();
+        int permissao;
+        String sql = (String) dados.get("SelectPermissao.Usuario");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setString(1, login);
+        pstmt.setString(2, senha);
+        ResultSet rs = pstmt.executeQuery();
+        permissao = rs.getInt(1);
+        return permissao;
+    }*/
 }
