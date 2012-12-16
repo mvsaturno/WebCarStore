@@ -33,12 +33,14 @@ public class RevendaDAO implements InterfaceDAO{
         String sql = (String) dados.get("Insert.Revenda");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, rev.getNome());
-        stmt.setString(2, rev.getEndereco());
-        stmt.setString(3, rev.getCNPJ());
+        stmt.setString(3, rev.getNome());
+        stmt.setString(8, rev.getEndereco());
+        stmt.setString(2, rev.getCNPJ());
         stmt.setString(4, rev.getFone());
-        stmt.setString(5, rev.getSetor());
-        stmt.setString(6, rev.getEmail());
+        stmt.setString(5, rev.getEmail());
+        stmt.setString(6, rev.getLogin());
+        stmt.setString(7, rev.getSenha());
+        stmt.setInt(8, rev.getAtivo());
         stmt.execute();
         conexao.close();
     }

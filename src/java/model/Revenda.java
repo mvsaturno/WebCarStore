@@ -14,46 +14,59 @@ public class Revenda {
     private int id;
     private String nome;
     private String email;
-    private String setor;
     private String endereco;
     private String fone;
     private String CNPJ;
+    private String login;
+    private String senha;
+    private int ativo;
     private java.sql.Date data_cadastro;
 
     public Revenda() {
     }
 
-    public Revenda(String nome, String email, String setor, String endereco, String fone, String CNPJ, Date data_cadastro) {
+    public Revenda(int id, String nome, String email, String endereco, String fone, String CNPJ, String login, String senha, int ativo, Date data_cadastro) {
         this.nome = nome;
         this.email = email;
-        this.setor = setor;
         this.endereco = endereco;
         this.fone = fone;
         this.CNPJ = CNPJ;
+        this.login = login;
+        this.senha = senha;
+        this.ativo = ativo;
         this.data_cadastro = data_cadastro;
     }
-    
-    public void setRevenda (Revenda rev){
-        this.setId(rev.getId());
-        this.setNome(rev.getNome());
-        this.setEmail(rev.getEmail());
-        this.setSetor(rev.getSetor());
-        this.setCNPJ(rev.getCNPJ());
-        this.setEndereco(rev.getEndereco());
-        this.setFone(rev.getFone());
-        this.setData_cadastro(rev.getData_cadastro());
+
+    public int getAtivo() {
+        return ativo;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setAtivo(int ativo) {
+        this.ativo = ativo;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
     public void setId(int id) {
         this.id = id;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public void setSetor(String setor) {
-        this.setor = setor;
     }
 
     public void setEndereco(String endereco) {
@@ -74,10 +87,6 @@ public class Revenda {
 
     public void setFone(String fone) {
         this.fone = fone;
-    }
-
-    public String getSetor() {
-        return setor;
     }
 
     public String getNome() {
