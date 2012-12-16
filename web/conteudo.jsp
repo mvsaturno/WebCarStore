@@ -41,7 +41,8 @@
 </div>
 
 <div class="divs" id="cadastrarUsuarios">
-    <h3>Cadastro de Usuário:</h3>    
+    <h3>Cadastro de Usuário:</h3>
+    <br/>
     <form method="post" action="FrontController">
         <fieldset>
             <label for="user_nome_cad">Nome completo:</label>
