@@ -141,7 +141,8 @@
 
             <label>Ano:</label>
             <label class="veiculo_label"> 
-                <select class="veiculo_select" name="veiculo_select">                    
+                <select class="veiculo_select" name="veiculo_select">
+                    <option value=""></option>
                     <% for (int i = 1950; i <= 2013; i++) {%>
                     <option value=<%=i%>><%=i%></option>
                     <% }%>  
