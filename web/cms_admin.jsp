@@ -38,7 +38,8 @@
             <div id="menu_admin">
                 <ul>
                     <li><a href="#" onclick="usuarios()">Usuários</a></li>
-                    <li><a href="#" onclick="revendas()">Revendas</a></li>           
+                    <li><a href="#" onclick="revendas()">Revendas</a></li>
+                    <li><a href="#" onclick="veiculos()">Veículos</a></li>
                     <li><a href="#" onclick="layouts()">Layouts</a></li>
                     <li><a href="#" onclick="planos()">Planos</a></li>
                 </ul>                
