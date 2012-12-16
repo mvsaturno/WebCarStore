@@ -10,4 +10,7 @@ package model;
  */
 public class Cliente extends Usuario{
     
+    public Cliente (Usuario user){
+    super(user.getId(), user.getNome(), user.getLogin(), user.getSenha(), user.getPermissao(), user.getRevenda(), user.getAtivo(), user.getCelular(), user.getTelefone());
+    }
 }

@@ -16,8 +16,22 @@ public class Usuario {
     private int permissao; //Testaremos a permissão pelo número: 1-administrador, 2-gerente, 3-vendedor, 4-cliente.
     private Revenda revenda;
     private int ativo;
+    private int celular;
+    private int telefone;
 
     public Usuario() {
+    }
+
+    public Usuario(int id, String nome, String login, String senha, int permissao, Revenda revenda, int ativo, int celular, int telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.permissao = permissao;
+        this.revenda = revenda;
+        this.ativo = ativo;
+        this.celular = celular;
+        this.telefone = telefone;
     }
 
     public Usuario(String nome, String login, String senha, int permissao, String data_nasc, Revenda revenda) {
@@ -26,6 +40,22 @@ public class Usuario {
         this.senha = senha;
         this.permissao = permissao;
         this.revenda = revenda;
+    }
+
+    public int getCelular() {
+        return celular;
+    }
+
+    public void setCelular(int celular) {
+        this.celular = celular;
+    }
+
+    public int getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(int telefone) {
+        this.telefone = telefone;
     }
 
     public String getNome() {

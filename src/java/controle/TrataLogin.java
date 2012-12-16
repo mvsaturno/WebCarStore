@@ -36,7 +36,7 @@ public class TrataLogin extends Comando {
         Usuario user = new UsuarioDAO().pesquisarLogin(login);
         if (user != null && user.getSenha().equals(senha)) {
             
-            if(lembrar.equals("true")){
+           try { if(lembrar != null){
             Cookie cookieLogin = new Cookie("usuario", login);
             Cookie cookieSenha = new Cookie("senha", senha);
             cookieLogin.setMaxAge(365 * 24 * 60 * 60);
@@ -44,33 +44,35 @@ public class TrataLogin extends Comando {
             getResponse().addCookie(cookieLogin);
             getResponse().addCookie(cookieSenha);
         }
-            
+            HttpSession session = getRequest().getSession(true);
             int permissao = user.getPermissao();
             switch(permissao){
                 case 1:
                     Administrador admin = (Administrador) user;
-                    HttpSession sessionAdm = getRequest().getSession(true);
-                    sessionAdm.setAttribute("usuario", admin);
-                    getResponse().sendRedirect("cms_admin.jsp");
+                    session.setAttribute("usuario", admin);
+                    getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");
                     break;
                 case 2:
                     Gerente gerente = (Gerente) user;
-                    HttpSession sessionGer = getRequest().getSession(true);
-                    sessionGer.setAttribute("usuario", gerente);
-                    getResponse().sendRedirect("cms_gerente.jsp");
+                    session.setAttribute("usuario", gerente);
+                    getResponse().sendRedirect("/WEB-INF/gerente.jsp");
                     break;
                 case 3:
                     Vendedor vendedor = (Vendedor) user;
-                    HttpSession sessionVen = getRequest().getSession(true);
-                    sessionVen.setAttribute("usuario", vendedor);
-                    getResponse().sendRedirect("cms_vendedor.jsp");
+                    session.setAttribute("usuario", vendedor);
+                    getResponse().sendRedirect("/WEB-INF/vendedor.jsp");
                     break;
                 case 4:
                     Cliente cliente = (Cliente) user;
-                    HttpSession session = getRequest().getSession(true);
                     session.setAttribute("usuario", cliente);
-                    getResponse().sendRedirect("cms_cliente.jsp");
+                    getResponse().sendRedirect("/WEB-INF/cliente.jsp");
                     break;
+            }
+            
+           
+           
+           }catch(NullPointerException ex){
+            out.println(ex);
             }
             
             // Cria o objeto de sessão que irá identificar o usuário logado

@@ -10,7 +10,11 @@ package model;
  */
 public class Administrador extends Usuario{
     
-    public Administrador(){}
+    public Administrador(Usuario user){
+    
+    super(user.getId(), user.getNome(), user.getLogin(), user.getSenha(), user.getPermissao(), user.getRevenda(), user.getAtivo(), user.getCelular(), user.getTelefone());
+    
+    }
     
     public Revenda cadastrarRevenda(){
         

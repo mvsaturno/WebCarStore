@@ -35,11 +35,9 @@ public class RevendaDAO implements InterfaceDAO{
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setString(3, rev.getNome());
         stmt.setString(8, rev.getEndereco());
-        stmt.setString(2, rev.getCNPJ());
-        stmt.setString(4, rev.getFone());
+        stmt.setLong(2, rev.getCNPJ());
+        stmt.setInt(4, rev.getFone());
         stmt.setString(5, rev.getEmail());
-        stmt.setString(6, rev.getLogin());
-        stmt.setString(7, rev.getSenha());
         stmt.setInt(8, rev.getAtivo());
         stmt.execute();
         conexao.close();
@@ -69,7 +67,24 @@ public class RevendaDAO implements InterfaceDAO{
 
     @Override
     public Object pesquisarChave(int chave) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Connection conexao = DBConnection.getInstance();
+        Revenda revenda = null;
+        String sql = (String) dados.get("SelectById.Revenda");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1, chave);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            revenda = new Revenda();
+            revenda.setId(rs.getInt("id_revenda"));
+            revenda.setCNPJ(rs.getLong("cnpj"));
+            revenda.setNome(rs.getString("nome"));
+            revenda.setFone(rs.getInt("telefone"));
+            revenda.setEmail(rs.getString("mail"));
+            revenda.setAtivo(rs.getInt("ativo"));
+            revenda.setEndereco(rs.getString("endereco"));
+        }
+        pstmt.close();
+        return revenda;
     }
 
     @Override

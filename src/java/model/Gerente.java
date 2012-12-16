@@ -11,11 +11,9 @@ package model;
 public class Gerente extends Usuario{
 
     
-    public Gerente(){}
+    public Gerente(Usuario user){
     
-    public Vendedor cadastrarVendedor(){
-        Vendedor vendedor = new Vendedor();
-        
-        return vendedor;
+    super(user.getId(), user.getNome(), user.getLogin(), user.getSenha(), user.getPermissao(), user.getRevenda(), user.getAtivo(), user.getCelular(), user.getTelefone());
+    
     }
 }

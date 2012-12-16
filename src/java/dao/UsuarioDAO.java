@@ -12,7 +12,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Administrador;
+import model.Cliente;
+import model.Gerente;
+import model.Revenda;
 import model.Usuario;
+import model.Vendedor;
 import util.PropertiesManager;
 
 /**
@@ -89,10 +96,40 @@ public class UsuarioDAO implements InterfaceDAO{
         while (rs.next()){
             usuario = new Usuario();
             usuario.setId(rs.getInt("id_usuario"));
-            usuario.setNome(rs.getString("nome"));
             usuario.setLogin(rs.getString("email"));
+            usuario.setPermissao(rs.getInt("id_tipo_usuario"));
+            usuario.setNome(rs.getString("nome"));
             usuario.setSenha(rs.getString("senha"));
-            usuario.setPermissao(rs.getInt("tipo_usuario"));
+            usuario.setAtivo(rs.getInt("ativo"));
+            usuario.setCelular(rs.getInt("celular"));
+            usuario.setTelefone(rs.getInt("telefone"));
+            
+                int rev = rs.getInt("id_revenda");
+                Revenda revenda = null;
+            try {
+                revenda = (Revenda) new RevendaDAO().pesquisarChave(rev);
+            } catch (IOException ex) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            usuario.setRevenda(revenda);
+            
+            int permissao = usuario.getPermissao();
+            switch(permissao){
+                case 1:
+                    usuario = new Administrador(usuario);        
+                    break;
+                case 2:
+                    usuario = new Gerente(usuario);
+                    break;
+                case 3:
+                    usuario = new Vendedor(usuario);
+                    break;
+                case 4:
+                    usuario = new Cliente(usuario);
+                    break;
+            }
+            
         }
         pstmt.close();
         return usuario;
