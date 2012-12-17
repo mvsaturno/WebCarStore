@@ -50,7 +50,7 @@ public class UsuarioDAO implements InterfaceDAO{
         stmt.setInt(6, user.getTelefone());
         stmt.setInt(7, user.getRevenda().getId());
         stmt.execute();
-        conexao.close();
+        //conexao.close();
         return true;
     }
 
@@ -122,7 +122,7 @@ public class UsuarioDAO implements InterfaceDAO{
             
             
         
-        pstmt.close();
+        //pstmt.close();
         return userList;
     }
 
@@ -181,7 +181,7 @@ public class UsuarioDAO implements InterfaceDAO{
             }
             
         }
-        pstmt.close();
+        //pstmt.close();
         return usuario;
     }
     
