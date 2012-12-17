@@ -32,13 +32,13 @@ public class TrataCadastroUsuario extends Comando {
             HttpSession session = getRequest().getSession(false);
             Administrador admin = (Administrador) session.getAttribute("usuario");
             
-            String nome = getRequest().getParameter("cad_nome");
-            String login = getRequest().getParameter("cad_login");
-            String senha = getRequest().getParameter("cad_senha");
-            int permissao = Integer.parseInt(getRequest().getParameter("cad_permissao"));
-            int id_revenda = Integer.parseInt(getRequest().getParameter("cad_revenda"));
-            int celular = Integer.parseInt(getRequest().getParameter("cad_celular"));
-            int telefone = Integer.parseInt(getRequest().getParameter("cad_telefone"));
+            String nome = getRequest().getParameter("user_nome_cad");
+            String login = getRequest().getParameter("user_login_cad");
+            String senha = getRequest().getParameter("user_senha_cad");
+            int permissao = Integer.parseInt(getRequest().getParameter("user_permissao_cad"));
+            int id_revenda = Integer.parseInt(getRequest().getParameter("user_revenda_cad"));
+            int celular = Integer.parseInt(getRequest().getParameter("user_celular_cad"));
+            int telefone = Integer.parseInt(getRequest().getParameter("user_telefone_cad"));
             
             Revenda revenda = (Revenda) new RevendaDAO().pesquisarChave(id_revenda);
             Usuario user = new Usuario();
@@ -53,7 +53,7 @@ public class TrataCadastroUsuario extends Comando {
             String msg = admin.cadastrarUsuario(user);
             
             out.println(msg);
-            RequestDispatcher rd = getRequest().getRequestDispatcher("/WEB-INF/cms_admin.jsp");
+            RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
             rd.include(getRequest(), getResponse()); 
 
             

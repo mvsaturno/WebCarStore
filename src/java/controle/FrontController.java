@@ -31,6 +31,8 @@ public class FrontController extends HttpServlet {
         comandos.put("trataCadastroUsuario", "controle.TrataCadastroUsuario");
         comandos.put("trataListaUsuarios", "controle.TrataListaUsuarios");
         comandos.put("trataCadastroNoticia", "controle.TrataCadastroNoticias");
+        comandos.put("trataExcluirUsuario", "controle.TrataExcluirUsuario");
+        
         //Acrescentar o mapeamento para as outras classes
 
         //Recupera o contexto da aplicação para inicializar o banco de dados

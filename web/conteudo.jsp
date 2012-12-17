@@ -1,3 +1,10 @@
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.io.IOException"%>
+<%@page import="model.Administrador"%>
+<%@page import="model.Usuario"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.UsuarioDAO"%>
 <div class="divs" id="usuarios">
     <h3>Gerenciamento de Usuários:</h3>
     <br/>
@@ -11,32 +18,43 @@
     <table>
         <tr class="gray2">
             <th>Nome</th>
-            <th>Sobrenome</th>
             <th>Revenda</th>
             <th>Login</th>
             <th>Permissão</th>
-            <th>Data Cadastro</th>
             <th>Editar</th>
             <th>Excluir</th>
         </tr>
 
-        <% for (int i = 0; i < 10; i++) {
+        <% 
+        
+        Administrador admin = (Administrador) usuario;
+        ArrayList users = admin.listarUsuarios();
+        Iterator it = users.iterator();
+        while(it.hasNext()){
+        int i = 0;
+        Usuario user = (Usuario) it.next();
                 if (i % 2 == 0) {
         %>
         <tr class="white">
             <%  } else {%>
         <tr class="gray">
             <% }%>
-            <td>oi</td>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-            <td>d</td>
-            <td>e</td>
-            <td><img src="img/edit.png" border="0" alt="Editar"/></td>
-            <td><img src="img/delete.png" border="0" alt="Excluir"/></td>
+            <td><%=user.getNome() %></td>
+            <td><%=user.getRevenda().getNome() %></td>
+            <td><%=user.getLogin() %></td>
+            <td><%=user.getPermissao() %></td>
+            <td><img src="img/edit.png" border="0" alt="Editar" onclick="editarUsuario(<%=user.getId()%>)"/></td>
+            <td>
+                <form method="post" action="FrontController">
+                <input type="hidden" name="cmd" value="trataExcluirUsuario">
+                <input type="hidden" name="user_id_excluir" value="<%=user.getId()%>">
+                <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
+                </form>
+            </td>
         </tr>
-        <% }%>
+        <% i++;}
+        
+%>
     </table>
 </div>
     
@@ -78,14 +96,22 @@
             <input name="user_nome_cad" type="text" size="50" required autofocus/><br/>
 
             <label for="user_login_cad">Login:</label>
-            <input name="user_login_cad" type="text" size="50" required/><br/>
+            <input name="user_login_cad" type="email" size="50" required/><br/>
 
             <label for="user_senha_cad">Senha:</label>
             <input name="user_senha_cad" type="password" size="50" required/><br/>           
+            
+            <label for="user_celular_cad">Celular:</label>
+            <input name="user_celular_cad" type="tel" size="20" required/><br/>
+            
+            <label for="user_telefone_cad">Telefone:</label>
+            <input name="user_telefone_cad" type="tel" size="20" required/><br/>
+            
+            <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
 
             <label for="user_permissao_cad">Permissão:</label>
             <label class="usuario_label"> 
-                <select class="usuario_select" name="veiculo_select">
+                <select class="usuario_select" name="user_permissao_cad">
                     <option value=""></option>
                     <option value="01">Administrador</option>
                     <option value="02">Revenda</option>
