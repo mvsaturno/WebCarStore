@@ -133,6 +133,23 @@ public class UsuarioDAO implements InterfaceDAO{
 
     @Override
     public boolean editar(Object obj) throws SQLException {
+         Usuario user = (Usuario) obj;
+        Connection conexao = DBConnection.getInstance();
+        
+        String sql = (String) dados.get("Update.Usuario");
+        
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        
+        stmt.setString(1, user.getLogin());
+        stmt.setInt(2, user.getPermissao());
+        stmt.setString(3, user.getNome());
+        stmt.setString(4, user.getSenha());
+        stmt.setInt(5, user.getCelular());
+        stmt.setInt(6, user.getTelefone());
+        stmt.setInt(7, user.getRevenda().getId());
+        stmt.setInt(8, user.getId());
+        stmt.execute();
+        //conexao.close();
         return true;
     }
     

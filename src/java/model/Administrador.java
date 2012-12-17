@@ -60,4 +60,20 @@ public class Administrador extends Usuario {
             result = admin.pesquisarTudo();
                 return result;
     }
+    
+     public String editarUsuario(Usuario user) throws IOException, SQLException {
+        String msg = "";
+        UsuarioDAO admin = new UsuarioDAO();
+        try {
+            if (admin.editar(user)) {
+                msg = "Editado com sucesso!";
+            } else {
+                msg = "Erro na edição do usuário! ";
+            }
+        } catch (Exception e) {
+            msg += e.getMessage();
+        }
+        return msg;
+    }
+    
 }
