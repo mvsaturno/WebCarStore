@@ -39,6 +39,35 @@
         <% }%>
     </table>
 </div>
+    
+<div class="divs" id="revendas">
+    <a href="#" onclick="cadastrarRevendas()" class="btn_cadastrar">
+        <span>Cadastar Revendas</span>
+    </a>
+</div>
+    
+<div class="divs" id="veiculos">
+    <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
+        <span>Cadastar veículos</span>
+    </a>
+    <a href="#" onclick="cadastrarModelos()" class="btn_cadastrar">
+        <span>Cadastar modelos</span>
+    </a>
+    <a href="#" onclick="cadastrarMarcas()" class="btn_cadastrar">
+        <span>Cadastar marcas</span>
+    </a>
+    <a href="#" onclick="cadastrarItens()" class="btn_cadastrar">
+        <span>Cadastar Itens Opcionais</span>
+    </a>
+</div>
+    
+<div class="divs" id="layouts">
+    Layouts
+</div>
+
+<div class="divs" id="planos">
+    Planos
+</div>
 
 <div class="divs" id="cadastrarUsuarios">
     <h3>Cadastro de Usuário:</h3>
@@ -70,24 +99,33 @@
         </fieldset>                  
     </form>
 </div>
-
-
-<div class="divs" id="revendas">
-    <a href="#" onclick="cadastrarRevendas()" class="btn_cadastrar">
-        <span>Cadastar Revendas</span>
-    </a>
-</div>
-
-<div class="divs" id="veiculos">
-    <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
-        <span>Cadastar veículos</span>
-    </a>
-    <a href="#" onclick="cadastrarModelos()" class="btn_cadastrar">
-        <span>Cadastar modelos</span>
-    </a>
-    <a href="#" onclick="cadastrarMarcas()" class="btn_cadastrar">
-        <span>Cadastar Marcas</span>
-    </a>
+    
+<div class="divs" id="cadastrarRevendas">                
+    <h3>Cadastro de Revendas:</h3>
+    <br/>
+    <form method="post" action="FrontController">
+        <fieldset>
+            <label for="revenda_descricao_cad">CNPJ:</label>
+            <input name="revenda_cnpj_cad" type="text" size="50" required autofocus/><br/>
+            
+            <label for="revenda_nome_cad">Nome:</label>
+            <input name="revenda_nome_cad" type="text" size="50" required/><br/>
+            
+            <label for="revenda_telefone_cad">Telefone:</label>
+            <input name="revenda_telefone_cad" type="text" size="50" required/><br/>
+            
+            <label for="revenda_mail_cad">E-mail:</label>
+            <input name="revenda_mail_cad" type="text" size="50" required/><br/>
+            
+            <label for="revenda_ativo_cad">Ativo?</label><br/>         
+            <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
+            <input name="revenda_ativo_cad" type="radio" value="2"> Não<br/>
+            
+                                  
+            <input type="hidden" name="cmd" value='trataCadastroRevenda'>
+            <input name="Salvar" type="submit" value="Salvar"/>               
+        </fieldset>                  
+    </form>   
 </div>
 
 <div class="divs" id="cadastrarVeiculos">
@@ -151,13 +189,13 @@
             <br/>
 
             <label for="veiculo_motor_cad">Motor</label>
-            <input name="veiculo_motor_cad" type="text" size="50" required autofocus/><br/>
+            <input name="veiculo_motor_cad" type="text" size="50" required/><br/>
 
             <label for="veiculo_valor_cad">Valor</label>
-            <input name="veiculo_valor_cad" type="text" size="50" required autofocus/><br/>
+            <input name="veiculo_valor_cad" type="text" size="50" required/><br/>
 
             <label for="veiculo_quilometragem_cad">Quilometragem</label>
-            <input name="veiculo_quilometragem_cad" type="text" size="50" required autofocus/><br/>          
+            <input name="veiculo_quilometragem_cad" type="text" size="50" required/><br/>          
 
             <input type="hidden" name="cmd" value='trataCadastroVeiculo'>
             <input name="Salvar" type="submit" value="Salvar"/>               
@@ -191,6 +229,7 @@
     </form>   
 </div>
                 
+                
 <div class="divs" id="cadastrarMarcas">                
     <h3>Cadastro de Marca:</h3>
     <br/>
@@ -206,38 +245,16 @@
     </form>   
 </div>
                 
-<div class="divs" id="cadastrarRevendas">                
-    <h3>Cadastro de Revendas:</h3>
+<div class="divs" id="cadastrarItens">                
+    <h3>Cadastro de itens opcionais</h3>
     <br/>
     <form method="post" action="FrontController">
         <fieldset>
-            <label for="revenda_descricao_cad">CNPJ:</label>
-            <input name="revenda_cnpj_cad" type="text" size="50" required autofocus/><br/>
-            
-            <label for="revenda_nome_cad">Nome:</label>
-            <input name="revenda_nome_cad" type="text" size="50" required/><br/>
-            
-            <label for="revenda_telefone_cad">Telefone:</label>
-            <input name="revenda_telefone_cad" type="text" size="50" required/><br/>
-            
-            <label for="revenda_mail_cad">E-mail:</label>
-            <input name="revenda_mail_cad" type="text" size="50" required/><br/>
-            
-            <label for="revenda_ativo_cad">Ativo?</label><br/>         
-            <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-            <input name="revenda_ativo_cad" type="radio" value="2"> Não<br/>
-            
-                                  
-            <input type="hidden" name="cmd" value='trataCadastroRevenda'>
+            <label for="veiculo_itens_cad">Item:</label>
+            <input name="veiculo_itens_cad" type="text" size="50" required autofocus/><br/>
+
+            <input type="hidden" name="cmd" value='trataCadastroItens'>
             <input name="Salvar" type="submit" value="Salvar"/>               
         </fieldset>                  
     </form>   
-</div>                       
-
-<div class="divs" id="layouts">
-    Layouts
-</div>
-
-<div class="divs" id="planos">
-    Planos
 </div>

@@ -34,6 +34,12 @@ function cadastrarMarcas(){
 	$('#cadastrarMarcas').stop().slideDown();
 }
 
+function cadastrarItens(){
+	window.scrollTo(0,200);
+	$('div.divs').stop().slideUp();
+	$('#cadastrarItens').stop().slideDown();
+}
+
 function cadastrarRevendas(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
