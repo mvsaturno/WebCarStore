@@ -28,7 +28,7 @@ public class AnuncioDAO implements InterfaceDAO {
     
     
     @Override
-    public void inserir(Object obj) throws SQLException {
+    public boolean inserir(Object obj) throws SQLException {
         Anuncio announce = (Anuncio) obj;
         Connection conexao = DBConnection.getInstance();
         String sql = (String) dados.get("Insert.Anuncio");
@@ -39,11 +39,12 @@ public class AnuncioDAO implements InterfaceDAO {
         stmt.setString(2, announce.getData_inicio());
         stmt.execute();
         conexao.close();
+        return true;
     }
 
     @Override
-    public void excluir(Object obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean excluir(Object obj) throws SQLException {
+        return true;
     }
 
     @Override
@@ -57,8 +58,8 @@ public class AnuncioDAO implements InterfaceDAO {
     }
 
     @Override
-    public void editar(Object obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean editar(Object obj) throws SQLException {
+        return true;
     }
     
 }

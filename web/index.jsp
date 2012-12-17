@@ -29,7 +29,7 @@
             request.setAttribute("cmd", "trataLogin");
             request.setAttribute("lembrar", "true");
             
-            RequestDispatcher dispatcher = request.getRequestDispatcher("FrontController.java"); 
+            RequestDispatcher dispatcher = request.getRequestDispatcher("FrontController"); 
             dispatcher.forward(request,response); 
         }
  }*/

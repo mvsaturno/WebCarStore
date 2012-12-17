@@ -11,7 +11,9 @@ import java.util.Date;
 import model.*;
 import dao.*;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,20 +29,35 @@ public class TrataCadastroUsuario extends Comando {
         try {
             getResponse().setContentType("text/html");
             
-            DateFormat df = DateFormat.getDateTimeInstance();
+            HttpSession session = getRequest().getSession(false);
+            Administrador admin = (Administrador) session.getAttribute("usuario");
+            
             String nome = getRequest().getParameter("cad_nome");
             String login = getRequest().getParameter("cad_login");
             String senha = getRequest().getParameter("cad_senha");
-            String revenda = getRequest().getParameter("cad_revenda");
+            int permissao = Integer.parseInt(getRequest().getParameter("cad_permissao"));
+            int id_revenda = Integer.parseInt(getRequest().getParameter("cad_revenda"));
+            int celular = Integer.parseInt(getRequest().getParameter("cad_celular"));
+            int telefone = Integer.parseInt(getRequest().getParameter("cad_telefone"));
             
+            Revenda revenda = (Revenda) new RevendaDAO().pesquisarChave(id_revenda);
             Usuario user = new Usuario();
             user.setNome(nome);
             user.setLogin(login);
             user.setSenha(senha);
-            user.setRevenda(null);
-            new UsuarioDAO().inserir(user);
+            user.setRevenda(revenda);
+            user.setPermissao(permissao);
+            user.setCelular(celular);
+            user.setTelefone(telefone);
             
-            getResponse().sendRedirect("usuarioCadastrado.jsp");  
+            String msg = admin.cadastrarUsuario(user);
+            
+            out.println(msg);
+            RequestDispatcher rd = getRequest().getRequestDispatcher("/WEB-INF/cms_admin.jsp");
+            rd.include(getRequest(), getResponse()); 
+
+            
+           // getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");  
         } catch (SQLException ex) {
             throw new ServletException(ex);
         } 
