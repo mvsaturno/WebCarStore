@@ -1,4 +1,3 @@
-
 function index(){
 	$('div.divs').stop().slideUp();
 	$('#home').stop().slideDown();
@@ -13,7 +12,29 @@ function usuarios(){
 function cadastrarUsuarios(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
-	$('#cadastrarUsuarios').stop().slideDown();
+	$('#cadastrarUsuarios').stop().slideDown();                        
+        var arr = new Array();  
+        arr = document.getElementsByTagName("input");            
+        for (var i = 0; i < arr.length; i++) {
+            if ((arr[i].type != "submit")&&(arr[i].type != "hidden")&&(arr[i].type != "button")&&(arr[i].type != "image")){
+                arr[i].value = "";
+            }
+        }
+        document.getElementById("user_permissao_cad").options[0].selected = true;
+        document.getElementById("cad_usuario_cmd").value = "trataCadastroUsuario";
+        document.getElementById("cad_usuario_title").innerHTML = "Cadastro de Usuário:";       
+}
+
+function editarUsuario(id){
+        cadastrarUsuarios();
+        document.getElementById("user_nome_cad").value = id;
+        document.getElementById("user_login_cad").value = id;
+        document.getElementById("user_senha_cad").value = id;
+        document.getElementById("user_celular_cad").value = id;
+        document.getElementById("user_telefone_cad").value = id;
+        document.getElementById("user_permissao_cad").options[1].selected = true;
+        document.getElementById("cad_usuario_cmd").value = "trataEditaUsuario";
+        document.getElementById("cad_usuario_title").innerHTML = "Edição de Usuário:";
 }
 
 function cadastrarVeiculos(){
