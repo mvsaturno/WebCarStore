@@ -27,7 +27,7 @@ public class VeiculoDAO  implements InterfaceDAO{
  }
 
     @Override
-    public void inserir(Object obj) throws SQLException {
+    public boolean inserir(Object obj) throws SQLException {
         Veiculo vel = (Veiculo) obj;
         Connection conexao = DBConnection.getInstance();
         
@@ -43,10 +43,12 @@ public class VeiculoDAO  implements InterfaceDAO{
         stmt.setString(7, vel.getOpcionais());
         stmt.execute();
         conexao.close();
+        
+        return true;
     }
 
     @Override
-    public void excluir(Object obj) throws SQLException {
+    public boolean excluir(Object obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -73,8 +75,8 @@ public class VeiculoDAO  implements InterfaceDAO{
     }
 
     @Override
-    public void editar(Object obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean editar(Object obj) throws SQLException {
+        return true;
     }
     
     

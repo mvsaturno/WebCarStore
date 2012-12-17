@@ -34,25 +34,32 @@ public class UsuarioDAO implements InterfaceDAO{
     }
 
     @Override
-    public void inserir(Object obj) throws SQLException {
+    public boolean inserir(Object obj) throws SQLException {
         Usuario user = (Usuario) obj;
         Connection conexao = DBConnection.getInstance();
         
         String sql = (String) dados.get("Insert.Usuario");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
-   
+        
+        //email, id_tipo_usuario, nome, senha, ativo, celular, telefone, id_revenda) VALUES (SEQ_Usuario.NEXTVAL,?,?,?,?,1,?,?,?)
+        
         stmt.setString(1, user.getLogin());
         stmt.setInt(2, user.getPermissao());
         stmt.setString(3, user.getNome());
-        stmt.setString(4, user.getSenha());     
+        stmt.setString(4, user.getSenha());
+        stmt.setInt(5, user.getCelular());
+        stmt.setInt(6, user.getTelefone());
+        stmt.setInt(7, user.getRevenda().getId());
         stmt.execute();
         conexao.close();
+        return true;
     }
 
     @Override
-    public void excluir(Object obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean excluir(Object obj) throws SQLException {
+        
+        return true;
     }
 
     @Override
@@ -82,8 +89,8 @@ public class UsuarioDAO implements InterfaceDAO{
     }
 
     @Override
-    public void editar(Object obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean editar(Object obj) throws SQLException {
+        return true;
     }
     
     public Usuario pesquisarLogin(String login) throws SQLException {

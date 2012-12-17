@@ -26,7 +26,7 @@ public class RevendaDAO implements InterfaceDAO{
     }
     
     @Override
-    public void inserir(Object obj) throws SQLException {
+    public boolean inserir(Object obj) throws SQLException {
         Revenda rev = (Revenda) obj;
         Connection conexao = DBConnection.getInstance();
         
@@ -41,11 +41,12 @@ public class RevendaDAO implements InterfaceDAO{
         stmt.setInt(8, rev.getAtivo());
         stmt.execute();
         conexao.close();
+        return true;
     }
 
     @Override
-    public void excluir(Object obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean excluir(Object obj) throws SQLException {
+        return true;
     }
 
     @Override
@@ -88,8 +89,8 @@ public class RevendaDAO implements InterfaceDAO{
     }
 
     @Override
-    public void editar(Object obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean editar(Object obj) throws SQLException {
+        return true;
     }
     /*
     public Revenda pesquisarLogin(String login) throws SQLException {

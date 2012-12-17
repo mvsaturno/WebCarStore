@@ -4,6 +4,7 @@
     Author     : Saturno
 --%>
 <%@include file="autenticacao.jsp" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -30,7 +31,7 @@
                     <img src="img/user.png" alt="NomeUsuário" border="0" />
                     <div class="text"> 
                         Bem-vindo:<br/>
-                        <span>Usuário <%=usuario.getNome()%></span><br/>
+                        <span><%=usuario.getNome()%></span><br/>
                         <a href="index.jsp">Sair</a>
                     </div>
                 </div>
