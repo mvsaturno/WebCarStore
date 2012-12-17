@@ -15,7 +15,7 @@
 
         <!--Carrega JQuery e JS do menu de imagens-->
         <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/menu.navega.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/menu.navega.js"></script>
 
         <link rel="stylesheet" type="text/css" href="css/estilos.css" />
     </head>

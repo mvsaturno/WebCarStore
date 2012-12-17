@@ -13,8 +13,10 @@
     <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
         <span>Cadastar novo usuário</span>
     </a>
+    
     <br/>
     <br/>
+    
     <table>
         <tr class="gray2">
             <th>Nome</th>
@@ -25,45 +27,47 @@
             <th>Excluir</th>
         </tr>
 
-        <% 
-        
-        Administrador admin = (Administrador) usuario;
-        ArrayList users = admin.listarUsuarios();
-        Iterator it = users.iterator();
-        while(it.hasNext()){
-        int i = 0;
-        Usuario user = (Usuario) it.next();
+        <%
+
+            Administrador admin = (Administrador) usuario;
+            ArrayList users = admin.listarUsuarios();
+            Iterator it = users.iterator();
+            while (it.hasNext()) {
+                int i = 0;
+                Usuario user = (Usuario) it.next();
                 if (i % 2 == 0) {
         %>
         <tr class="white">
             <%  } else {%>
         <tr class="gray">
             <% }%>
-            <td><%=user.getNome() %></td>
-            <td><%=user.getRevenda().getNome() %></td>
-            <td><%=user.getLogin() %></td>
-            <td><%=user.getPermissao() %></td>
-            <td><img src="img/edit.png" border="0" alt="Editar" onclick="editarUsuario(<%=user.getId()%>)"/></td>
-            <td>
+            <td><%=user.getNome()%></td>
+            <td><%=user.getRevenda().getNome()%></td>
+            <td><%=user.getLogin()%></td>
+            <td><%=user.getPermissao()%></td>
+            <td><img src="img/edit.png" border="0" alt="Editar" onclick="editarUsuario(<%=user.getId()%>)"/></td>                   
+
+            <td class="img_crud">
                 <form method="post" action="FrontController">
-                <input type="hidden" name="cmd" value="trataExcluirUsuario">
-                <input type="hidden" name="user_id_excluir" value="<%=user.getId()%>">
-                <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
+                    <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
+                    <input type="hidden" name="cmd" value="trataExcluirUsuario">
+                    <input type="hidden" name="user_id_excluir" value="<%=user.getId()%>">                   
                 </form>
             </td>
         </tr>
-        <% i++;}
-        
-%>
+        <% i++;
+            }
+
+        %>
     </table>
 </div>
-    
+
 <div class="divs" id="revendas">
     <a href="#" onclick="cadastrarRevendas()" class="btn_cadastrar">
         <span>Cadastar Revendas</span>
     </a>
 </div>
-    
+
 <div class="divs" id="veiculos">
     <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
         <span>Cadastar veículos</span>
@@ -78,7 +82,7 @@
         <span>Cadastar Itens Opcionais</span>
     </a>
 </div>
-    
+
 <div class="divs" id="layouts">
     Layouts
 </div>
@@ -88,30 +92,30 @@
 </div>
 
 <div class="divs" id="cadastrarUsuarios">
-    <h3>Cadastro de Usuário:</h3>
+    <h3 id="cad_usuario_title">Cadastro de Usuário:</h3>
     <br/>
     <form method="post" action="FrontController">
         <fieldset>
             <label for="user_nome_cad">Nome completo:</label>
-            <input name="user_nome_cad" type="text" size="50" required autofocus/><br/>
+            <input name="user_nome_cad" id="user_nome_cad" type="text" size="50" required autofocus/><br/>
 
             <label for="user_login_cad">Login:</label>
-            <input name="user_login_cad" type="email" size="50" required/><br/>
+            <input name="user_login_cad" id="user_login_cad" type="email" size="50" required/><br/>
 
             <label for="user_senha_cad">Senha:</label>
-            <input name="user_senha_cad" type="password" size="50" required/><br/>           
-            
+            <input name="user_senha_cad" id="user_senha_cad" type="password" size="50" required/><br/>           
+
             <label for="user_celular_cad">Celular:</label>
-            <input name="user_celular_cad" type="tel" size="20" required/><br/>
-            
+            <input name="user_celular_cad" id="user_celular_cad" type="tel" size="20" required/><br/>
+
             <label for="user_telefone_cad">Telefone:</label>
-            <input name="user_telefone_cad" type="tel" size="20" required/><br/>
-            
+            <input name="user_telefone_cad" id="user_telefone_cad" type="tel" size="20" required/><br/>
+
             <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
 
             <label for="user_permissao_cad">Permissão:</label>
             <label class="usuario_label"> 
-                <select class="usuario_select" name="user_permissao_cad">
+                <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                     <option value=""></option>
                     <option value="01">Administrador</option>
                     <option value="02">Revenda</option>
@@ -120,12 +124,12 @@
             </label>
             <br/>
 
-            <input type="hidden" name="cmd" value='trataCadastroUsuario'>
+            <input id="cad_usuario_cmd" type="hidden" name="cmd" value='trataCadastroUsuario'>
             <input name="Salvar" type="submit" value="Salvar"/>               
         </fieldset>                  
     </form>
 </div>
-    
+
 <div class="divs" id="cadastrarRevendas">                
     <h3>Cadastro de Revendas:</h3>
     <br/>
@@ -133,21 +137,21 @@
         <fieldset>
             <label for="revenda_descricao_cad">CNPJ:</label>
             <input name="revenda_cnpj_cad" type="text" size="50" required autofocus/><br/>
-            
+
             <label for="revenda_nome_cad">Nome:</label>
             <input name="revenda_nome_cad" type="text" size="50" required/><br/>
-            
+
             <label for="revenda_telefone_cad">Telefone:</label>
             <input name="revenda_telefone_cad" type="text" size="50" required/><br/>
-            
+
             <label for="revenda_mail_cad">E-mail:</label>
             <input name="revenda_mail_cad" type="text" size="50" required/><br/>
-            
+
             <label for="revenda_ativo_cad">Ativo?</label><br/>         
             <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
             <input name="revenda_ativo_cad" type="radio" value="2"> Não<br/>
-            
-                                  
+
+
             <input type="hidden" name="cmd" value='trataCadastroRevenda'>
             <input name="Salvar" type="submit" value="Salvar"/>               
         </fieldset>                  
@@ -254,8 +258,8 @@
         </fieldset>                  
     </form>   
 </div>
-                
-                
+
+
 <div class="divs" id="cadastrarMarcas">                
     <h3>Cadastro de Marca:</h3>
     <br/>
@@ -270,7 +274,7 @@
         </fieldset>                  
     </form>   
 </div>
-                
+
 <div class="divs" id="cadastrarItens">                
     <h3>Cadastro de itens opcionais</h3>
     <br/>

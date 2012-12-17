@@ -226,6 +226,15 @@ br {
     clear: left;
 }
 
+.img_crud {
+    width: 80px;
+}
+
+.img_crud input{
+    padding-left: 30px;
+    padding-top: 5px;
+}
+
 #rodape{
     text-align: center;
     height: 30px;
