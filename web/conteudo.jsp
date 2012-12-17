@@ -117,9 +117,9 @@
             <label class="usuario_label"> 
                 <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                     <option value=""></option>
-                    <option value="01">Administrador</option>
-                    <option value="02">Revenda</option>
-                    <option value="03">Vendedor</option>                    
+                    <option value="1">Administrador</option>
+                    <option value="2">Revenda</option>
+                    <option value="3">Vendedor</option>                    
                 </select>
             </label>
             <br/>
