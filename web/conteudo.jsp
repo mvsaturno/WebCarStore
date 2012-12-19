@@ -45,7 +45,8 @@
             <td><%=user.getRevenda().getNome()%></td>
             <td><%=user.getLogin()%></td>
             <td><%=user.getPermissao()%></td>
-            <td><img src="img/edit.png" border="0" alt="Editar" onclick="editarUsuario(<%=user.getId()%>)"/></td>                   
+            <td>
+                <img src="img/edit.png" border="0" alt="Editar" onclick='editarUsuario("<%=user.getNome()%>","<%=user.getLogin()%>","<%=user.getSenha()%>",<%=user.getCelular()%>,<%=user.getTelefone()%>,<%=user.getPermissao()%>)'/></td>                   
 
             <td class="img_crud">
                 <form method="post" action="FrontController">
