@@ -46,7 +46,7 @@
             <td><%=user.getLogin()%></td>
             <td><%=user.getPermissao()%></td>
             <td>
-                <img src="img/edit.png" border="0" alt="Editar" onclick='editarUsuario("<%=user.getNome()%>","<%=user.getLogin()%>","<%=user.getSenha()%>",<%=user.getCelular()%>,<%=user.getTelefone()%>,<%=user.getPermissao()%>)'/></td>                   
+                <img src="img/edit.png" border="0" alt="Editar" onclick='editarUsuario("<%=user.getId()%>","<%=user.getNome()%>","<%=user.getLogin()%>","<%=user.getSenha()%>",<%=user.getCelular()%>,<%=user.getTelefone()%>,<%=user.getPermissao()%>)'/></td>                   
 
             <td class="img_crud">
                 <form method="post" action="FrontController">
@@ -111,7 +111,7 @@
 
             <label for="user_telefone_cad">Telefone:</label>
             <input name="user_telefone_cad" id="user_telefone_cad" type="tel" size="20" required/><br/>
-
+            
             <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
 
             <label for="user_permissao_cad">Permissão:</label>
@@ -124,7 +124,7 @@
                 </select>
             </label>
             <br/>
-
+            <input name="id_user" type="hidden" id="id_user" value="">
             <input id="cad_usuario_cmd" type="hidden" name="cmd" value='trataCadastroUsuario'>
             <input name="Salvar" type="submit" value="Salvar"/>               
         </fieldset>                  

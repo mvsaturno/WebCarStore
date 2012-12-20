@@ -37,8 +37,8 @@ public class TrataCadastroUsuario extends Comando {
             String senha = getRequest().getParameter("user_senha_cad");
             int permissao = Integer.parseInt(getRequest().getParameter("user_permissao_cad"));
             int id_revenda = Integer.parseInt(getRequest().getParameter("user_revenda_cad"));
-            int celular = Integer.parseInt(getRequest().getParameter("user_celular_cad"));
-            int telefone = Integer.parseInt(getRequest().getParameter("user_telefone_cad"));
+            long celular = Long.parseLong(getRequest().getParameter("user_celular_cad"));
+            long telefone = Long.parseLong(getRequest().getParameter("user_telefone_cad"));
             
             Revenda revenda = (Revenda) new RevendaDAO().pesquisarChave(id_revenda);
             Usuario user = new Usuario();
@@ -52,9 +52,11 @@ public class TrataCadastroUsuario extends Comando {
             
             String msg = admin.cadastrarUsuario(user);
             
+            getRequest().setAttribute("mensagem", msg);
+            
             out.println(msg);
             RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
-            rd.include(getRequest(), getResponse()); 
+            rd.forward(getRequest(), getResponse()); 
 
             
            // getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");  

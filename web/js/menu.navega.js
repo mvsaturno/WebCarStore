@@ -25,8 +25,9 @@ function cadastrarUsuarios(){
         document.getElementById("cad_usuario_title").innerHTML = "Cadastro de Usuário:";       
 }
 
-function editarUsuario(nome,login,senha,celular,telefone,permissao){
+function editarUsuario(id,nome,login,senha,celular,telefone,permissao){
         cadastrarUsuarios();
+        document.getElementById("id_user").value = id;
         document.getElementById("user_nome_cad").value = nome;
         document.getElementById("user_login_cad").value = login;
         document.getElementById("user_senha_cad").value = senha;

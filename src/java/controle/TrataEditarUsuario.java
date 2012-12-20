@@ -31,17 +31,18 @@ public class TrataEditarUsuario extends Comando {
             
             HttpSession session = getRequest().getSession(false);
             Administrador admin = (Administrador) session.getAttribute("usuario");
-            
+            int id_usuario = Integer.parseInt(getRequest().getParameter("id_user"));
             String nome = getRequest().getParameter("user_nome_cad");
             String login = getRequest().getParameter("user_login_cad");
             String senha = getRequest().getParameter("user_senha_cad");
             int permissao = Integer.parseInt(getRequest().getParameter("user_permissao_cad"));
             int id_revenda = Integer.parseInt(getRequest().getParameter("user_revenda_cad"));
-            int celular = Integer.parseInt(getRequest().getParameter("user_celular_cad"));
-            int telefone = Integer.parseInt(getRequest().getParameter("user_telefone_cad"));
+            long celular = Long.parseLong(getRequest().getParameter("user_celular_cad"));
+            long telefone = Long.parseLong(getRequest().getParameter("user_telefone_cad"));
             
             Revenda revenda = (Revenda) new RevendaDAO().pesquisarChave(id_revenda);
             Usuario user = new Usuario();
+            user.setId(id_usuario);
             user.setNome(nome);
             user.setLogin(login);
             user.setSenha(senha);

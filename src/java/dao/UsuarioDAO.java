@@ -46,8 +46,8 @@ public class UsuarioDAO implements InterfaceDAO{
         stmt.setInt(2, user.getPermissao());
         stmt.setString(3, user.getNome());
         stmt.setString(4, user.getSenha());
-        stmt.setInt(5, user.getCelular());
-        stmt.setInt(6, user.getTelefone());
+        stmt.setLong(5, user.getCelular());
+        stmt.setLong(6, user.getTelefone());
         stmt.setInt(7, user.getRevenda().getId());
         stmt.execute();
         //conexao.close();
@@ -89,8 +89,8 @@ public class UsuarioDAO implements InterfaceDAO{
             usuario.setNome(rs.getString("nome"));
             usuario.setSenha(rs.getString("senha"));
             usuario.setAtivo(rs.getInt("ativo"));
-            usuario.setCelular(rs.getInt("celular"));
-            usuario.setTelefone(rs.getInt("telefone"));
+            usuario.setCelular(rs.getLong("celular"));
+            usuario.setTelefone(rs.getLong("telefone"));
             
                 int rev = rs.getInt("id_revenda");
                 Revenda revenda = null;
@@ -144,8 +144,8 @@ public class UsuarioDAO implements InterfaceDAO{
         stmt.setInt(2, user.getPermissao());
         stmt.setString(3, user.getNome());
         stmt.setString(4, user.getSenha());
-        stmt.setInt(5, user.getCelular());
-        stmt.setInt(6, user.getTelefone());
+        stmt.setLong(5, user.getCelular());
+        stmt.setLong(6, user.getTelefone());
         stmt.setInt(7, user.getRevenda().getId());
         stmt.setInt(8, user.getId());
         stmt.execute();
@@ -168,8 +168,8 @@ public class UsuarioDAO implements InterfaceDAO{
             usuario.setNome(rs.getString("nome"));
             usuario.setSenha(rs.getString("senha"));
             usuario.setAtivo(rs.getInt("ativo"));
-            usuario.setCelular(rs.getInt("celular"));
-            usuario.setTelefone(rs.getInt("telefone"));
+            usuario.setCelular(rs.getLong("celular"));
+            usuario.setTelefone(rs.getLong("telefone"));
             
                 int rev = rs.getInt("id_revenda");
                 Revenda revenda = null;
