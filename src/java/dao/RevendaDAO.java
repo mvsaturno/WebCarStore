@@ -62,6 +62,7 @@ public class RevendaDAO implements InterfaceDAO{
         
         while (rs.next()){
             Revenda r = new Revenda();
+            r.setId(rs.getInt("id_revenda"));
             r.setCNPJ(rs.getLong("cnpj"));
             r.setNome(rs.getString("nome"));
             r.setEmail(rs.getString("email"));
@@ -81,23 +82,27 @@ public class RevendaDAO implements InterfaceDAO{
     @Override
     public Object pesquisarChave(int chave) throws SQLException {
         Connection conexao = DBConnection.getInstance();
-        Revenda revenda = null;
+        Revenda r = null;
         String sql = (String) dados.get("SelectById.Revenda");
         PreparedStatement pstmt = conexao.prepareStatement(sql);
         pstmt.setInt(1, chave);
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()){
-            revenda = new Revenda();
-            revenda.setId(rs.getInt("id_revenda"));
-            revenda.setCNPJ(rs.getLong("cnpj"));
-            revenda.setNome(rs.getString("nome"));
-            revenda.setFone(rs.getInt("telefone"));
-            revenda.setEmail(rs.getString("mail"));
-            revenda.setAtivo(rs.getInt("ativo"));
-            revenda.setEndereco(rs.getString("endereco"));
+            r = new Revenda();
+            r.setId(rs.getInt("id_revenda"));
+            r.setCNPJ(rs.getLong("cnpj"));
+            r.setNome(rs.getString("nome"));
+            r.setEmail(rs.getString("email"));
+            r.setEndereco(rs.getString("endereco"));
+            r.setNumero(rs.getInt("numero"));
+            r.setCidade(rs.getString("cidade"));
+            r.setEstado(rs.getString("estado"));
+            r.setBairro(rs.getString("bairro"));
+            r.setData_cadastro(rs.getString("data_cadastro"));
+            r.setFone(rs.getLong("telefone"));
         }
         pstmt.close();
-        return revenda;
+        return r;
     }
 
     public Object pesquisarNome(String nome) throws SQLException {
@@ -111,6 +116,7 @@ public class RevendaDAO implements InterfaceDAO{
         
         while (rs.next()) {            
             r = new Revenda();
+            r.setId(rs.getInt("id_revenda"));
             r.setCNPJ(rs.getLong("cnpj"));
             r.setNome(rs.getString("nome"));
             r.setEmail(rs.getString("email"));
