@@ -33,12 +33,15 @@ public class RevendaDAO implements InterfaceDAO{
         String sql = (String) dados.get("Insert.Revenda");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(3, rev.getNome());
-        stmt.setString(8, rev.getEndereco());
+        stmt.setString(1, rev.getNome());
         stmt.setLong(2, rev.getCNPJ());
-        stmt.setInt(4, rev.getFone());
-        stmt.setString(5, rev.getEmail());
-        stmt.setInt(8, rev.getAtivo());
+        stmt.setString(3, rev.getEmail());
+        stmt.setString(4, rev.getEndereco());
+        stmt.setLong(5, rev.getNumero());
+        stmt.setString(6, rev.getCidade());
+        stmt.setString(7, rev.getEstado());
+        stmt.setString(8, rev.getBairro());
+        stmt.setLong(9, rev.getFone());
         stmt.execute();
         conexao.close();
         return true;
@@ -59,7 +62,16 @@ public class RevendaDAO implements InterfaceDAO{
         
         while (rs.next()){
             Revenda r = new Revenda();
-            r.setId(rs.getInt(1));
+            r.setCNPJ(rs.getLong("cnpj"));
+            r.setNome(rs.getString("nome"));
+            r.setEmail(rs.getString("email"));
+            r.setEndereco(rs.getString("endereco"));
+            r.setNumero(rs.getInt("numero"));
+            r.setCidade(rs.getString("cidade"));
+            r.setEstado(rs.getString("estado"));
+            r.setBairro(rs.getString("bairro"));
+            r.setData_cadastro(rs.getString("data_cadastro"));
+            r.setFone(rs.getLong("telefone"));
             revList.add(r);
         }
         pstmt.close();
@@ -88,22 +100,33 @@ public class RevendaDAO implements InterfaceDAO{
         return revenda;
     }
 
+    public Object pesquisarNome(String nome) throws SQLException {
+        Connection conexao = DBConnection.getInstance();
+        Revenda r = null;
+        
+        String sql = (String) dados.get("SelectByName.Revenda");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setString(3, nome);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()) {            
+            r = new Revenda();
+            r.setCNPJ(rs.getLong("cnpj"));
+            r.setNome(rs.getString("nome"));
+            r.setEmail(rs.getString("email"));
+            r.setEndereco(rs.getString("endereco"));
+            r.setNumero(rs.getInt("numero"));
+            r.setCidade(rs.getString("cidade"));
+            r.setEstado(rs.getString("estado"));
+            r.setBairro(rs.getString("bairro"));
+            r.setData_cadastro(rs.getString("data_cadastro"));
+            r.setFone(rs.getLong("telefone"));
+        }
+        return r;
+    }
+    
     @Override
     public boolean editar(Object obj) throws SQLException {
         return true;
     }
-    /*
-    public Revenda pesquisarLogin(String login) throws SQLException {
-        Connection conexao = DBConnection.getInstance();
-        Revenda usuario = null;
-        String sql = (String) dados.get("SelectByLogin.Revenda");
-        PreparedStatement pstmt = conexao.prepareStatement(sql);
-        pstmt.setString(1, login);
-        ResultSet rs = pstmt.executeQuery();
-        while (rs.next()){
-            //Completar depois.
-        }
-        pstmt.close();
-        return usuario;
-    }*/
 }
