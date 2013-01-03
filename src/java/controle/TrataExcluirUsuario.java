@@ -30,16 +30,27 @@ public class TrataExcluirUsuario extends Comando {
             getResponse().setContentType("text/html");
             
             HttpSession session = getRequest().getSession(false);
-            Administrador admin = (Administrador) session.getAttribute("usuario");
+            Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
             
             String num = getRequest().getParameter("user_id_excluir");
             int id = Integer.parseInt(num);
-            String msg = admin.deletarUsuario(id);
+            UsuarioDAO admin = new UsuarioDAO();
+            Usuario user = (Usuario) admin.pesquisarChave(id);
             
-            out.println(msg);
+            String msg = "";
+            if(usuarioLogado.getPermissao()>=user.getPermissao()){
+            
+            if (admin.excluir(id)) {
+                msg = "Excluído com sucesso!";
+            }
+            
+            }else{
+                msg = "Você não possui permissão para excluir um usuário com este nível de acesso.";
+            }
+            
+            getRequest().setAttribute("mensagem", msg);
             RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
-            rd.include(getRequest(), getResponse()); 
+            rd.forward(getRequest(), getResponse()); 
 
-         }   
-           // getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");  
+         }
     }

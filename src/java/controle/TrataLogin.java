@@ -12,11 +12,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
-import model.Administrador;
-import model.Cliente;
-import model.Gerente;
 import model.Usuario;
-import model.Vendedor;
 
 /**
  *
@@ -46,31 +42,23 @@ public class TrataLogin extends Comando {
         }
             HttpSession session = getRequest().getSession(true);
             int permissao = user.getPermissao();
+            session.setAttribute("usuario", user);
             switch(permissao){
                 case 1:
-                    Administrador admin = (Administrador) user;
-                    session.setAttribute("usuario", admin);
                     getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");
                     break;
                 case 2:
-                    Gerente gerente = (Gerente) user;
-                    session.setAttribute("usuario", gerente);
+                    session.setAttribute("usuario", user);
                     getResponse().sendRedirect("/WEB-INF/gerente.jsp");
                     break;
                 case 3:
-                    Vendedor vendedor = (Vendedor) user;
-                    session.setAttribute("usuario", vendedor);
                     getResponse().sendRedirect("/WEB-INF/vendedor.jsp");
                     break;
                 case 4:
-                    Cliente cliente = (Cliente) user;
-                    session.setAttribute("usuario", cliente);
                     getResponse().sendRedirect("/WEB-INF/cliente.jsp");
                     break;
             }
             
-           
-           
            }catch(NullPointerException ex){
             out.println(ex);
             }

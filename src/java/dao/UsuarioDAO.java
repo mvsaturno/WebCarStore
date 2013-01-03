@@ -14,12 +14,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Administrador;
-import model.Cliente;
-import model.Gerente;
 import model.Revenda;
 import model.Usuario;
-import model.Vendedor;
 import util.PropertiesManager;
 
 /**
@@ -102,21 +98,6 @@ public class UsuarioDAO implements InterfaceDAO{
                 
             usuario.setRevenda(revenda);
             
-            int permissao = usuario.getPermissao();
-            switch(permissao){
-                case 1:
-                    usuario = new Administrador(usuario);        
-                    break;
-                case 2:
-                    usuario = new Gerente(usuario);
-                    break;
-                case 3:
-                    usuario = new Vendedor(usuario);
-                    break;
-                case 4:
-                    usuario = new Cliente(usuario);
-                    break;
-            }
             userList.add(usuario);
         }
             
@@ -180,22 +161,6 @@ public class UsuarioDAO implements InterfaceDAO{
             }
                 
             usuario.setRevenda(revenda);
-            
-            int permissao = usuario.getPermissao();
-            switch(permissao){
-                case 1:
-                    usuario = new Administrador(usuario);        
-                    break;
-                case 2:
-                    usuario = new Gerente(usuario);
-                    break;
-                case 3:
-                    usuario = new Vendedor(usuario);
-                    break;
-                case 4:
-                    usuario = new Cliente(usuario);
-                    break;
-            }
             
         }
         //pstmt.close();

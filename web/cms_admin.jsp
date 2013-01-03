@@ -16,7 +16,16 @@
         <!--Carrega JQuery e JS do menu de imagens-->
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/menu.navega.js"></script>
-
+        <% 
+        
+        String mensagem = (String) request.getAttribute("mensagem");
+        
+        if ((mensagem != null) && (!mensagem.equals(""))){
+        %>
+        <script>alert(<%=mensagem%>)</script>
+        <%
+        }
+%>
         <link rel="stylesheet" type="text/css" href="css/estilos.css" />
     </head>
     <body>

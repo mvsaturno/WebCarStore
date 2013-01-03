@@ -30,7 +30,7 @@ public class TrataEditarUsuario extends Comando {
             getResponse().setContentType("text/html");
             
             HttpSession session = getRequest().getSession(false);
-            Administrador admin = (Administrador) session.getAttribute("usuario");
+            Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
             int id_usuario = Integer.parseInt(getRequest().getParameter("id_user"));
             String nome = getRequest().getParameter("user_nome_cad");
             String login = getRequest().getParameter("user_login_cad");
@@ -51,11 +51,20 @@ public class TrataEditarUsuario extends Comando {
             user.setCelular(celular);
             user.setTelefone(telefone);
             
-            String msg = admin.editarUsuario(user);
+            String msg = "";
+            if(usuarioLogado.getPermissao()>=user.getPermissao()){
+            UsuarioDAO admin = new UsuarioDAO();
+            if (admin.editar(user)) {
+                msg = "Editado com sucesso!";
+            }
             
-            out.println(msg);
+            }else{
+                msg = "Você não possui permissão para editar esse usuário com seu nível de acesso.";
+            }
+            
+            getRequest().setAttribute("mensagem", msg);
             RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
-            rd.include(getRequest(), getResponse()); 
+            rd.forward(getRequest(), getResponse()); 
 
             
            // getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");  

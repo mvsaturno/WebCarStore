@@ -30,7 +30,7 @@ public class TrataCadastroUsuario extends Comando {
             getResponse().setContentType("text/html");
             
             HttpSession session = getRequest().getSession(false);
-            Administrador admin = (Administrador) session.getAttribute("usuario");
+            Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
             
             String nome = getRequest().getParameter("user_nome_cad");
             String login = getRequest().getParameter("user_login_cad");
@@ -50,11 +50,18 @@ public class TrataCadastroUsuario extends Comando {
             user.setCelular(celular);
             user.setTelefone(telefone);
             
-            String msg = admin.cadastrarUsuario(user);
+            String msg = "";
+            if(usuarioLogado.getPermissao()>=user.getPermissao()){
+            UsuarioDAO admin = new UsuarioDAO();
+            if (admin.inserir(user)) {
+                msg = "Inserido com sucesso!";
+            }
+            
+            }else{
+                msg = "Você não possui permissão para cadastrar um usuário com este nível de acesso.";
+            }
             
             getRequest().setAttribute("mensagem", msg);
-            
-            out.println(msg);
             RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
             rd.forward(getRequest(), getResponse()); 
 

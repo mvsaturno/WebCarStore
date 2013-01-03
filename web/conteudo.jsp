@@ -29,8 +29,9 @@
 
         <%
 
-            Administrador admin = (Administrador) usuario;
-            ArrayList users = admin.listarUsuarios();
+            Usuario usuarioLogado = (Usuario) usuario;
+            UsuarioDAO admin = new UsuarioDAO();
+            ArrayList users = admin.pesquisarTudo();
             Iterator it = users.iterator();
             while (it.hasNext()) {
                 int i = 0;
