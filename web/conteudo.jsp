@@ -1,6 +1,5 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.io.IOException"%>
-<%@page import="model.Administrador"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,10 +12,10 @@
     <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
         <span>Cadastar novo usuário</span>
     </a>
-    
+
     <br/>
     <br/>
-    
+
     <table>
         <tr class="gray2">
             <th>Nome</th>
@@ -112,7 +111,7 @@
 
             <label for="user_telefone_cad">Telefone:</label>
             <input name="user_telefone_cad" id="user_telefone_cad" type="tel" size="20" required/><br/>
-            
+
             <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
 
             <label for="user_permissao_cad">Permissão:</label>
@@ -132,17 +131,62 @@
     </form>
 </div>
 
+<!-- CADASTRO DE REVENDA -->
 <div class="divs" id="cadastrarRevendas">                
     <h3>Cadastro de Revendas:</h3>
     <br/>
     <form method="post" action="FrontController">
         <fieldset>
-            <label for="revenda_descricao_cad">CNPJ:</label>
+            <label for="revenda_cnpj_cad">CNPJ:</label>
             <input name="revenda_cnpj_cad" type="text" size="50" required autofocus/><br/>
 
-            <label for="revenda_nome_cad">Nome:</label>
+            <label for="revenda_nome_cad">Nome da Revenda:</label>
             <input name="revenda_nome_cad" type="text" size="50" required/><br/>
 
+            <label for="revenda_end">Endereço:</label>
+            <input name="revenda_end" type="text" size="50" required/><br/>
+
+            <label for="revenda_nro">Numero:</label>
+            <input name="revenda_nro" type="number" size="4" required/><br/>
+
+            <label for="revenda_bairro">Bairro:</label>
+            <input name="revenda_bairro" type="text" size="50" required/><br/>
+
+            <label for="revenda_cidade">Cidade:</label>
+            <input name="revenda_cidade" type="text" size="50" required/><br/>
+
+            <label for="revenda_uf">Estado:</label>
+            <select name="revenda_uf" required/>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AM">AM</option>
+                <option value="AP">AP</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MG">MG</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="PR">PR</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="RS">RS</option>
+                <option value="SC">SC</option>
+                <option value="SE">SE</option>
+                <option value="SP">SP</option>
+                <option value="TO">TO</option>
+            </select>
+            <br/>
+            
             <label for="revenda_telefone_cad">Telefone:</label>
             <input name="revenda_telefone_cad" type="text" size="50" required/><br/>
 
@@ -153,12 +197,12 @@
             <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
             <input name="revenda_ativo_cad" type="radio" value="2"> Não<br/>
 
-
             <input type="hidden" name="cmd" value='trataCadastroRevenda'>
             <input name="Salvar" type="submit" value="Salvar"/>               
         </fieldset>                  
     </form>   
 </div>
+<!-- FIM DO CADASTRO REVENDA! -->
 
 <div class="divs" id="cadastrarVeiculos">
     <h3>Cadastro de Veículo:</h3>
