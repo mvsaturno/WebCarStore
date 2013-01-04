@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import model.Usuario;
 import model.Veiculo;
 import util.PropertiesManager;
 
@@ -46,6 +47,22 @@ public class VeiculoDAO  implements InterfaceDAO{
         
         return true;
     }
+    
+    public boolean inserirMarca(Object obj) throws SQLException {
+        Veiculo vel = (Veiculo) obj;
+        Connection conexao = DBConnection.getInstance();
+        
+        String sql = (String) dados.get("Insert.Marca");
+        
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        
+        stmt.setString(1, vel.getMarca());
+        
+        stmt.execute();
+        //conexao.close();
+        return true;
+    }
+
 
     @Override
     public boolean excluir(Object obj) throws SQLException {

@@ -1,6 +1,5 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.io.IOException"%>
-<%@page import="model.Administrador"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
@@ -149,9 +148,9 @@
             <label for="revenda_mail_cad">E-mail:</label>
             <input name="revenda_mail_cad" type="text" size="50" required/><br/>
 
-            <label for="revenda_ativo_cad">Ativo?</label><br/>         
-            <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-            <input name="revenda_ativo_cad" type="radio" value="2"> Não<br/>
+            <label for="revenda_ativo_cad">Ativo?</label>        
+            <input name="revenda_ativo_cad" type="radio" value="1"/> Sim <br/>
+            <input name="revenda_ativo_cad" type="radio" value="2"/> Não<br/>
 
 
             <input type="hidden" name="cmd" value='trataCadastroRevenda'>
