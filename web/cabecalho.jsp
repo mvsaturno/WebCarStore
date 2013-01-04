@@ -20,7 +20,7 @@
 
             String mensagem = (String) request.getAttribute("mensagem");
 
-            if ((mensagem != null) && (!(mensagem.equals("")))) {
+            if ((mensagem != null) && (!mensagem.equals(""))) {
         %>
         <script>alert(<%=mensagem%>)</script>
         <%
