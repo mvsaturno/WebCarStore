@@ -40,11 +40,10 @@ public class Revenda {
         this.ativo = ativo;
     }
     
-    public Revenda(String nome, String email, String endereco, String data_cadastro, int numero, String cidade, String estado, String bairro, long fone, long CNPJ, int ativo) {
+    public Revenda(String nome, String email, String endereco, int numero, String cidade, String estado, String bairro, long fone, long CNPJ, int ativo) {
         this.nome = nome;
         this.email = email;
         this.endereco = endereco;
-        this.data_cadastro = data_cadastro;
         this.numero = numero;
         this.cidade = cidade;
         this.estado = estado;
