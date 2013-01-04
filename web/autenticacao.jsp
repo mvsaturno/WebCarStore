@@ -6,13 +6,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Usuario" %>
 <%
-    Usuario usuario = (Usuario) session.getAttribute( "usuario" );
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
     if( usuario == null ) {
 %>
         <jsp:forward page="/index.jsp"/>
 <%
     }
 %>
-
-
-

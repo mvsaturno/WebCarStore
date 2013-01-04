@@ -24,45 +24,32 @@ public class TrataLogin extends Comando {
         getResponse().setContentType("text/html;charset=UTF-8");
         PrintWriter out = getResponse().getWriter();
         out.println();
-        
+
         String login = getRequest().getParameter("login");
         String senha = getRequest().getParameter("senha");
         String lembrar = getRequest().getParameter("lembrar");
-        
+
         Usuario user = new UsuarioDAO().pesquisarLogin(login);
         if (user != null && user.getSenha().equals(senha)) {
-            
-           try { if(lembrar != null){
-            Cookie cookieLogin = new Cookie("usuario", login);
-            Cookie cookieSenha = new Cookie("senha", senha);
-            cookieLogin.setMaxAge(365 * 24 * 60 * 60);
-            cookieSenha.setMaxAge(365 *24 *60 *60);
-            getResponse().addCookie(cookieLogin);
-            getResponse().addCookie(cookieSenha);
-        }
-            HttpSession session = getRequest().getSession(true);
-            int permissao = user.getPermissao();
-            session.setAttribute("usuario", user);
-            switch(permissao){
-                case 1:
-                    getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");
-                    break;
-                case 2:
-                    session.setAttribute("usuario", user);
-                    getResponse().sendRedirect("/WEB-INF/gerente.jsp");
-                    break;
-                case 3:
-                    getResponse().sendRedirect("/WEB-INF/vendedor.jsp");
-                    break;
-                case 4:
-                    getResponse().sendRedirect("/WEB-INF/cliente.jsp");
-                    break;
+
+            try {
+                if (lembrar != null) {
+                    Cookie cookieLogin = new Cookie("usuario", login);
+                    Cookie cookieSenha = new Cookie("senha", senha);
+                    cookieLogin.setMaxAge(365 * 24 * 60 * 60);
+                    cookieSenha.setMaxAge(365 * 24 * 60 * 60);
+                    getResponse().addCookie(cookieLogin);
+                    getResponse().addCookie(cookieSenha);
+                }
+                HttpSession session = getRequest().getSession(true);          
+                session.setAttribute("usuario", user);
+
+                getResponse().sendRedirect("sistema.jsp");
+
+            } catch (NullPointerException ex) {
+                out.println(ex);
             }
-            
-           }catch(NullPointerException ex){
-            out.println(ex);
-            }
-            
+
             // Cria o objeto de sessão que irá identificar o usuário logado
             //HttpSession session = getRequest().getSession(true);
             //session.setAttribute("usuario", usuario);
