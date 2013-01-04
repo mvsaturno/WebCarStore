@@ -45,17 +45,16 @@ public class TrataLogin extends Comando {
             session.setAttribute("usuario", user);
             switch(permissao){
                 case 1:
-                    getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");
+                    getResponse().sendRedirect("cms_admin.jsp");
                     break;
                 case 2:
-                    session.setAttribute("usuario", user);
-                    getResponse().sendRedirect("/WEB-INF/gerente.jsp");
+                    getResponse().sendRedirect("gerente.jsp");
                     break;
                 case 3:
-                    getResponse().sendRedirect("/WEB-INF/vendedor.jsp");
+                    getResponse().sendRedirect("vendedor.jsp");
                     break;
                 case 4:
-                    getResponse().sendRedirect("/WEB-INF/cliente.jsp");
+                    getResponse().sendRedirect("cliente.jsp");
                     break;
             }
             
@@ -70,7 +69,7 @@ public class TrataLogin extends Comando {
             //getResponse().sendRedirect("cms_admin.jsp");
         } else {
             out.println("<h1> Ocorreu um erro durante o processo de autenticação </h1>");
-            RequestDispatcher rd = getRequest().getRequestDispatcher("/index.jsp");
+            RequestDispatcher rd = getRequest().getRequestDispatcher("index.jsp");
             //rd.include(getRequest(), getResponse());
             rd.forward(getRequest(), getResponse());
         }

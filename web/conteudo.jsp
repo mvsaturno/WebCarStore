@@ -1,6 +1,5 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.io.IOException"%>
-<%@page import="model.Administrador"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
