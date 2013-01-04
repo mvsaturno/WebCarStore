@@ -57,7 +57,7 @@ public class TrataLogin extends Comando {
             //getResponse().sendRedirect("cms_admin.jsp");
         } else {
             out.println("<h1> Ocorreu um erro durante o processo de autenticação </h1>");
-            RequestDispatcher rd = getRequest().getRequestDispatcher("/index.jsp");
+            RequestDispatcher rd = getRequest().getRequestDispatcher("index.jsp");
             //rd.include(getRequest(), getResponse());
             rd.forward(getRequest(), getResponse());
         }
