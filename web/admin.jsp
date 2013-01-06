@@ -1,19 +1,22 @@
+<%@page import="model.Veiculo"%>
+<%@page import="controle.TrataListaMarcas"%>
+<%@page import="dao.VeiculoDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.io.IOException"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UsuarioDAO"%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <div id="menu_admin">
     <ul>
-        <li><a href="#" onclick="usuarios()">Usuários</a></li>
+        <li><a href="#" onclick="usuarios()">Usuarios</a></li>
         <li><a href="#" onclick="revendas()">Revendas</a></li>
-        <li><a href="#" onclick="veiculos()">Veículos</a></li>
+        <li><a href="#" onclick="veiculos()">Veiculos</a></li>
         <li><a href="#" onclick="layouts()">Layouts</a></li>
         <li><a href="#" onclick="planos()">Planos</a></li>
     </ul>                
@@ -21,12 +24,12 @@
 
 <div id="conteudo">
     <div class="divs" id="usuarios">
-        <h3>Gerenciamento de Usuários:</h3>
+        <h3>Gerenciamento de UsuÃ¡rios:</h3>
         <br/>
         <input type="text" placeholder="Procurar"/>
 
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
-            <span>Cadastar novo usuário</span>
+            <span>Cadastar novo usuÃ¡rio</span>
         </a>
 
         <br/>
@@ -37,7 +40,7 @@
                 <th>Nome</th>
                 <th>Revenda</th>
                 <th>Login</th>
-                <th>Permissão</th>
+                <th>PermissÃ£o</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
@@ -52,7 +55,7 @@
                     Usuario user = (Usuario) it.next();
                     if (i % 2 == 0) {
             %>
-
+            
             <tr class="white">
                 <%  } else {%>
             <tr class="gray">
@@ -82,11 +85,9 @@
     <div class="divs" id="revendas">
         <a href="#" onclick="cadastrarRevendas()" class="btn_cadastrar">
             <span>Cadastar Revendas</span>
-            
-            <h1>Listagem de Usuários</h1>
+            <br/>
+            <h1>Listagem de Revendas</h1>
         <hr>
-
-        <h2> ${identifica} estes são os usuários cadastrados ... </h2>
         
         <table border="1">
 
@@ -100,7 +101,7 @@
 
                 <th>Email:</th>
                 
-                <th>Endereço:</th>
+                <th>EndereÃ§o:</th>
                 
                 <th>Numero:</th>
                 
@@ -116,16 +117,34 @@
             
             <tbody>
                             
-            <!--forEach, implementa um laço  para fazer a interação ArrayList contido no objeto de requisição -->
+            <!--forEach, implementa um laÃ§o  para fazer a interaÃ§Ã£o ArrayList contido no objeto de requisiÃ§Ã£o -->
             
             
             <c:forEach items="${listaRevendas}" var="revenda">
 
                 <tr>
 
-                    <!--A tag out é responsável por gerar uma String de saída na tela -->
+                    <!--A tag out Ã© responsÃ¡vel por gerar uma String de saÃ­da na tela -->
 
                     <td><c:out value="${revenda.cnpj}"/></td>
+                    
+                    <td><c:out value="${revenda.nome}"/></td>
+                    
+                    <td><c:out value="${revenda.telefone}"/></td>
+                    
+                    <td><c:out value="${revenda.email}"/></td>
+                    
+                    <td><c:out value="${revenda.endereco}"/></td>
+                    
+                    <td><c:out value="${revenda.numero}"/></td>
+                    
+                    <td><c:out value="${revenda.bairro}"/></td>
+                    
+                    <td><c:out value="${revenda.cidade}"/></td>
+                    
+                    <td><c:out value="${revenda.estado}"/></td>
+                    
+                    <td><c:out value="${revenda.data_cadastro}"/></td>
                     
 
                 </tr>
@@ -139,8 +158,10 @@
     </div>
 
     <div class="divs" id="veiculos">
+        
+        
         <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
-            <span>Cadastar veículos</span>
+            <span>Cadastar veÃ­culos</span>
         </a>
         <a href="#" onclick="cadastrarModelos()" class="btn_cadastrar">
             <span>Cadastar modelos</span>
@@ -162,7 +183,7 @@
     </div>
 
     <div class="divs" id="cadastrarUsuarios">
-        <h3 id="cad_usuario_title">Cadastro de Usuário:</h3>
+        <h3 id="cad_usuario_title">Cadastro de Usuario:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>
@@ -183,7 +204,7 @@
 
                 <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
 
-                <label for="user_permissao_cad">Permissão:</label>
+                <label for="user_permissao_cad">PermissÃ£o:</label>
                 <label class="usuario_label"> 
                     <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                         <option value=""></option>
@@ -203,7 +224,7 @@
     <div class="divs" id="cadastrarRevendas">                
         <h3>Cadastro de Revendas:</h3>
         <br/>
-        <form method="post" action="FrontController">
+         <form method="post" action="FrontController">
             <fieldset>
                 <label for="revenda_descricao_cad">CNPJ:</label>
                 <input name="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="text" size="50" required autofocus/><br/>
@@ -211,7 +232,7 @@
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" type="text" size="50" required/><br/>
 
-                <label for="revenda_end">Endereço:</label>
+                <label for="revenda_end">Endereï¿½o:</label>
                 <input name="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
@@ -262,16 +283,16 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" type="radio" value="2"> Não<br/>
+                <input name="revenda_ativo_cad" type="radio" value="2"> Nï¿½o<br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroRevenda'>
                 <input name="Salvar" type="submit" value="Salvar"/>      
             </fieldset>                  
-        </form>   
+        </form>
     </div>
 
     <div class="divs" id="cadastrarVeiculos">
-        <h3>Cadastro de Veículo:</h3>
+        <h3>Cadastro de VeÃ­culo:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>                                 
@@ -286,7 +307,7 @@
                 </label>
                 <br/>
 
-                <label>Combustível:</label>
+                <label>CombustÃ­vel:</label>
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_select">
                         <option value=""></option>
@@ -303,7 +324,7 @@
                         <option value=""></option>
                         <option value="01">Carro</option>
                         <option value="02">Moto</option>
-                        <option value="03">Caminhão</option>                    
+                        <option value="03">CaminhÃ£o</option>                    
                     </select>
                 </label>            
                 <br/>
@@ -353,15 +374,33 @@
 
                 <label for="veiculo_modelo_cad">Modelo</label>
                 <input name="veiculo_modelo_cad" type="text" size="50" required autofocus/><br/>
-
+                <%
+                    ArrayList listaMarcas = new VeiculoDAO().pesquisarMarcas();
+                    session.setAttribute("listaMarcas", listaMarcas);
+                 %>                
+        
+                
                 <label>Marca:</label>
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select">
-                        <option value=""></option>
-                        <option value="01">Fiat</option>
-                        <option value="02">Wolkswagen</option>
-                        <option value="03">Renault</option>                    
-                    </select>
+                    <select class="veiculo_select" name="veiculo_marca_select">
+                   <%-- uso com iterator
+                    <%
+                    Iterator itM = listaMarcas.iterator();
+                    while (itM.hasNext()) 
+                    {
+                        Veiculo veiculo = (Veiculo) itM.next();
+                        String marca = veiculo.getMarca();
+                    %>
+
+                        <option value=""><%=marca%></option>
+                    <%
+                    }
+                    %>
+                   --%>
+                   <c:forEach items="${listaMarcas}" var="veiculo">
+                       <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
+                   </c:forEach>     
+                 </select
                 </label>            
                 <br/>
 
@@ -401,3 +440,5 @@
         </form>   
     </div>
 </div>
+
+
