@@ -34,6 +34,8 @@ public class FrontController extends HttpServlet {
         comandos.put("trataEditarUsuario", "controle.TrataEditarUsuario");
         comandos.put("trataCadastroMarca","controle.TrataCadastroMarca");
         comandos.put("trataCadastroModelo","controle.TrataCadastroModelo");
+        comandos.put("trataCadastroRevenda","controle.TrataCadastroRevenda");
+
         
         //Acrescentar o mapeamento para as outras classes
 

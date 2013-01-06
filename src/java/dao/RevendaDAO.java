@@ -42,6 +42,7 @@ public class RevendaDAO implements InterfaceDAO{
         stmt.setString(7, rev.getEstado());
         stmt.setString(8, rev.getBairro());
         stmt.setLong(9, rev.getFone());
+        stmt.setInt(10, rev.getAtivo());
         stmt.execute();
         conexao.close();
         return true;
