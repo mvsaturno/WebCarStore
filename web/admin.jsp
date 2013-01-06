@@ -232,7 +232,7 @@
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" type="text" size="50" required/><br/>
 
-                <label for="revenda_end">Endere�o:</label>
+                <label for="revenda_end">Endereço:</label>
                 <input name="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
