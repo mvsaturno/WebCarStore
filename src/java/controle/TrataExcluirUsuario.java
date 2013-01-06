@@ -38,7 +38,7 @@ public class TrataExcluirUsuario extends Comando {
             Usuario user = (Usuario) admin.pesquisarChave(id);
             
             String msg = "";
-            if(usuarioLogado.getPermissao()>=user.getPermissao()){
+            if(usuarioLogado.getPermissao()<=user.getPermissao()){
             
             if (admin.excluir(id)) {
                 msg = "Excluído com sucesso!";
@@ -49,7 +49,7 @@ public class TrataExcluirUsuario extends Comando {
             }
             
             getRequest().setAttribute("mensagem", msg);
-            RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
+            RequestDispatcher rd = getRequest().getRequestDispatcher("/sistema.jsp");
             rd.forward(getRequest(), getResponse()); 
 
          }
