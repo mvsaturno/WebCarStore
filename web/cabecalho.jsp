@@ -10,22 +10,22 @@
 
 <html>   
     <head>
-        <title>WebCar Store - Módulo Administrador</title>
+        <title>WebCar Store</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <!--Carrega JQuery e JS do menu de imagens-->
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/menu.navega.js"></script>
-        <% 
-        
-        String mensagem = (String) request.getAttribute("mensagem");
-        
-        if ((mensagem != null) && (!mensagem.equals(""))){
+        <%
+
+            String mensagem = (String) request.getAttribute("mensagem");
+
+            if ((mensagem != null) && (!mensagem.equals(""))) {
         %>
         <script>alert(<%=mensagem%>)</script>
         <%
-        }
-%>
+            }
+        %>
         <link rel="stylesheet" type="text/css" href="css/estilos.css" />
     </head>
     <body>
@@ -44,23 +44,4 @@
                         <a href="index.jsp">Sair</a>
                     </div>
                 </div>
-            </div>
-            <div id="menu_admin">
-                <ul>
-                    <li><a href="#" onclick="usuarios()">Usuários</a></li>
-                    <li><a href="#" onclick="revendas()">Revendas</a></li>
-                    <li><a href="#" onclick="veiculos()">Veículos</a></li>
-                    <li><a href="#" onclick="layouts()">Layouts</a></li>
-                    <li><a href="#" onclick="planos()">Planos</a></li>
-                </ul>                
-            </div>
-            <div id="conteudo">
-
-                <%@ include file="conteudo.jsp" %>
-
-            </div>
-            <div id="rodape">WebCar Store - 2012</div>
-        </div>
-    </body>
-</html>
-
+            </div> 

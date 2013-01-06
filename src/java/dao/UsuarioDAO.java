@@ -109,9 +109,35 @@ public class UsuarioDAO implements InterfaceDAO{
 
     @Override
     public Object pesquisarChave(int chave) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Connection conexao = DBConnection.getInstance();
+        Usuario usuario = null;
+        String sql = (String) dados.get("SelectById.Usuario");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1, chave);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            usuario = new Usuario();
+            usuario.setId(rs.getInt("id_usuario"));
+            usuario.setLogin(rs.getString("email"));
+            usuario.setPermissao(rs.getInt("id_tipo_usuario"));
+            usuario.setNome(rs.getString("nome"));
+            usuario.setSenha(rs.getString("senha"));
+            usuario.setAtivo(rs.getInt("ativo"));
+            usuario.setCelular(rs.getLong("celular"));
+            usuario.setTelefone(rs.getLong("telefone"));
+                int rev = rs.getInt("id_revenda");
+                Revenda revenda = null;
+            try {
+                revenda = (Revenda) new RevendaDAO().pesquisarChave(rev);
+            } catch (IOException ex) {
+                Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+            usuario.setRevenda(revenda);
     }
-
+        pstmt.close();
+        return usuario;
+ }
     @Override
     public boolean editar(Object obj) throws SQLException {
          Usuario user = (Usuario) obj;

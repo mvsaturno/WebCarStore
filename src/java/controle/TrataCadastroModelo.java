@@ -11,7 +11,6 @@ import java.util.Date;
 import model.*;
 import dao.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Karen
  */
-public class TrataCadastroMarca extends Comando {
+public class TrataCadastroModelo extends Comando {
     
     
    @Override
@@ -28,31 +27,26 @@ public class TrataCadastroMarca extends Comando {
         getResponse().setContentType("text/html;charset=UTF-8");
         PrintWriter out = getResponse().getWriter();
         try {
-            getResponse().setContentType("text/html");
+            getResponse().setContentType("text/html"); 
             
-            HttpSession session = getRequest().getSession(false);
-            Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
+            HttpSession session = getRequest().getSession(false);          
+            String modelo = getRequest().getParameter("veiculo_modelo_cad"); 
+            int marca = Integer.parseInt(getRequest().getParameter("veiculo_marca_select"));
             
-            Veiculo vel=new Veiculo();
-            
-            vel.setMarca(getRequest().getParameter("veiculo_marca_cad"));                       
-           
-            
-            VeiculoDAO veiculo = new VeiculoDAO();
-            
+            Veiculo veiculo = new Veiculo();
+            veiculo.setModelo(modelo);
+            veiculo.setIdMarca(marca);
+                        
             String msg = "";
-          
-            if (veiculo.inserirMarca(vel))
-            {
-                 msg = "Inserido com sucesso!";
-                 //atualizar sessão com marcas cadastradas
-                 ArrayList listaMarcas = veiculo.pesquisarMarcas();
-                 session.setAttribute("listaMarcas", listaMarcas);
+            VeiculoDAO veic = new VeiculoDAO();
+            if (veic.inserirModelo(veiculo)) {
+                msg = "Inserido com sucesso!";
             }
-            else
-            {
-                 msg = "Erro na inserção!";
+            
+            else{
+                msg = "Erro na inserção";
             }
+            
             getRequest().setAttribute("mensagem", msg);
             RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
             rd.forward(getRequest(), getResponse()); 

@@ -19,6 +19,7 @@ public class Veiculo {
     private String opcionais;
     private String cor;
     private String combustivel;
+    private int idMarca;
     private String marca;
     private double valor;
     private String[] fotos;
@@ -80,6 +81,10 @@ public class Veiculo {
         this.id = id;
     }
 
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
+    }    
+    
     public void setAno(Date ano) {
         this.ano = ano;
     }
@@ -139,6 +144,10 @@ public class Veiculo {
     public String getCombustivel() {
         return combustivel;
     }
+
+    public int getIdMarca() {
+        return idMarca;
+    }   
 
     public String getCor() {
         return cor;

@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Revenda;
 import model.Usuario;
 import model.Veiculo;
 import util.PropertiesManager;
@@ -58,9 +61,49 @@ public class VeiculoDAO  implements InterfaceDAO{
         
         stmt.setString(1, vel.getMarca());
         
+        
         stmt.execute();
         //conexao.close();
         return true;
+    }
+    
+    public boolean inserirModelo(Object obj) throws SQLException {
+        Veiculo vel = (Veiculo) obj;
+        Connection conexao = DBConnection.getInstance();
+        
+        String sql = (String) dados.get("Insert.Modelo");
+        
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        
+        stmt.setString(2, vel.getModelo());
+        stmt.setInt(1,vel.getIdMarca());
+        
+        stmt.execute();
+        //conexao.close();
+        return true;
+    }
+    
+    
+    
+    public ArrayList pesquisarMarcas() throws SQLException {
+        ArrayList marcaList = new ArrayList();
+        Veiculo veiculo = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectAll.Marca");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()){
+            veiculo = new Veiculo();
+            veiculo.setMarca(rs.getString("descricao"));
+            veiculo.setIdMarca(rs.getInt("id_marca"));
+            marcaList.add(veiculo);
+        }
+            
+            
+        
+        //pstmt.close();
+        return marcaList;
     }
 
 
