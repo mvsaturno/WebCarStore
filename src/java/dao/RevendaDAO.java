@@ -66,7 +66,7 @@ public class RevendaDAO implements InterfaceDAO{
             r.setId(rs.getInt("id_revenda"));
             r.setCNPJ(rs.getLong("cnpj"));
             r.setNome(rs.getString("nome"));
-            r.setEmail(rs.getString("email"));
+            r.setEmail(rs.getString("mail"));
             r.setEndereco(rs.getString("endereco"));
             r.setNumero(rs.getInt("numero"));
             r.setCidade(rs.getString("cidade"));

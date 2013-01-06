@@ -1,3 +1,5 @@
+<%@page import="model.Revenda"%>
+<%@page import="dao.RevendaDAO"%>
 <%@page import="model.Veiculo"%>
 <%@page import="controle.TrataListaMarcas"%>
 <%@page import="dao.VeiculoDAO"%>
@@ -14,9 +16,9 @@
 
 <div id="menu_admin">
     <ul>
-        <li><a href="#" onclick="usuarios()">Usuários</a></li>
+        <li><a href="#" onclick="usuarios()">Usuarios</a></li>
         <li><a href="#" onclick="revendas()">Revendas</a></li>
-        <li><a href="#" onclick="veiculos()">Veículos</a></li>
+        <li><a href="#" onclick="veiculos()">Veiculos</a></li>
         <li><a href="#" onclick="layouts()">Layouts</a></li>
         <li><a href="#" onclick="planos()">Planos</a></li>
     </ul>                
@@ -85,6 +87,118 @@
     <div class="divs" id="revendas">
         <a href="#" onclick="cadastrarRevendas()" class="btn_cadastrar">
             <span>Cadastar Revendas</span>
+            <br/>
+            <h1>Listagem de Revendas</h1>
+        <hr>
+        
+        <table border="1">
+
+            <thead>
+
+                <th>CNPJ:</th>
+
+                <th>Nome:</th>
+
+                <th>Telefone:</th>
+
+                <th>Email:</th>
+                
+                <th>Endereço:</th>
+                
+                <th>Numero:</th>
+                
+                <th>Bairro:</th>
+                
+                <th>Cidade:</th>
+                
+                <th>Estado (UF):</th>
+                
+                <th>Data Cadastro:</th>
+                
+            </thead>
+            
+            <tbody>
+                         
+                <%
+                RevendaDAO comando = new RevendaDAO();
+                ArrayList revendas = comando.pesquisarTudo();
+                Iterator itr = revendas.iterator();
+                while (itr.hasNext()) {
+                    int i = 0;
+                    Revenda revenda = (Revenda) itr.next();
+                    if (i % 2 == 0) {
+            %>
+            
+            <tr class="white">
+                <%  } else {%>
+            <tr class="gray">
+                <% }%>
+                <td><%=revenda.getCNPJ()%></td>
+                <td><%=revenda.getNome()%></td>
+                <td><%=revenda.getFone()%></td>
+                <td><%=revenda.getEmail()%></td>
+                <td><%=revenda.getEndereco()%></td>
+                <td><%=revenda.getNumero()%></td>
+                <td><%=revenda.getBairro()%></td>
+                <td><%=revenda.getCidade()%></td>
+                <td><%=revenda.getEstado()%></td>
+                <td><%=revenda.getData_cadastro()%></td>
+                
+                <td>
+                    
+
+                <td class="img_crud">
+                    <form method="post" action="FrontController">
+                        <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
+                        <input type="hidden" name="cmd" value="trataExcluirUsuario">
+                        
+                    </form>
+                </td>
+            </tr>
+            <% i++;
+                }
+
+            %>
+                
+                <%--
+                /* Ainda não rolou com foreach!
+            <!--forEach, implementa um laço  para fazer a interação ArrayList contido no objeto de requisição -->
+            
+            
+            <c:forEach items="${listaRevendas}" var="revenda">
+
+                <tr>
+
+                    <!--A tag out é responsável por gerar uma String de saída na tela -->
+
+                    <td><c:out value="${revenda.cnpj}"/></td>
+                    
+                    <td><c:out value="${revenda.nome}"/></td>
+                    
+                    <td><c:out value="${revenda.telefone}"/></td>
+                    
+                    <td><c:out value="${revenda.email}"/></td>
+                    
+                    <td><c:out value="${revenda.endereco}"/></td>
+                    
+                    <td><c:out value="${revenda.numero}"/></td>
+                    
+                    <td><c:out value="${revenda.bairro}"/></td>
+                    
+                    <td><c:out value="${revenda.cidade}"/></td>
+                    
+                    <td><c:out value="${revenda.estado}"/></td>
+                    
+                    <td><c:out value="${revenda.data_cadastro}"/></td>
+                    
+
+                </tr>
+            </c:forEach> --%>
+                
+            </tbody>
+
+        </table>
+            
         </a>
     </div>
 
@@ -114,7 +228,7 @@
     </div>
 
     <div class="divs" id="cadastrarUsuarios">
-        <h3 id="cad_usuario_title">Cadastro de Usuário:</h3>
+        <h3 id="cad_usuario_title">Cadastro de Usuario:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>
@@ -155,13 +269,56 @@
     <div class="divs" id="cadastrarRevendas">                
         <h3>Cadastro de Revendas:</h3>
         <br/>
-        <form method="post" action="FrontController">
+         <form method="post" action="FrontController">
             <fieldset>
                 <label for="revenda_descricao_cad">CNPJ:</label>
-                <input name="revenda_cnpj_cad" type="text" size="50" required autofocus/><br/>
+                <input name="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="text" size="50" required autofocus/><br/>
 
-                <label for="revenda_nome_cad">Nome:</label>
+                <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" type="text" size="50" required/><br/>
+
+                <label for="revenda_end">Endereço:</label>
+                <input name="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
+
+                <label for="revenda_nro">Numero:</label>
+                <input name="revenda_nro" type="number" size="4" required/><br/>
+
+                <label for="revenda_bairro">Bairro:</label>
+                <input name="revenda_bairro" type="text" size="50" required/><br/>
+
+                <label for="revenda_cidade">Cidade:</label>
+                <input name="revenda_cidade" type="text" size="50" required/><br/>
+                
+                <label for="revenda_uf">Estado:</label>
+                <select name="revenda_uf">
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AM">AM</option>
+                    <option value="AP">AP</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MG">MG</option>
+                    <option value="MS">MS</option>
+                    <option value="MT">MT</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="PR">PR</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="RS">RS</option>
+                    <option value="SC">SC</option>
+                    <option value="SE">SE</option>
+                    <option value="SP">SP</option>
+                    <option value="TO">TO</option>
+                </select><br/>
 
                 <label for="revenda_telefone_cad">Telefone:</label>
                 <input name="revenda_telefone_cad" type="text" size="50" required/><br/>
@@ -171,13 +328,12 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" type="radio" value="2"> Não<br/>
-
+                <input name="revenda_ativo_cad" type="radio" value="2"> N�o<br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroRevenda'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>      
             </fieldset>                  
-        </form>   
+        </form>
     </div>
 
     <div class="divs" id="cadastrarVeiculos">
@@ -342,4 +498,5 @@
         </form>   
     </div>
 </div>
+
 
