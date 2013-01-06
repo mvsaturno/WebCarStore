@@ -49,6 +49,8 @@ public class VeiculoDAO  implements InterfaceDAO{
         stmt.setString(6, vel.getMotor());
         stmt.setDouble(7, vel.getValor());
         stmt.setDouble(8, vel.getKm());
+        
+        
         stmt.execute();
         conexao.close();
         
