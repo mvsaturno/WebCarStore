@@ -11,6 +11,7 @@ import java.util.Date;
 import model.*;
 import dao.*;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -41,6 +42,7 @@ public class TrataCadastroModelo extends Comando {
             VeiculoDAO veic = new VeiculoDAO();
             if (veic.inserirModelo(veiculo)) {
                 msg = "Inserido com sucesso!";
+               
             }
             
             else{

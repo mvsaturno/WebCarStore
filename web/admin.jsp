@@ -186,52 +186,65 @@
         <form method="post" action="FrontController">
             <fieldset>                                 
                 <label>Modelo:</label>
+                <%
+                    ArrayList listaModelos = new VeiculoDAO().pesquisarModelos();
+                    session.setAttribute("listaModelos", listaModelos);
+                %>  
+                
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select">
-                        <option value=""></option>
-                        <option value="01">Gol</option>
-                        <option value="02">Clio</option>
-                        <option value="03">Ka</option>                    
+                    <select class="veiculo_select" name="veiculo_modelo_select">
+                        <c:forEach items="${listaModelos}" var="veiculo">
+                            <option value='<c:out value="${veiculo.idModelo}"/>'><c:out value="${veiculo.modelo}"/></option>
+                        </c:forEach>                  
                     </select>
                 </label>
                 <br/>
 
                 <label>Combustível:</label>
+                 <%
+                    ArrayList listaCombustiveis = new VeiculoDAO().pesquisarCombustiveis();
+                    session.setAttribute("listaCombustiveis", listaCombustiveis);
+                %> 
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select">
-                        <option value=""></option>
-                        <option value="01">Gasolina</option>
-                        <option value="02">Alcool</option>
-                        <option value="03">GNV</option>
+                    <select class="veiculo_select" name="veiculo_combustivel_select">
+                         <c:forEach items="${listaCombustiveis}" var="combustivel">
+                            <option value='<c:out value="${combustivel.idCombustivel}"/>'><c:out value="${combustivel.nome}"/></option>
+                        </c:forEach> 
                     </select>
                 </label>            
                 <br/>
 
                 <label>Categoria:</label>
+                <%
+                    ArrayList listaCategorias = new VeiculoDAO().pesquisarCategorias();
+                    session.setAttribute("listaCategorias", listaCategorias);
+                %> 
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select">
-                        <option value=""></option>
-                        <option value="01">Carro</option>
-                        <option value="02">Moto</option>
-                        <option value="03">Caminhão</option>                    
+                    <select class="veiculo_select" name="veiculo_categoria_select">
+                         <c:forEach items="${listaCategorias}" var="categoria">
+                            <option value='<c:out value="${categoria.idCategoria}"/>'><c:out value="${categoria.nome}"/></option>
+                        </c:forEach>                   
                     </select>
                 </label>            
                 <br/>
 
                 <label>Cor:</label>
+                 <%
+                    ArrayList listaCores = new VeiculoDAO().pesquisarCores();
+                    session.setAttribute("listaCores", listaCores);
+                %> 
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select">
-                        <option value=""></option>
-                        <option value="01">Azul</option>
-                        <option value="02">Prata</option>
-                        <option value="03">Verde</option>                    
+                    <select class="veiculo_select" name="veiculo_cor_select">
+                            <c:forEach items="${listaCores}" var="cor">
+                                <option value='<c:out value="${cor.idCor}"/>'><c:out value="${cor.nome}"/></option>
+                            </c:forEach>               
                     </select>
                 </label>
                 <br/>
 
                 <label>Ano:</label>
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select">
+                    <select class="veiculo_select" name="veiculo_ano_select">
                         <option value=""></option>
                         <% for (int i = 1950; i <= 2013; i++) {%>
                         <option value=<%=i%>><%=i%></option>

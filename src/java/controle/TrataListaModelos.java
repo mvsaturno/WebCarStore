@@ -14,16 +14,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
 
-public class TrataListaMarcas extends Comando {
+public class TrataListaModelos extends Comando {
 
-    public TrataListaMarcas() 
+    public TrataListaModelos() 
             throws ServletException, IOException {
         getResponse().setContentType("text/html;charset=UTF-8");
         PrintWriter out = getResponse().getWriter();
         try {
-            ArrayList lista = new VeiculoDAO().pesquisarMarcas();
+            ArrayList lista = new VeiculoDAO().pesquisarModelos();
             HttpSession session = getRequest().getSession(true);
-            session.setAttribute("listaMarcas", lista);
+            session.setAttribute("listaModelos", lista);
             
         } catch (IOException ioex) {
             throw new ServletException(ioex);
