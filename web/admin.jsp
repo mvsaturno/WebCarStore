@@ -1,22 +1,19 @@
-<%@page import="model.Veiculo"%>
-<%@page import="controle.TrataListaMarcas"%>
-<%@page import="dao.VeiculoDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.io.IOException"%>
 <%@page import="model.Usuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UsuarioDAO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
 <div id="menu_admin">
     <ul>
-        <li><a href="#" onclick="usuarios()">Usu√°rios</a></li>
+        <li><a href="#" onclick="usuarios()">Usu·rios</a></li>
         <li><a href="#" onclick="revendas()">Revendas</a></li>
-        <li><a href="#" onclick="veiculos()">Ve√≠culos</a></li>
+        <li><a href="#" onclick="veiculos()">VeÌculos</a></li>
         <li><a href="#" onclick="layouts()">Layouts</a></li>
         <li><a href="#" onclick="planos()">Planos</a></li>
     </ul>                
@@ -24,12 +21,12 @@
 
 <div id="conteudo">
     <div class="divs" id="usuarios">
-        <h3>Gerenciamento de Usu√°rios:</h3>
+        <h3>Gerenciamento de Usu·rios:</h3>
         <br/>
         <input type="text" placeholder="Procurar"/>
 
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
-            <span>Cadastar novo usu√°rio</span>
+            <span>Cadastar novo usu·rio</span>
         </a>
 
         <br/>
@@ -40,7 +37,7 @@
                 <th>Nome</th>
                 <th>Revenda</th>
                 <th>Login</th>
-                <th>Permiss√£o</th>
+                <th>Permiss„o</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
@@ -55,7 +52,7 @@
                     Usuario user = (Usuario) it.next();
                     if (i % 2 == 0) {
             %>
-            
+
             <tr class="white">
                 <%  } else {%>
             <tr class="gray">
@@ -85,14 +82,65 @@
     <div class="divs" id="revendas">
         <a href="#" onclick="cadastrarRevendas()" class="btn_cadastrar">
             <span>Cadastar Revendas</span>
+            
+            <h1>Listagem de Usu·rios</h1>
+        <hr>
+
+        <h2> ${identifica} estes s„o os usu·rios cadastrados ... </h2>
+        
+        <table border="1">
+
+            <thead>
+
+                <th>CNPJ:</th>
+
+                <th>Nome:</th>
+
+                <th>Telefone:</th>
+
+                <th>Email:</th>
+                
+                <th>EndereÁo:</th>
+                
+                <th>Numero:</th>
+                
+                <th>Bairro:</th>
+                
+                <th>Cidade:</th>
+                
+                <th>Estado (UF):</th>
+                
+                <th>Data Cadastro:</th>
+                
+            </thead>
+            
+            <tbody>
+                            
+            <!--forEach, implementa um laÁo  para fazer a interaÁ„o ArrayList contido no objeto de requisiÁ„o -->
+            
+            
+            <c:forEach items="${listaRevendas}" var="revenda">
+
+                <tr>
+
+                    <!--A tag out È respons·vel por gerar uma String de saÌda na tela -->
+
+                    <td><c:out value="${revenda.cnpj}"/></td>
+                    
+
+                </tr>
+            </c:forEach>
+                
+            </tbody>
+
+        </table>
+            
         </a>
     </div>
 
     <div class="divs" id="veiculos">
-        
-        
         <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
-            <span>Cadastar ve√≠culos</span>
+            <span>Cadastar veÌculos</span>
         </a>
         <a href="#" onclick="cadastrarModelos()" class="btn_cadastrar">
             <span>Cadastar modelos</span>
@@ -114,7 +162,7 @@
     </div>
 
     <div class="divs" id="cadastrarUsuarios">
-        <h3 id="cad_usuario_title">Cadastro de Usu√°rio:</h3>
+        <h3 id="cad_usuario_title">Cadastro de Usu·rio:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>
@@ -135,7 +183,7 @@
 
                 <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
 
-                <label for="user_permissao_cad">Permiss√£o:</label>
+                <label for="user_permissao_cad">Permiss„o:</label>
                 <label class="usuario_label"> 
                     <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                         <option value=""></option>
@@ -158,10 +206,53 @@
         <form method="post" action="FrontController">
             <fieldset>
                 <label for="revenda_descricao_cad">CNPJ:</label>
-                <input name="revenda_cnpj_cad" type="text" size="50" required autofocus/><br/>
+                <input name="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="text" size="50" required autofocus/><br/>
 
-                <label for="revenda_nome_cad">Nome:</label>
+                <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" type="text" size="50" required/><br/>
+
+                <label for="revenda_end">EndereÁo:</label>
+                <input name="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
+
+                <label for="revenda_nro">Numero:</label>
+                <input name="revenda_nro" type="number" size="4" required/><br/>
+
+                <label for="revenda_bairro">Bairro:</label>
+                <input name="revenda_bairro" type="text" size="50" required/><br/>
+
+                <label for="revenda_cidade">Cidade:</label>
+                <input name="revenda_cidade" type="text" size="50" required/><br/>
+                
+                <label for="revenda_uf">Estado:</label>
+                <select name="revenda_uf">
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AM">AM</option>
+                    <option value="AP">AP</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MG">MG</option>
+                    <option value="MS">MS</option>
+                    <option value="MT">MT</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="PR">PR</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="RS">RS</option>
+                    <option value="SC">SC</option>
+                    <option value="SE">SE</option>
+                    <option value="SP">SP</option>
+                    <option value="TO">TO</option>
+                </select><br/>
 
                 <label for="revenda_telefone_cad">Telefone:</label>
                 <input name="revenda_telefone_cad" type="text" size="50" required/><br/>
@@ -171,17 +262,16 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" type="radio" value="2"> N√£o<br/>
-
+                <input name="revenda_ativo_cad" type="radio" value="2"> N„o<br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroRevenda'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>      
             </fieldset>                  
         </form>   
     </div>
 
     <div class="divs" id="cadastrarVeiculos">
-        <h3>Cadastro de Ve√≠culo:</h3>
+        <h3>Cadastro de VeÌculo:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>                                 
@@ -196,7 +286,7 @@
                 </label>
                 <br/>
 
-                <label>Combust√≠vel:</label>
+                <label>CombustÌvel:</label>
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_select">
                         <option value=""></option>
@@ -213,7 +303,7 @@
                         <option value=""></option>
                         <option value="01">Carro</option>
                         <option value="02">Moto</option>
-                        <option value="03">Caminh√£o</option>                    
+                        <option value="03">Caminh„o</option>                    
                     </select>
                 </label>            
                 <br/>
@@ -263,33 +353,15 @@
 
                 <label for="veiculo_modelo_cad">Modelo</label>
                 <input name="veiculo_modelo_cad" type="text" size="50" required autofocus/><br/>
-                <%
-                    ArrayList listaMarcas = new VeiculoDAO().pesquisarMarcas();
-                    session.setAttribute("listaMarcas", listaMarcas);
-                 %>                
-        
-                
+
                 <label>Marca:</label>
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_marca_select">
-                   <%-- uso com iterator
-                    <%
-                    Iterator itM = listaMarcas.iterator();
-                    while (itM.hasNext()) 
-                    {
-                        Veiculo veiculo = (Veiculo) itM.next();
-                        String marca = veiculo.getMarca();
-                    %>
-
-                        <option value=""><%=marca%></option>
-                    <%
-                    }
-                    %>
-                   --%>
-                   <c:forEach items="${listaMarcas}" var="veiculo">
-                       <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
-                   </c:forEach>     
-                 </select
+                    <select class="veiculo_select" name="veiculo_select">
+                        <option value=""></option>
+                        <option value="01">Fiat</option>
+                        <option value="02">Wolkswagen</option>
+                        <option value="03">Renault</option>                    
+                    </select>
                 </label>            
                 <br/>
 
@@ -329,4 +401,3 @@
         </form>   
     </div>
 </div>
-

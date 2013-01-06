@@ -63,7 +63,7 @@ public class RevendaDAO implements InterfaceDAO{
         
         while (rs.next()){
             Revenda r = new Revenda();
-            r.setId(rs.getInt("id_revenda"));
+            r.setId(rs.getInt("id_revenda")); //Talvez tenha que comentar essa linha!
             r.setCNPJ(rs.getLong("cnpj"));
             r.setNome(rs.getString("nome"));
             r.setEmail(rs.getString("email"));
