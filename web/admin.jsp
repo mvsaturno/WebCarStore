@@ -1,3 +1,5 @@
+<%@page import="model.Revenda"%>
+<%@page import="dao.RevendaDAO"%>
 <%@page import="model.Veiculo"%>
 <%@page import="controle.TrataListaMarcas"%>
 <%@page import="dao.VeiculoDAO"%>
@@ -116,7 +118,50 @@
             </thead>
             
             <tbody>
-                            
+                         
+                <%
+                RevendaDAO comando = new RevendaDAO();
+                ArrayList revendas = comando.pesquisarTudo();
+                Iterator itr = revendas.iterator();
+                while (itr.hasNext()) {
+                    int i = 0;
+                    Revenda revenda = (Revenda) itr.next();
+                    if (i % 2 == 0) {
+            %>
+            
+            <tr class="white">
+                <%  } else {%>
+            <tr class="gray">
+                <% }%>
+                <td><%=revenda.getCNPJ()%></td>
+                <td><%=revenda.getNome()%></td>
+                <td><%=revenda.getFone()%></td>
+                <td><%=revenda.getEmail()%></td>
+                <td><%=revenda.getEndereco()%></td>
+                <td><%=revenda.getNumero()%></td>
+                <td><%=revenda.getBairro()%></td>
+                <td><%=revenda.getCidade()%></td>
+                <td><%=revenda.getEstado()%></td>
+                <td><%=revenda.getData_cadastro()%></td>
+                
+                <td>
+                    
+
+                <td class="img_crud">
+                    <form method="post" action="FrontController">
+                        <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
+                        <input type="hidden" name="cmd" value="trataExcluirUsuario">
+                        
+                    </form>
+                </td>
+            </tr>
+            <% i++;
+                }
+
+            %>
+                
+                <%--
+                /* Ainda não rolou com foreach!
             <!--forEach, implementa um laço  para fazer a interação ArrayList contido no objeto de requisição -->
             
             
@@ -148,7 +193,7 @@
                     
 
                 </tr>
-            </c:forEach>
+            </c:forEach> --%>
                 
             </tbody>
 
