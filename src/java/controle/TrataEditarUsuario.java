@@ -52,7 +52,7 @@ public class TrataEditarUsuario extends Comando {
             user.setTelefone(telefone);
             
             String msg = "";
-            if(usuarioLogado.getPermissao()>=user.getPermissao()){
+            if(usuarioLogado.getPermissao()<=user.getPermissao()){
             UsuarioDAO admin = new UsuarioDAO();
             if (admin.editar(user)) {
                 msg = "Editado com sucesso!";
@@ -63,7 +63,7 @@ public class TrataEditarUsuario extends Comando {
             }
             
             getRequest().setAttribute("mensagem", msg);
-            RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
+            RequestDispatcher rd = getRequest().getRequestDispatcher("/sistema.jsp");
             rd.forward(getRequest(), getResponse()); 
 
             

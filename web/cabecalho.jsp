@@ -22,7 +22,7 @@
 
             if ((mensagem != null) && (!mensagem.equals(""))) {
         %>
-        <script>alert(<%=mensagem%>)</script>
+        <script type="text/javascript">alert("<%=mensagem%>")</script>
         <%
             }
         %>

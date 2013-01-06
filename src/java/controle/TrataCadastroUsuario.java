@@ -51,7 +51,7 @@ public class TrataCadastroUsuario extends Comando {
             user.setTelefone(telefone);
             
             String msg = "";
-            if(usuarioLogado.getPermissao()>=user.getPermissao()){
+            if(usuarioLogado.getPermissao()<=user.getPermissao()){
             UsuarioDAO admin = new UsuarioDAO();
             if (admin.inserir(user)) {
                 msg = "Inserido com sucesso!";
@@ -62,7 +62,7 @@ public class TrataCadastroUsuario extends Comando {
             }
             
             getRequest().setAttribute("mensagem", msg);
-            RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
+            RequestDispatcher rd = getRequest().getRequestDispatcher("/sistema.jsp");
             rd.forward(getRequest(), getResponse()); 
 
             

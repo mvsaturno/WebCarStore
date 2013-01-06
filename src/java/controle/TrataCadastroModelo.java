@@ -48,7 +48,7 @@ public class TrataCadastroModelo extends Comando {
             }
             
             getRequest().setAttribute("mensagem", msg);
-            RequestDispatcher rd = getRequest().getRequestDispatcher("/cms_admin.jsp");
+            RequestDispatcher rd = getRequest().getRequestDispatcher("/sistema.jsp");
             rd.forward(getRequest(), getResponse()); 
 
             
