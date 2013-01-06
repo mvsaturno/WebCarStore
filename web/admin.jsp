@@ -48,7 +48,7 @@
                     Usuario user = (Usuario) it.next();
                     if (i % 2 == 0) {
             %>
-            
+
             <tr class="white">
                 <%  } else {%>
             <tr class="gray">
@@ -149,10 +149,53 @@
         <form method="post" action="FrontController">
             <fieldset>
                 <label for="revenda_descricao_cad">CNPJ:</label>
-                <input name="revenda_cnpj_cad" type="text" size="50" required autofocus/><br/>
+                <input name="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="text" size="50" required autofocus/><br/>
 
-                <label for="revenda_nome_cad">Nome:</label>
+                <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" type="text" size="50" required/><br/>
+
+                <label for="revenda_end">Endereço:</label>
+                <input name="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
+
+                <label for="revenda_nro">Numero:</label>
+                <input name="revenda_nro" type="number" size="4" required/><br/>
+
+                <label for="revenda_bairro">Bairro:</label>
+                <input name="revenda_bairro" type="text" size="50" required/><br/>
+
+                <label for="revenda_cidade">Cidade:</label>
+                <input name="revenda_cidade" type="text" size="50" required/><br/>
+                
+                <label for="revenda_uf">Estado:</label>
+                <select name="revenda_uf">
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AM">AM</option>
+                    <option value="AP">AP</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MG">MG</option>
+                    <option value="MS">MS</option>
+                    <option value="MT">MT</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="PR">PR</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="RS">RS</option>
+                    <option value="SC">SC</option>
+                    <option value="SE">SE</option>
+                    <option value="SP">SP</option>
+                    <option value="TO">TO</option>
+                </select><br/>
 
                 <label for="revenda_telefone_cad">Telefone:</label>
                 <input name="revenda_telefone_cad" type="text" size="50" required/><br/>
@@ -164,9 +207,8 @@
                 <input name="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
                 <input name="revenda_ativo_cad" type="radio" value="2"> Não<br/>
 
-
                 <input type="hidden" name="cmd" value='trataCadastroRevenda'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>      
             </fieldset>                  
         </form>   
     </div>
