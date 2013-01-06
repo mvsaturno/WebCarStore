@@ -156,7 +156,7 @@ menu_admin ul {
     display: none;
 }
 
-#usuarios{
+.listagem {
     position: relative;
     margin: 15px auto;
 }
@@ -174,37 +174,37 @@ menu_admin ul {
     display: table-cell;
 }    
 
-#usuarios table {
+.listagem table {
     font-size: 95%;
     border: 1px dotted #666;
     width: 100%;
 }
 
-#usuarios tr.gray2 {
+.listagem tr.gray2 {
     background: #ddd;
 }
 
-#usuarios th {
+.listagem th {
     height: 1.3em;
     text-align: center;
     font-weight: bold;
 }
 
 
-#usuarios tr.gray {
+.listagem tr.gray {
     background: #eee;
 }
 
-#usuarios tr.white {
+.listagem tr.white {
     background: #fff;
 }
 
-#usuarios td {
+.listagem td {
     height: 1.3em;
     text-align: center;
 }
 
-#cadastrarUsuario form{
+.formulario form{
     margin: 20px auto;
     width: 500px;
     position: relative;

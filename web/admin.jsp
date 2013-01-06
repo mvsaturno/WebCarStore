@@ -227,7 +227,7 @@
         Planos
     </div>
 
-    <div class="divs" id="cadastrarUsuarios">
+    <div class="divs formulario" id="cadastrarUsuarios">
         <h3 id="cad_usuario_title">Cadastro de Usuario:</h3>
         <br/>
         <form method="post" action="FrontController">

@@ -90,4 +90,28 @@ function planos(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
 	$('#planos').stop().slideDown();
-}	
+}
+
+function anuncios(){
+	window.scrollTo(0,200);
+	$('div.divs').stop().slideUp();
+	$('#anuncios').stop().slideDown();
+}
+
+function cadastrarAnuncios(){
+	window.scrollTo(0,200);
+	$('div.divs').stop().slideUp();
+	$('#cadastrarAnuncios').stop().slideDown();
+}
+
+function visitas(){
+	window.scrollTo(0,200);
+	$('div.divs').stop().slideUp();
+	$('#visitas').stop().slideDown();
+}
+
+function cadastrarVisitas(){
+	window.scrollTo(0,200);
+	$('div.divs').stop().slideUp();
+	$('#cadastrarVisitas').stop().slideDown();
+}
