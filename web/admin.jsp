@@ -246,7 +246,7 @@
                 <td><%=v.getValor()%></td>
                 <td><%=v.getKm()%></td>
                 <td>
-                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarVeiculo("<%=v.getId()%>","<%=v.getIdMarca()%>","<%=v.getIdModelo()%>","<%=v.getIdCombustivel()%>","<%=v.getCategoria()%>","<%=v.getIdCor()%>","<%=v.getAno()%>","<%=v.getMotor()%>","<%=v.getValor()%>","<%=v.getKm()%>")'/>
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarVeiculo("<%=v.getId()%>","<%=v.getIdModelo()%>","<%=v.getIdCombustivel()%>","<%=v.getCategoria()%>","<%=v.getIdCor()%>","<%=v.getAno()%>","<%=v.getMotor()%>","<%=v.getValor()%>","<%=v.getKm()%>")'/>
                 </td>
 
                 <td class="img_crud">
@@ -259,7 +259,6 @@
             </tr>
             <% lineVeiculo++;
                 }
-
             %>
         </table>
         
@@ -384,7 +383,7 @@
     </div>
 
     <div class="divs formulario" id="cadastrarVeiculos">
-        <h3>Cadastro de Veículo:</h3>
+        <h3 id="cad_veiculo_title">Cadastro de Veículo:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>                                 
@@ -395,7 +394,7 @@
                 %>  
 
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_modelo_select">
+                    <select class="veiculo_select" id="veiculo_modelo_select" name="veiculo_modelo_select">
                         <c:forEach items="${listaModelos}" var="veiculo">
                             <option value='<c:out value="${veiculo.idModelo}"/>'><c:out value="${veiculo.modelo}"/></option>
                         </c:forEach>                  
@@ -409,7 +408,7 @@
                     session.setAttribute("listaCombustiveis", listaCombustiveis);
                 %> 
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_combustivel_select">
+                    <select class="veiculo_select" id="veiculo_combustivel_select" name="veiculo_combustivel_select">
                         <c:forEach items="${listaCombustiveis}" var="combustivel">
                             <option value='<c:out value="${combustivel.idCombustivel}"/>'><c:out value="${combustivel.nome}"/></option>
                         </c:forEach> 
@@ -423,7 +422,7 @@
                     session.setAttribute("listaCategorias", listaCategorias);
                 %> 
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_categoria_select">
+                    <select class="veiculo_select" id="veiculo_categoria_select" name="veiculo_categoria_select">
                         <c:forEach items="${listaCategorias}" var="categoria">
                             <option value='<c:out value="${categoria.idCategoria}"/>'><c:out value="${categoria.nome}"/></option>
                         </c:forEach>                   
@@ -437,7 +436,7 @@
                     session.setAttribute("listaCores", listaCores);
                 %> 
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_cor_select">
+                    <select class="veiculo_select" id="veiculo_cor_select" name="veiculo_cor_select">
                         <c:forEach items="${listaCores}" var="cor">
                             <option value='<c:out value="${cor.idCor}"/>'><c:out value="${cor.nome}"/></option>
                         </c:forEach>               
@@ -447,7 +446,7 @@
 
                 <label>Ano:</label>
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_ano_select">
+                    <select class="veiculo_select" id="veiculo_ano_select" name="veiculo_ano_select">
                         <option value=""></option>
                         <% for (int i = 1950; i <= 2013; i++) {%>
                         <option value=<%=i%>><%=i%></option>
@@ -457,15 +456,16 @@
                 <br/>
 
                 <label for="veiculo_motor_cad">Motor</label>
-                <input name="veiculo_motor_cad" type="text" size="50" required/><br/>
+                <input name="veiculo_motor_cad" id="veiculo_motor_cad" type="text" size="50" required/><br/>
 
                 <label for="veiculo_valor_cad">Valor</label>
-                <input name="veiculo_valor_cad" type="text" size="50" required/><br/>
+                <input name="veiculo_valor_cad" id="veiculo_valor_cad" type="text" size="50" required/><br/>
 
                 <label for="veiculo_quilometragem_cad">Quilometragem</label>
-                <input name="veiculo_quilometragem_cad" type="text" size="50" required/><br/>          
+                <input name="veiculo_quilometragem_cad" id="veiculo_quilometragem_cad" type="text" size="50" required/><br/>          
 
-                <input type="hidden" name="cmd" value='trataCadastroVeiculo'>
+                <input name="id_veiculo" type="hidden" id="id_veiculo" value="">       
+                <input id="cad_veiculo_cmd" type="hidden" name="cmd" value='trataCadastroVeiculo'>
                 <input name="Salvar" type="submit" value="Salvar"/>               
             </fieldset>                  
         </form>
