@@ -492,7 +492,7 @@
                 <label for="veiculo_itens_cad">Item:</label>
                 <input name="veiculo_itens_cad" type="text" size="50" required autofocus/><br/>
 
-                <input type="hidden" name="cmd" value='trataCadastroItens'>
+                <input type="hidden" name="cmd" value='trataCadastroItem'>
                 <input name="Salvar" type="submit" value="Salvar"/>               
             </fieldset>                  
         </form>   
