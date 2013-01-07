@@ -15,6 +15,9 @@ import java.util.HashMap;
 import model.Categoria;
 import model.Combustivel;
 import model.Cor;
+import model.Item;
+import model.Revenda;
+import model.Usuario;
 import model.Veiculo;
 import util.PropertiesManager;
 
@@ -48,7 +51,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         
         
         stmt.execute();
-        stmt.close();
+        //conexao.close();
         
         return true;
     }
@@ -85,6 +88,20 @@ public class VeiculoDAO  implements InterfaceDAO{
         return true;
     }
     
+    public boolean inserirItem(Object obj) throws SQLException {
+        Item item = (Item) obj;
+        Connection conexao = DBConnection.getInstance();
+        
+        String sql = (String) dados.get("Insert.Item");
+        
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        
+        stmt.setString(1,item.getNome());
+        
+        stmt.execute();
+        //conexao.close();
+        return true;
+    }
     
     
     public ArrayList pesquisarMarcas() throws SQLException {
@@ -202,7 +219,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             v.setId(rs.getInt(1));
             velList.add(v);
         }
-        pstmt.close();
+        //pstmt.close();
         return velList;
     }
 
@@ -215,5 +232,10 @@ public class VeiculoDAO  implements InterfaceDAO{
     public boolean editar(Object obj) throws SQLException {
         return true;
     }
-   
+
+    
+
+    
+ 
+    
 }
