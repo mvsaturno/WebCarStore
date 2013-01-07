@@ -46,7 +46,7 @@ public class AnuncioDAO implements InterfaceDAO {
         stmt.setInt(5, anuncio.getDestaque());
         stmt.setInt(6, anuncio.getRevenda().getId());
         stmt.execute();
-        conexao.close();
+        stmt.close();
         return true;
     }
 
@@ -59,7 +59,7 @@ public class AnuncioDAO implements InterfaceDAO {
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
         stmt.execute();
-        conexao.close();
+        stmt.close();
         return true;
     }
 
@@ -153,7 +153,7 @@ public class AnuncioDAO implements InterfaceDAO {
         stmt.setInt(6, anuncio.getRevenda().getId());
         stmt.setInt(7, anuncio.getId());
         stmt.execute();
-        conexao.close();
+        stmt.close();
         return true;
     }
     

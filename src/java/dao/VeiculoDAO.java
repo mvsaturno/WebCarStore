@@ -12,13 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Categoria;
 import model.Combustivel;
 import model.Cor;
-import model.Revenda;
-import model.Usuario;
 import model.Veiculo;
 import util.PropertiesManager;
 
@@ -52,7 +48,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         
         
         stmt.execute();
-        conexao.close();
+        stmt.close();
         
         return true;
     }
@@ -69,7 +65,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         
         
         stmt.execute();
-        //conexao.close();
+        stmt.close();
         return true;
     }
     
@@ -85,7 +81,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         stmt.setInt(1,vel.getIdMarca());
         
         stmt.execute();
-        //conexao.close();
+        stmt.close();
         return true;
     }
     
@@ -108,7 +104,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             
             
         
-        //pstmt.close();
+        pstmt.close();
         return marcaList;
     }
     
@@ -127,7 +123,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             modeloList.add(veiculo);
         }        
         
-        //pstmt.close();
+        pstmt.close();
         return modeloList;
     }
     
@@ -146,7 +142,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             combustivelList.add(combustivel);
         }        
         
-        //pstmt.close();
+        pstmt.close();
         return combustivelList;
     }
 
@@ -165,7 +161,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             categoriaList.add(categoria);
         }        
         
-        //pstmt.close();
+        pstmt.close();
         return categoriaList;
     }
      
@@ -184,7 +180,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             corList.add(cor);
         }        
         
-        //pstmt.close();
+        pstmt.close();
         return corList;
     }
 
@@ -219,8 +215,5 @@ public class VeiculoDAO  implements InterfaceDAO{
     public boolean editar(Object obj) throws SQLException {
         return true;
     }
-
-    
- 
-    
+   
 }
