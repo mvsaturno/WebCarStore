@@ -66,6 +66,26 @@ function cadastrarRevendas(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
 	$('#cadastrarRevendas').stop().slideDown();
+        
+        document.getElementById("cad_revenda_cmd").value = "trataCadastroRevenda";
+        document.getElementById("cad_revenda_title").innerHTML = "Cadastro de Revenda:";
+}
+
+function editarRevenda(id,cnpj,nome,telefone,email,endereco,numero,bairro,cidade,estado){
+        cadastrarRevendas();
+        document.getElementById("id_revenda").value = id;
+        document.getElementById("revenda_cnpj_cad").value = cnpj;
+        document.getElementById("revenda_nome_cad").value = nome;
+        document.getElementById("revenda_end").value = endereco;
+        document.getElementById("revenda_nro").value = numero;
+        document.getElementById("revenda_bairro").value = bairro;
+        document.getElementById("revenda_cidade").value = cidade;        
+        document.getElementById("revenda_uf").options[estado].selected = true;
+        document.getElementById("revenda_telefone_cad").value = telefone;
+        document.getElementById("revenda_mail_cad").value = email;
+        document.getElementById("revenda_ativo_cad").value = 1;
+        document.getElementById("cad_revenda_cmd").value = "trataEditarRevenda";
+        document.getElementById("cad_revenda_title").innerHTML = "Edição de Revenda:";
 }
 
 function revendas(){
