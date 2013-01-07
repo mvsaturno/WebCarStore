@@ -223,5 +223,19 @@ public class AnuncioDAO implements InterfaceDAO {
         pstmt.close();
         return statusList;
      }
+     
+     public String statusId(int id) throws SQLException{
+        String desc = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectById.Status");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1,id);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            desc = rs.getString("descricao");
+        }        
+        pstmt.close();
+        return desc;
+     }
     
 }
