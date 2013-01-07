@@ -297,6 +297,20 @@ public class VeiculoDAO  implements InterfaceDAO{
         return desc;
     }
     
+    public int pesquisarMarcaByModelo(int mod) throws SQLException{
+        int id = 0;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectByModelo.Marca");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1,mod);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            id = rs.getInt("id_marca");
+        }        
+        pstmt.close();
+        return id;
+    }
+    
     public String pesquisarMarcaId(int id) throws SQLException{
         String desc = null;
         Connection conexao = DBConnection.getInstance();

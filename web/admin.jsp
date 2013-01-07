@@ -203,6 +203,66 @@
         <a href="#" onclick="cadastrarItens()" class="btn_cadastrar">
             <span>Cadastar Itens Opcionais</span>
         </a>
+        <br>
+        <br>
+        <table>
+            <tr class="gray2">
+                <th>ID Veículo</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Combustível</th>
+                <th>Categoria</th>
+                <th>Cor</th>
+                <th>Ano</th>
+                <th>Motor</th>
+                <th>Valor</th>
+                <th>KM</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+
+            <%
+                int lineVeiculo = 0;
+                VeiculoDAO comandVeiculos = new VeiculoDAO();
+                ArrayList veiculos = comandVeiculos.pesquisarTudo();
+                Iterator itv = veiculos.iterator();
+                while (itv.hasNext()) {
+                    Veiculo v = (Veiculo) itv.next();
+                    if (lineVeiculo % 2 == 0) {
+            %>
+
+            <tr class="white">
+                <% } else {%>
+            <tr class="gray">
+                <% }%>
+                <td><%=v.getId()%></td>
+                <td><%=comandVeiculos.pesquisarMarcaId(comandVeiculos.pesquisarMarcaByModelo(v.getIdModelo()))%></td>
+                <td><%=comandVeiculos.pesquisarModeloId(v.getIdModelo())%></td>
+                <td><%=comandVeiculos.pesquisarCombustivelId(v.getIdCombustivel())%></td>
+                <td><%=comandVeiculos.pesquisarCategoriaId(v.getCategoria())%></td>
+                <td><%=comandVeiculos.pesquisarCorId(v.getIdCor())%></td>
+                <td><%=v.getAno()%></td>
+                <td><%=v.getMotor()%></td>
+                <td><%=v.getValor()%></td>
+                <td><%=v.getKm()%></td>
+                <td>
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarVeiculo("<%=v.getId()%>","<%=v.getIdMarca()%>","<%=v.getIdModelo()%>","<%=v.getIdCombustivel()%>","<%=v.getCategoria()%>","<%=v.getIdCor()%>","<%=v.getAno()%>","<%=v.getMotor()%>","<%=v.getValor()%>","<%=v.getKm()%>")'/>
+                </td>
+
+                <td class="img_crud">
+                    <form method="post" action="FrontController">
+                        <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
+                        <input type="hidden" name="cmd" value="trataExcluirVeiculo">
+                        <input type="hidden" name="veiculo_id_excluir" value="<%=v.getId()%>">                   
+                    </form>
+                </td>
+            </tr>
+            <% lineVeiculo++;
+                }
+
+            %>
+        </table>
+        
     </div>
 
     <div class="divs listagem" id="layouts">
