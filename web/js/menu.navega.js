@@ -42,7 +42,33 @@ function cadastrarVeiculos(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
 	$('#cadastrarVeiculos').stop().slideDown();
+        var arr = new Array();  
+        arr = document.getElementsByTagName("input");            
+        for (var i = 0; i < arr.length; i++) {
+            if ((arr[i].type != "submit")&&(arr[i].type != "hidden")&&(arr[i].type != "button")&&(arr[i].type != "image")){
+                arr[i].value = "";
+            }
+        }
+        document.getElementById("cad_veiculo_cmd").value = "trataCadastroVeiculo";
+        document.getElementById("cad_veiculo_title").innerHTML = "Cadastro de Veículo:";       
+
 }
+
+function editarVeiculo(id,modelo,combustivel,categoria,cor,ano,motor,valor,km){
+        cadastrarVeiculos();
+        document.getElementById("id_veiculo").value = id;
+        document.getElementById("veiculo_modelo_select").options[modelo].selected = true;
+        document.getElementById("veiculo_combustivel_select").options[combustivel].selected = true;
+        document.getElementById("veiculo_categoria_select").options[categoria].selected = true;
+        document.getElementById("veiculo_cor_select").options[cor].selected = true;
+        document.getElementById("veiculo_ano_select").options[ano].selected = true;
+        document.getElementById("veiculo_motor_cad").value = motor;
+        document.getElementById("veiculo_valor_cad").value = valor;
+        document.getElementById("veiculo_quilometragem_cad").value = km;
+        document.getElementById("cad_veiculo_cmd").value = "trataEditarVeiculo";
+        document.getElementById("cad_veiculo_title").innerHTML = "Edição de Veículo";
+}
+
 
 function cadastrarModelos(){
 	window.scrollTo(0,200);
