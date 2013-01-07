@@ -1,3 +1,5 @@
+<%@page import="model.Anuncio"%>
+<%@page import="dao.AnuncioDAO"%>
 <%@page import="model.Revenda"%>
 <%@page import="dao.RevendaDAO"%>
 <%@page import="model.Veiculo"%>
@@ -142,6 +144,7 @@
 
         <table>
             <tr class="gray2">
+                <th>ID Anuncio</th>
                 <th>Data</th>
                 <th>Veículo</th>
                 <th>Valor</th>

@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Anuncio;
 import model.Revenda;
+import model.Status;
 import model.Veiculo;
 import util.PropertiesManager;
 
