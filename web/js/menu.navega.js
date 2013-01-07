@@ -57,13 +57,7 @@ function cadastrarVeiculos(){
 function editarVeiculo(id,modelo,combustivel,categoria,cor,ano,motor,valor,km){
         cadastrarVeiculos();
         document.getElementById("id_veiculo").value = id;
-        var veic_select = document.getElementById("veiculo_modelo_select");
-        
-        for(i=0;i<veic_select.length;i++){
-            if(veic_select.options[i].value == modelo){
-                options[i].selected = true;
-            }
-        }
+        document.getElementById("veiculo_modelo_select").options[modelo].selected = true;
         document.getElementById("veiculo_combustivel_select").options[combustivel].selected = true;
         document.getElementById("veiculo_categoria_select").options[categoria].selected = true;
         document.getElementById("veiculo_cor_select").options[cor].selected = true;
