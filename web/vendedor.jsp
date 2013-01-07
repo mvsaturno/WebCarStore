@@ -87,32 +87,7 @@
         <br/>
         <form method="post" action="FrontController">
             <fieldset>
-                <label for="anun_nome_cad">Nome completo:</label>
-                <input name="anun_nome_cad" id="user_nome_cad" type="text" size="50" required autofocus/><br/>
-
-                <label for="anun_login_cad">Login:</label>
-                <input name="anun_login_cad" id="user_login_cad" type="email" size="50" required/><br/>
-
-                <label for="anun_senha_cad">Senha:</label>
-                <input name="anun_senha_cad" id="user_senha_cad" type="password" size="50" required/><br/>           
-
-                <label for="user_celular_cad">Celular:</label>
-                <input name="user_celular_cad" id="user_celular_cad" type="tel" size="20" required/><br/>
-
-                <label for="user_telefone_cad">Telefone:</label>
-                <input name="user_telefone_cad" id="user_telefone_cad" type="tel" size="20" required/><br/>
-
-                <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
-
-                <label for="user_permissao_cad">Permissão:</label>
-                <label class="usuario_label"> 
-                    <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
-                        <option value=""></option>
-                        <option value="1">Administrador</option>
-                        <option value="2">Revenda</option>
-                        <option value="3">Vendedor</option>                    
-                    </select>
-                </label>
+                
                 <br/>
                 <input name="id_anun" type="hidden" id="id_anun" value="">
                 <input id="cad_anuncio_cmd" type="hidden" name="cmd" value='trataCadastroAnuncio'>
@@ -121,8 +96,83 @@
         </form>
     </div>    
     
+    
+    <div class="divs listagem" id="visitas">
+        <h3>Gerenciamento de Visitas</h3>
+        <br/>
         
+        <a href="#" onclick="cadastrarVisitas()" class="btn_cadastrar">
+            <span>Cadastar nova visita</span>
+        </a>
+
+        <br/>
+        <br/>
+
+        <table>
+            <tr class="gray2">
+                <th>Data</th>
+                <th>Status</th>
+                <th>Vendedor</th>
+                <th>Cliente</th>
+                <th>Anúncio</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+
+            <% /*
+                Usuario usuarioLogado = (Usuario) usuario;
+                AnuncioDAO anuncio = new AnuncioDAO();
+                ArrayList anuncios = anuncio.pesquisarTudo();
+                Iterator it = anuncios.iterator();
+                while (it.hasNext()) {
+                    int i = 0;
+                    Anuncio anun = (Anuncio) it.next();
+                    if (i % 2 == 0) {
+            */%>
+            
+            <tr class="white">
+                <% /*  } else { */%>
+            <tr class="gray">
+                <% /* } */%>
+                <td><% /* =anun.getTitulo() */%></td>
+                <td><% /* =anun.getVeiculo().getModelo().getDescricao()*/%></td>
+                <td><% /* =anun.getData() */%></td>
+                <td><% /* =anun.getStatus() */%></td>
+                <td><% /*=anun.getDestaque() */%></td>
+                <td>
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarVisita()'/></td>                   
+
+                <td class="img_crud">
+                    <form method="post" action="FrontController">
+                        <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
+                        <input type="hidden" name="cmd" value="trataExcluirVisita">
+                        <input type="hidden" name="visita_id_excluir" value="<% /*=anun.getId() */%>">                   
+                    </form>
+                </td>
+            </tr>
+            <% /* i++;
+                }   */       %>
+        </table>
+    </div>
+
+        
+        
+    <div class="divs" id="cadastrarVisitas">
+        <h3 id="cad_visita_title">Cadastro de Visita</h3>
+        <br/>
+        <form method="post" action="FrontController">
+            <fieldset>
+               
+                
+                
+                <br/>
+                <input name="id_anun" type="hidden" id="id_visita" value="">
+                <input id="cad_visita_cmd" type="hidden" name="cmd" value='trataCadastroVisita'>
+                <input name="Salvar" type="submit" value="Salvar"/>               
+            </fieldset>                  
+        </form>
+    </div>            
+                
+            
         
 </div>
-
-
