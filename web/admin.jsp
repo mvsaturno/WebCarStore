@@ -65,7 +65,7 @@
                 <td><%=user.getNome()%></td>
                 <td><%=user.getRevenda().getNome()%></td>
                 <td><%=user.getLogin()%></td>
-                <td><%=user.getPermissao()%></td>
+                <td><%=admin.pesquisarPermissaoId(user.getPermissao())%></td>
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarUsuario("<%=user.getId()%>","<%=user.getNome()%>","<%=user.getLogin()%>","<%=user.getSenha()%>",<%=user.getCelular()%>,<%=user.getTelefone()%>,<%=user.getPermissao()%>)'/></td>                   
 
@@ -458,7 +458,7 @@
                    <c:forEach items="${listaMarcas}" var="veiculo">
                        <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
                    </c:forEach>     
-                 </select
+                    </select>
                 </label>            
                 <br/>
 
