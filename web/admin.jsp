@@ -25,7 +25,7 @@
 </div>
 
 <div id="conteudo">
-    <div class="divs" id="usuarios">
+    <div class="divs listagem" id="usuarios">
         <h3>Gerenciamento de Usuários:</h3>
         <br/>
         <input type="text" placeholder="Procurar"/>
@@ -48,18 +48,18 @@
             </tr>
 
             <%
+                int line = 0;
                 Usuario usuarioLogado = (Usuario) usuario;
                 UsuarioDAO admin = new UsuarioDAO();
                 ArrayList users = admin.pesquisarTudo();
                 Iterator it = users.iterator();
                 while (it.hasNext()) {
-                    int i = 0;
                     Usuario user = (Usuario) it.next();
-                    if (i % 2 == 0) {
+                    if (line % 2 == 0) {
             %>
-            
+
             <tr class="white">
-                <%  } else {%>
+                <% } else {%>
             <tr class="gray">
                 <% }%>
                 <td><%=user.getNome()%></td>
@@ -77,58 +77,48 @@
                     </form>
                 </td>
             </tr>
-            <% i++;
+            <% line++;
                 }
 
             %>
         </table>
     </div>
 
-    <div class="divs" id="revendas">
+    <div class="divs listagem" id="revendas">
+
+        <h3>Gerenciamento de Revendas</h3>
+        <br/>
         <a href="#" onclick="cadastrarRevendas()" class="btn_cadastrar">
             <span>Cadastar Revendas</span>
-            <br/>
-            <h1>Listagem de Revendas</h1>
-        <hr>
-        
-        <table border="1">
+        </a>
 
-            <thead>
 
-                <th>CNPJ:</th>
+        <table>
+            <tr class="gray2">
+                <th>CNPJ</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>Endereço</th>
+                <th>Numero</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado(UF)</th>
+                <th>Data Cadastro</th>
+                <th>Excluir</th>
+            </tr>
 
-                <th>Nome:</th>
 
-                <th>Telefone:</th>
-
-                <th>Email:</th>
-                
-                <th>Endereço:</th>
-                
-                <th>Numero:</th>
-                
-                <th>Bairro:</th>
-                
-                <th>Cidade:</th>
-                
-                <th>Estado (UF):</th>
-                
-                <th>Data Cadastro:</th>
-                
-            </thead>
-            
-            <tbody>
-                         
-                <%
+            <%
+                line = 0;
                 RevendaDAO comando = new RevendaDAO();
                 ArrayList revendas = comando.pesquisarTudo();
                 Iterator itr = revendas.iterator();
                 while (itr.hasNext()) {
-                    int i = 0;
                     Revenda revenda = (Revenda) itr.next();
-                    if (i % 2 == 0) {
+                    if (line % 2 == 0) {
             %>
-            
+
             <tr class="white">
                 <%  } else {%>
             <tr class="gray">
@@ -143,29 +133,25 @@
                 <td><%=revenda.getCidade()%></td>
                 <td><%=revenda.getEstado()%></td>
                 <td><%=revenda.getData_cadastro()%></td>
-                
-                <td>
-                    
 
                 <td class="img_crud">
                     <form method="post" action="FrontController">
                         <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
                         <input type="hidden" name="cmd" value="trataExcluirUsuario">
-                        
                     </form>
                 </td>
             </tr>
-            <% i++;
+            <% line++;
                 }
 
             %>
-                
-                <%--
-                /* Ainda não rolou com foreach!
-            <!--forEach, implementa um laço  para fazer a interação ArrayList contido no objeto de requisição -->
-            
-            
-            <c:forEach items="${listaRevendas}" var="revenda">
+
+            <%--
+            /* Ainda não rolou com foreach!
+        <!--forEach, implementa um laço  para fazer a interação ArrayList contido no objeto de requisição -->
+        
+        
+        <c:forEach items="${listaRevendas}" var="revenda">
 
                 <tr>
 
@@ -194,17 +180,13 @@
 
                 </tr>
             </c:forEach> --%>
-                
-            </tbody>
 
         </table>
-            
-        </a>
     </div>
 
-    <div class="divs" id="veiculos">
-        
-        
+    <div class="divs listagem" id="veiculos">
+
+
         <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
             <span>Cadastar veículos</span>
         </a>
@@ -219,11 +201,11 @@
         </a>
     </div>
 
-    <div class="divs" id="layouts">
+    <div class="divs listagem" id="layouts">
         Layouts
     </div>
 
-    <div class="divs" id="planos">
+    <div class="divs listagem" id="planos">
         Planos
     </div>
 
@@ -266,10 +248,10 @@
         </form>
     </div>
 
-    <div class="divs" id="cadastrarRevendas">                
+    <div class="divs formulario" id="cadastrarRevendas">                
         <h3>Cadastro de Revendas:</h3>
         <br/>
-         <form method="post" action="FrontController">
+        <form method="post" action="FrontController">
             <fieldset>
                 <label for="revenda_descricao_cad">CNPJ:</label>
                 <input name="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="text" size="50" required autofocus/><br/>
@@ -288,7 +270,7 @@
 
                 <label for="revenda_cidade">Cidade:</label>
                 <input name="revenda_cidade" type="text" size="50" required/><br/>
-                
+
                 <label for="revenda_uf">Estado:</label>
                 <select name="revenda_uf">
                     <option value="AC">AC</option>
@@ -336,7 +318,7 @@
         </form>
     </div>
 
-    <div class="divs" id="cadastrarVeiculos">
+    <div class="divs formulario" id="cadastrarVeiculos">
         <h3>Cadastro de Veículo:</h3>
         <br/>
         <form method="post" action="FrontController">
@@ -346,7 +328,7 @@
                     ArrayList listaModelos = new VeiculoDAO().pesquisarModelos();
                     session.setAttribute("listaModelos", listaModelos);
                 %>  
-                
+
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_modelo_select">
                         <c:forEach items="${listaModelos}" var="veiculo">
@@ -357,13 +339,13 @@
                 <br/>
 
                 <label>Combustível:</label>
-                 <%
+                <%
                     ArrayList listaCombustiveis = new VeiculoDAO().pesquisarCombustiveis();
                     session.setAttribute("listaCombustiveis", listaCombustiveis);
                 %> 
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_combustivel_select">
-                         <c:forEach items="${listaCombustiveis}" var="combustivel">
+                        <c:forEach items="${listaCombustiveis}" var="combustivel">
                             <option value='<c:out value="${combustivel.idCombustivel}"/>'><c:out value="${combustivel.nome}"/></option>
                         </c:forEach> 
                     </select>
@@ -377,7 +359,7 @@
                 %> 
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_categoria_select">
-                         <c:forEach items="${listaCategorias}" var="categoria">
+                        <c:forEach items="${listaCategorias}" var="categoria">
                             <option value='<c:out value="${categoria.idCategoria}"/>'><c:out value="${categoria.nome}"/></option>
                         </c:forEach>                   
                     </select>
@@ -385,15 +367,15 @@
                 <br/>
 
                 <label>Cor:</label>
-                 <%
+                <%
                     ArrayList listaCores = new VeiculoDAO().pesquisarCores();
                     session.setAttribute("listaCores", listaCores);
                 %> 
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_cor_select">
-                            <c:forEach items="${listaCores}" var="cor">
-                                <option value='<c:out value="${cor.idCor}"/>'><c:out value="${cor.nome}"/></option>
-                            </c:forEach>               
+                        <c:forEach items="${listaCores}" var="cor">
+                            <option value='<c:out value="${cor.idCor}"/>'><c:out value="${cor.nome}"/></option>
+                        </c:forEach>               
                     </select>
                 </label>
                 <br/>
@@ -424,7 +406,7 @@
         </form>
     </div>
 
-    <div class="divs" id="cadastrarModelos">                
+    <div class="divs formulario" id="cadastrarModelos">                
         <h3>Cadastro de Modelo:</h3>
         <br/>
         <form method="post" action="FrontController">
@@ -435,30 +417,30 @@
                 <%
                     ArrayList listaMarcas = new VeiculoDAO().pesquisarMarcas();
                     session.setAttribute("listaMarcas", listaMarcas);
-                 %>                
-        
-                
+                %>                
+
+
                 <label>Marca:</label>
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_marca_select">
-                   <%-- uso com iterator
-                    <%
-                    Iterator itM = listaMarcas.iterator();
-                    while (itM.hasNext()) 
-                    {
-                        Veiculo veiculo = (Veiculo) itM.next();
-                        String marca = veiculo.getMarca();
-                    %>
+                        <%-- uso com iterator
+                         <%
+                         Iterator itM = listaMarcas.iterator();
+                         while (itM.hasNext()) 
+                         {
+                             Veiculo veiculo = (Veiculo) itM.next();
+                             String marca = veiculo.getMarca();
+                         %>
 
                         <option value=""><%=marca%></option>
                     <%
                     }
                     %>
-                   --%>
-                   <c:forEach items="${listaMarcas}" var="veiculo">
-                       <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
-                   </c:forEach>     
-                 </select
+                        --%>
+                        <c:forEach items="${listaMarcas}" var="veiculo">
+                            <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
+                        </c:forEach>     
+                    </select
                 </label>            
                 <br/>
 
@@ -469,7 +451,7 @@
     </div>
 
 
-    <div class="divs" id="cadastrarMarcas">                
+    <div class="divs formulario" id="cadastrarMarcas">                
         <h3>Cadastro de Marca:</h3>
         <br/>
         <form method="post" action="FrontController">
@@ -484,7 +466,7 @@
         </form>   
     </div>
 
-    <div class="divs" id="cadastrarItens">                
+    <div class="divs formulario" id="cadastrarItens">                
         <h3>Cadastro de itens opcionais</h3>
         <br/>
         <form method="post" action="FrontController">
