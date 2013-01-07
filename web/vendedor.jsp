@@ -1,5 +1,3 @@
-<%@page import="model.Anuncio"%>
-<%@page import="dao.AnuncioDAO"%>
 <%@page import="model.Revenda"%>
 <%@page import="dao.RevendaDAO"%>
 <%@page import="model.Veiculo"%>
@@ -89,38 +87,9 @@
         <br/>
         <form method="post" action="FrontController">
             <fieldset>
-                  <label>Veiculo:</label>
-                <%
-                    ArrayList listaVeiculos = new VeiculoDAO().pesquisarTudo();
-                    session.setAttribute("listaVeiculos", listaVeiculos);
-                    ArrayList listaStatus = new AnuncioDAO().pesquisarTudoStatus();
-                    session.setAttribute("listaStatus", listaStatus);
-                %>  
-
-                <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select_cad">
-                        <c:forEach items="${listaVeiculos}" var="veiculo">
-                            <option value='<c:out value="${veiculo.id}"/>'><c:out value="${veiculo.id} - ${veiculo.modelo}/${veiculo.ano}"/></option>
-                        </c:forEach>                  
-                    </select>
-                </label>
+                
                 <br/>
-                <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="status_select_cad">
-                        <c:forEach items="${listaStatus}" var="status">
-                            <option value='<c:out value="${status.idStatus}"/>'><c:out value="${status.descricao}"/></option>
-                        </c:forEach>                  
-                    </select>
-                </label>
-                <br>
-                <input type="date" id="data_inicio_anuncio_cad" name="data_inicio_anuncio_cad">
-                <!--Select Status-->
-                <input type="text" id="valor_anuncio_cad" name="valor_anuncio_cad">
-                <input type="range" min="0" max="1">
-                <input type="hidden" value="<%= usuario.getRevenda().getId()%>">
-        
-                <br/>
-                <input name="id_anuncio" type="hidden" id="id_anuncio" value="">
+                <input name="id_anun" type="hidden" id="id_anun" value="">
                 <input id="cad_anuncio_cmd" type="hidden" name="cmd" value='trataCadastroAnuncio'>
                 <input name="Salvar" type="submit" value="Salvar"/>               
             </fieldset>                  
@@ -141,42 +110,35 @@
 
         <table>
             <tr class="gray2">
-                <th>ID Anuncio</th>
                 <th>Data</th>
                 <th>Status</th>
-                <th>Veículo</th>
-                <th>Valor</th>
-                <th>Destaque</th>
+                <th>Vendedor</th>
+                <th>Cliente</th>
+                <th>Anúncio</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
 
-            <% 
-                AnuncioDAO cmAnuncio = new AnuncioDAO();
-                ArrayList anuncios = cmAnuncio.pesquisarTudo();
-                Iterator itan = anuncios.iterator();
-                while (itan.hasNext()) {
-                    int lineAn = 0;
-                    Anuncio anuncio = (Anuncio) itan.next();
-                    if (lineAn % 2 == 0) {
-            /*  private int id;
-    private Veiculo veiculo;
-    private String data_inicio;
-    private int status;
-    private double valor_anuncio;
-    private int destaque;
-    private Revenda revenda;*/
-            %>
+            <% /*
+                Usuario usuarioLogado = (Usuario) usuario;
+                AnuncioDAO anuncio = new AnuncioDAO();
+                ArrayList anuncios = anuncio.pesquisarTudo();
+                Iterator it = anuncios.iterator();
+                while (it.hasNext()) {
+                    int i = 0;
+                    Anuncio anun = (Anuncio) it.next();
+                    if (i % 2 == 0) {
+            */%>
             
             <tr class="white">
-                <%} else {%>
+                <% /*  } else { */%>
             <tr class="gray">
-                <%}%>
-                <td><% /* =anuncio.getTitulo() */%></td>
-                <td><% /* =anuncio.getVeiculo().getModelo().getDescricao()*/%></td>
-                <td><% /* =anuncio.getData() */%></td>
-                <td><% /* =anuncio.getStatus() */%></td>
-                <td><% /*=anuncio.getDestaque() */%></td>
+                <% /* } */%>
+                <td><% /* =anun.getTitulo() */%></td>
+                <td><% /* =anun.getVeiculo().getModelo().getDescricao()*/%></td>
+                <td><% /* =anun.getData() */%></td>
+                <td><% /* =anun.getStatus() */%></td>
+                <td><% /*=anun.getDestaque() */%></td>
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarVisita()'/></td>                   
 
