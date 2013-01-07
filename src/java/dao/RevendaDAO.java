@@ -44,7 +44,7 @@ public class RevendaDAO implements InterfaceDAO{
         stmt.setLong(9, rev.getFone());
         stmt.setInt(10, rev.getAtivo());
         stmt.execute();
-        conexao.close();
+        stmt.close();
         return true;
     }
 
@@ -129,6 +129,7 @@ public class RevendaDAO implements InterfaceDAO{
             r.setData_cadastro(rs.getString("data_cadastro"));
             r.setFone(rs.getLong("telefone"));
         }
+        pstmt.close();
         return r;
     }
     

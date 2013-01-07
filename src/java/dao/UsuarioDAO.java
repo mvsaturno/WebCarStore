@@ -46,7 +46,7 @@ public class UsuarioDAO implements InterfaceDAO{
         stmt.setLong(6, user.getTelefone());
         stmt.setInt(7, user.getRevenda().getId());
         stmt.execute();
-        //conexao.close();
+        stmt.close();
         return true;
     }
 
@@ -59,7 +59,7 @@ public class UsuarioDAO implements InterfaceDAO{
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
         stmt.execute();
-       // conexao.close();
+        stmt.close();
         return true;
     }
 
@@ -103,7 +103,7 @@ public class UsuarioDAO implements InterfaceDAO{
             
             
         
-        //pstmt.close();
+        pstmt.close();
         return userList;
     }
 
@@ -156,7 +156,7 @@ public class UsuarioDAO implements InterfaceDAO{
         stmt.setInt(7, user.getRevenda().getId());
         stmt.setInt(8, user.getId());
         stmt.execute();
-        //conexao.close();
+        stmt.close();
         return true;
     }
     
@@ -189,7 +189,7 @@ public class UsuarioDAO implements InterfaceDAO{
             usuario.setRevenda(revenda);
             
         }
-        //pstmt.close();
+        pstmt.close();
         return usuario;
     }
     
