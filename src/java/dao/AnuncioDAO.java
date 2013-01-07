@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Anuncio;
 import model.Revenda;
+import model.Status;
 import model.Veiculo;
 import util.PropertiesManager;
 
@@ -194,5 +195,33 @@ public class AnuncioDAO implements InterfaceDAO {
         pstmt.close();
         return anuncioList;
     }
+     
+     public boolean anuncioVendido(int id) throws SQLException{
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("Vender.Anuncio");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1, id);
+        pstmt.executeQuery();
+        pstmt.close();
+        return true;
+     }
+     
+     public ArrayList pesquisarTudoStatus() throws SQLException{
+        ArrayList statusList = new ArrayList();
+        Status status = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectAll.Status");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()){
+            status.setIdStatus(rs.getInt("id_status"));
+            status.setDescricao(rs.getString("descricao"));
+            statusList.add(status);
+        }
+        
+        pstmt.close();
+        return statusList;
+     }
     
 }
