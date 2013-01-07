@@ -14,38 +14,40 @@ public class Veiculo {
     private int id;
     private String nome;
     private String modelo;
-    private Date ano;
+    private int idModelo;
+    private int ano;
     private String motor;
     private String opcionais;
     private String cor;
-    private String combustivel;
+    private int idCor;
+    private Combustivel combustivel= new Combustivel();
     private int idMarca;
     private String marca;
     private double valor;
     private String[] fotos;
-    private int categoria;
+    private Categoria categoria=new Categoria();
     private double km;
     /*private Lista atributos;*/ //Reservado à outros.
 
     public Veiculo() {
     }
 
-    public Veiculo(String nome, String modelo, Date ano, String motor, String opcionais, String cor, String combustivel, String marca, double valor, String[] fotos, int categoria, double km) {
+    public Veiculo(String nome, String modelo, int ano, String motor, String opcionais, String cor, String combustivel, String marca, double valor, String[] fotos, int categoria, double km) {
         this.nome = nome;
         this.modelo = modelo;
         this.ano = ano;
         this.motor = motor;
         this.opcionais = opcionais;
         this.cor = cor;
-        this.combustivel = combustivel;
+        this.combustivel.setNome(combustivel);
         this.marca = marca;
         this.valor = valor;
         this.fotos = fotos;
-        this.categoria = categoria;
+        this.categoria.setIdCategoria(categoria);
         this.km = km;
     }
 
-    public Veiculo(int id, String nome, String modelo, Date ano, String motor, String opcionais, String cor, String combustivel, String marca, double valor, String[] fotos, int categoria, double km) {
+    public Veiculo(int id, String nome, String modelo, int ano, String motor, String opcionais, String cor, String combustivel, String marca, double valor, String[] fotos, int categoria, double km) {
         this.id = id;
         this.nome = nome;
         this.modelo = modelo;
@@ -53,11 +55,11 @@ public class Veiculo {
         this.motor = motor;
         this.opcionais = opcionais;
         this.cor = cor;
-        this.combustivel = combustivel;
+        this.combustivel.setNome(combustivel);
         this.marca = marca;
         this.valor = valor;
         this.fotos = fotos;
-        this.categoria = categoria;
+        this.categoria.setIdCategoria(categoria);
         this.km = km;
     }
     
@@ -85,21 +87,30 @@ public class Veiculo {
         this.idMarca = idMarca;
     }    
     
-    public void setAno(Date ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 
     public void setCategoria(int categoria) {
-        this.categoria = categoria;
+        this.categoria.setIdCategoria(categoria);
     }
 
     public void setCombustivel(String combustivel) {
-        this.combustivel = combustivel;
+        this.combustivel.setNome(combustivel);
+    }
+    
+    public void setIdCombustivel(int combustivel) {
+        this.combustivel.setIdCombustivel(combustivel);
     }
 
     public void setCor(String cor) {
         this.cor = cor;
     }
+    
+    public void setIdCor(int cor) {
+        this.idCor = cor;
+    }
+
 
     public void setFotos(String[] fotos) {
         this.fotos = fotos;
@@ -117,6 +128,10 @@ public class Veiculo {
         this.modelo = modelo;
     }
 
+    public void setIdModelo(int idModelo) {
+        this.idModelo = idModelo;
+    }
+    
     public void setMotor(String motor) {
         this.motor = motor;
     }
@@ -133,16 +148,24 @@ public class Veiculo {
         this.valor = valor;
     }
 
-    public Date getAno() {
+    public int getAno() {
         return ano;
     }
 
+    public int getIdCor() {
+        return idCor;
+    }
+
     public int getCategoria() {
-        return categoria;
+        return categoria.getIdCategoria();
     }
 
     public String getCombustivel() {
-        return combustivel;
+        return combustivel.getNome();
+    }
+    
+    public int getIdCombustivel() {
+        return combustivel.getIdCombustivel();
     }
 
     public int getIdMarca() {
@@ -173,6 +196,10 @@ public class Veiculo {
         return modelo;
     }
 
+    public int getIdModelo() {
+        return idModelo;
+    }
+    
     public String getMotor() {
         return motor;
     }
@@ -188,5 +215,7 @@ public class Veiculo {
     public double getValor() {
         return valor;
     }
+
+    
 
 }

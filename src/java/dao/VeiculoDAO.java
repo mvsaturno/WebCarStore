@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Categoria;
+import model.Combustivel;
+import model.Cor;
 import model.Revenda;
 import model.Usuario;
 import model.Veiculo;
@@ -34,17 +37,20 @@ public class VeiculoDAO  implements InterfaceDAO{
     public boolean inserir(Object obj) throws SQLException {
         Veiculo vel = (Veiculo) obj;
         Connection conexao = DBConnection.getInstance();
-        
+        //ordem dos parametros:id_modelo, cod_combustivel, id_categoria, id_cor, ano, motor, valor, quilometragem
         String sql = (String) dados.get("Insert.Veiculo");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, vel.getNome());
-        stmt.setString(2, vel.getMarca());
-        stmt.setString(3, vel.getModelo());
-        stmt.setString(4, vel.getCor());
-        stmt.setString(5, vel.getMotor());
-        stmt.setString(6, vel.getCombustivel());
-        stmt.setString(7, vel.getOpcionais());
+        stmt.setInt(1, vel.getIdModelo());
+        stmt.setInt(2, vel.getIdCombustivel());
+        stmt.setInt(3, vel.getCategoria());
+        stmt.setInt(4, vel.getIdCor());
+        stmt.setInt(5, vel.getAno());
+        stmt.setString(6, vel.getMotor());
+        stmt.setDouble(7, vel.getValor());
+        stmt.setDouble(8, vel.getKm());
+        
+        
         stmt.execute();
         conexao.close();
         
@@ -105,7 +111,82 @@ public class VeiculoDAO  implements InterfaceDAO{
         //pstmt.close();
         return marcaList;
     }
+    
+    public ArrayList pesquisarModelos() throws SQLException {
+        ArrayList modeloList = new ArrayList();
+        Veiculo veiculo = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectAll.Modelo");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()){
+            veiculo = new Veiculo();
+            veiculo.setModelo(rs.getString("descricao"));
+            veiculo.setIdModelo(rs.getInt("id_modelo"));
+            modeloList.add(veiculo);
+        }        
+        
+        //pstmt.close();
+        return modeloList;
+    }
+    
+    public ArrayList pesquisarCombustiveis() throws SQLException {
+        ArrayList combustivelList = new ArrayList();
+        Combustivel combustivel = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectAll.Combustivel");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()){
+            combustivel = new Combustivel();
+            combustivel.setNome(rs.getString("descricao"));
+            combustivel.setIdCombustivel(rs.getInt("cod_combustivel"));
+            combustivelList.add(combustivel);
+        }        
+        
+        //pstmt.close();
+        return combustivelList;
+    }
 
+     public ArrayList pesquisarCategorias() throws SQLException {
+        ArrayList categoriaList = new ArrayList();
+        Categoria categoria = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectAll.Categoria");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()){
+            categoria = new Categoria();
+            categoria.setNome(rs.getString("descricao"));
+            categoria.setIdCategoria(rs.getInt("id_categoria"));
+            categoriaList.add(categoria);
+        }        
+        
+        //pstmt.close();
+        return categoriaList;
+    }
+     
+     public ArrayList pesquisarCores() throws SQLException {
+        ArrayList corList = new ArrayList();
+        Cor cor = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectAll.Cor");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()){
+            cor= new Cor();
+            cor.setNome(rs.getString("descricao"));
+            cor.setIdCor(rs.getInt("id_cor"));
+            corList.add(cor);
+        }        
+        
+        //pstmt.close();
+        return corList;
+    }
 
     @Override
     public boolean excluir(Object obj) throws SQLException {
@@ -138,6 +219,8 @@ public class VeiculoDAO  implements InterfaceDAO{
     public boolean editar(Object obj) throws SQLException {
         return true;
     }
+
     
+ 
     
 }
