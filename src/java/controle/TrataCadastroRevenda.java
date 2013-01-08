@@ -9,6 +9,7 @@ import dao.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import model.Revenda;
@@ -53,9 +54,13 @@ public class TrataCadastroRevenda extends Comando{
             }else{
                 msg = "Você não possui permissão para cadastrar um usuário com este nível de acesso.";
             }
+            
+            getRequest().setAttribute("mensagem", msg);
+            RequestDispatcher rd = getRequest().getRequestDispatcher("/sistema.jsp");
+            rd.forward(getRequest(), getResponse()); 
         } catch (Exception ex) {
             throw new ServletException(ex);
-        } 
+        }
     }
     
 }

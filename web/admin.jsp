@@ -318,7 +318,7 @@
         <form method="post" action="FrontController">
             <fieldset>
                 <label for="revenda_descricao_cad">CNPJ:</label>
-                <input name="revenda_cnpj_cad" id="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="text" size="50" required autofocus/><br/>
+                <input name="revenda_cnpj_cad" id="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="number" size="50" required autofocus/><br/>
 
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" id="revenda_nome_cad" type="text" size="50" required/><br/>
