@@ -217,6 +217,7 @@
         <a href="#" onclick="cadastrarItens()" class="btn_cadastrar">
             <span>Cadastar Itens Opcionais</span>
         </a>
+        
     </div>
 
     <div class="divs" id="layouts">
@@ -416,7 +417,21 @@
                 <input name="veiculo_valor_cad" type="text" size="50" required/><br/>
 
                 <label for="veiculo_quilometragem_cad">Quilometragem</label>
-                <input name="veiculo_quilometragem_cad" type="text" size="50" required/><br/>          
+                <input name="veiculo_quilometragem_cad" type="text" size="50" required/><br/>   
+                
+                <label for="veiculo_itens_cad">Itens Adicionais</label>
+                 <%
+                    ArrayList listaItems = new VeiculoDAO().pesquisarItems();
+                    session.setAttribute("listaItems", listaItems);
+                %> 
+                <label class="veiculo_label"> 
+                    <select multiple class="veiculo_select" name="veiculo_itens_select">
+                        <c:forEach items="${listaItems}" var="item">
+                                <option value='<c:out value="${item.idItem}"/>'><c:out value="${item.nome}"/></option>
+                            </c:forEach> 
+                    </select>
+                </label>
+                <br/> 
 
                 <input type="hidden" name="cmd" value='trataCadastroVeiculo'>
                 <input name="Salvar" type="submit" value="Salvar"/>               
@@ -467,8 +482,7 @@
             </fieldset>                  
         </form>   
     </div>
-
-
+                   
     <div class="divs" id="cadastrarMarcas">                
         <h3>Cadastro de Marca:</h3>
         <br/>
