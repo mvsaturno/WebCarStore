@@ -141,7 +141,8 @@
                 <td class="img_crud">
                     <form method="post" action="FrontController">
                         <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
-                        <input type="hidden" name="cmd" value="trataExcluirRevenda" value="<%=revenda.getId()%>">
+                        <input type="hidden" name="cmd" value="trataExcluirRevenda">
+                        <input type="hidden" name="id_revenda_excluir" value="<%=revenda.getId()%>">
                     </form>
                 </td>
             </tr>
