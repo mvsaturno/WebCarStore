@@ -9,7 +9,6 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UsuarioDAO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
@@ -26,12 +25,12 @@
 
 <div id="conteudo">
     <div class="divs listagem" id="usuarios">
-        <h3>Gerenciamento de Usu√°rios:</h3>
+        <h3>Gerenciamento de Usu·rios:</h3>
         <br/>
         <input type="text" placeholder="Procurar"/>
 
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
-            <span>Cadastar novo usu√°rio</span>
+            <span>Cadastar novo usu·rio</span>
         </a>
 
         <br/>
@@ -42,7 +41,7 @@
                 <th>Nome</th>
                 <th>Revenda</th>
                 <th>Login</th>
-                <th>Permiss√£o</th>
+                <th>Permiss„o</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
@@ -99,7 +98,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Endere√ßo</th>
+                <th>EndereÁo</th>
                 <th>Numero</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
@@ -152,15 +151,15 @@
             %>
 
             <%--
-            /* Ainda n√£o rolou com foreach!
-        <!--forEach, implementa um la√ßo  para fazer a intera√ß√£o ArrayList contido no objeto de requisi√ß√£o -->
+            /* Ainda n„o rolou com foreach!
+        <!--forEach, implementa um laÁo  para fazer a interaÁ„o ArrayList contido no objeto de requisiÁ„o -->
         
         
         <c:forEach items="${listaRevendas}" var="revenda">
 
                 <tr>
 
-                    <!--A tag out √© respons√°vel por gerar uma String de sa√≠da na tela -->
+                    <!--A tag out È respons·vel por gerar uma String de saÌda na tela -->
 
                     <td><c:out value="${revenda.cnpj}"/></td>
                     
@@ -193,7 +192,7 @@
 
 
         <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
-            <span>Cadastar ve√≠culos</span>
+            <span>Cadastar veÌculos</span>
         </a>
         <a href="#" onclick="cadastrarModelos()" class="btn_cadastrar">
             <span>Cadastar modelos</span>
@@ -208,10 +207,10 @@
         <br>
         <table>
             <tr class="gray2">
-                <th>ID Ve√≠culo</th>
+                <th>ID VeÌculo</th>
                 <th>Marca</th>
                 <th>Modelo</th>
-                <th>Combust√≠vel</th>
+                <th>CombustÌvel</th>
                 <th>Categoria</th>
                 <th>Cor</th>
                 <th>Ano</th>
@@ -295,7 +294,7 @@
 
                 <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
 
-                <label for="user_permissao_cad">Permiss√£o:</label>
+                <label for="user_permissao_cad">Permiss„o:</label>
                 <label class="usuario_label"> 
                     <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                         <option value=""></option>
@@ -323,7 +322,7 @@
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" id="revenda_nome_cad" type="text" size="50" required/><br/>
 
-                <label for="revenda_end">Endere√ßo:</label>
+                <label for="revenda_end">EndereÁo:</label>
                 <input name="revenda_end" id="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
@@ -374,7 +373,7 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="2"> N√£o<br/>
+                <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="2"> N„o<br/>
 
                 <input name="id_revenda" type="hidden" id="id_revenda" value="">       
                 <input id="cad_revenda_cmd" type="hidden" name="cmd" value='trataCadastroRevenda'>
@@ -384,7 +383,7 @@
     </div>
 
     <div class="divs formulario" id="cadastrarVeiculos">
-        <h3 id="cad_veiculo_title">Cadastro de Ve√≠culo:</h3>
+        <h3 id="cad_veiculo_title">Cadastro de VeÌculo:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>                                 
@@ -403,7 +402,7 @@
                 </label>
                 <br/>
 
-                <label>Combust√≠vel:</label>
+                <label>CombustÌvel:</label>
                 <%
                     ArrayList listaCombustiveis = new VeiculoDAO().pesquisarCombustiveis();
                     session.setAttribute("listaCombustiveis", listaCombustiveis);
