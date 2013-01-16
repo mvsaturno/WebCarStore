@@ -66,7 +66,7 @@
                 <td><%=user.getLogin()%></td>
                 <td><%=admin.pesquisarPermissaoId(user.getPermissao())%></td>
                 <td>
-                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarUsuario("<%=user.getId()%>","<%=user.getNome()%>","<%=user.getLogin()%>","<%=user.getSenha()%>","<%=user.getCelular()%>","<%=user.getTelefone()%>","<%=user.getPermissao()%>")'/>
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarUsuario("<%=user.getId()%>","<%=user.getNome()%>","<%=user.getLogin()%>","<%=user.getSenha()%>","<%=user.getCelular()%>","<%=user.getTelefone()%>","<%=user.getRevenda().getId()%>","<%=user.getPermissao()%>")'/>
                 </td>
 
                 <td class="img_crud">
@@ -133,7 +133,7 @@
                 <td><%=revenda.getCidade()%></td>
                 <td><%=revenda.getEstado()%></td>
                 <td><%=revenda.getData_cadastro()%></td>
-                
+
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarRevenda("<%=revenda.getId()%>","<%=revenda.getCNPJ()%>","<%=revenda.getNome()%>","<%=revenda.getFone()%>","<%=revenda.getEmail()%>","<%=revenda.getEndereco()%>","<%=revenda.getNumero()%>","<%=revenda.getBairro()%>","<%=revenda.getCidade()%>","<%=revenda.getEstado()%>")'/>
                 </td>
@@ -261,7 +261,7 @@
                 }
             %>
         </table>
-        
+
     </div>
 
     <div class="divs listagem" id="layouts">
@@ -291,10 +291,22 @@
 
                 <label for="user_telefone_cad">Telefone:</label>
                 <input name="user_telefone_cad" id="user_telefone_cad" type="tel" size="20" required/><br/>
-                
-                <label for="user_permissao_cad">Permissão:</label>
-                <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
-                
+
+                <label for="user_revenda_cad">Revenda:</label>
+                <select name="user_revenda_cad"  id="user_revenda_cad">
+                    <%
+                        comando = new RevendaDAO();
+                        revendas = comando.pesquisarTudo();
+                        itr = revendas.iterator();
+                        while (itr.hasNext()) {
+                        Revenda revenda = (Revenda) itr.next();
+                    %>
+
+                    <option value="<%=revenda.getId()%>"><%=revenda.getNome()%></option>
+
+                    <% }%>
+                </select> <br/>
+
 
                 <label for="user_permissao_cad">Permissão:</label>
                 <label class="usuario_label"> 
@@ -308,7 +320,8 @@
                 <br/>
                 <input name="id_user" type="hidden" id="id_user" value="">
                 <input id="cad_usuario_cmd" type="hidden" name="cmd" value='trataCadastroUsuario'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="usuarios()" />
             </fieldset>                  
         </form>
     </div>
@@ -379,7 +392,8 @@
 
                 <input name="id_revenda" type="hidden" id="id_revenda" value="">       
                 <input id="cad_revenda_cmd" type="hidden" name="cmd" value='trataCadastroRevenda'>
-                <input name="Salvar" type="submit" value="Salvar"/>      
+                <input name="Salvar" type="submit" value="Salvar"/>   
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="revendas()" />
             </fieldset>                  
         </form>
     </div>
@@ -468,7 +482,8 @@
 
                 <input name="id_veiculo" type="hidden" id="id_veiculo" value="">       
                 <input id="cad_veiculo_cmd" type="hidden" name="cmd" value='trataCadastroVeiculo'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>  
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="veiculos()" />
             </fieldset>                  
         </form>
     </div>
@@ -503,16 +518,17 @@
                     <%
                     }
                     %>
-                   --%>
-                   <c:forEach items="${listaMarcas}" var="veiculo">
-                       <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
-                   </c:forEach>     
+                        --%>
+                        <c:forEach items="${listaMarcas}" var="veiculo">
+                            <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
+                        </c:forEach>     
                     </select>
                 </label>            
                 <br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroModelo'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="veiculos()" />
             </fieldset>                  
         </form>   
     </div>
@@ -528,7 +544,8 @@
                 <input name="veiculo_marca_cad" type="text" size="50" required autofocus/><br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroMarca'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>    
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="veiculos()" />
             </fieldset>                  
         </form>   
     </div>
@@ -542,7 +559,8 @@
                 <input name="veiculo_itens_cad" type="text" size="50" required autofocus/><br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroItem'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>     
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="veiculos()" />
             </fieldset>                  
         </form>   
     </div>

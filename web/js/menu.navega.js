@@ -25,7 +25,7 @@ function cadastrarUsuarios(){
         document.getElementById("cad_usuario_title").innerHTML = "Cadastro de Usuário:";       
 }
 
-function editarUsuario(id,nome,login,senha,celular,telefone,permissao){
+function editarUsuario(id,nome,login,senha,celular,telefone,revenda,permissao){
         cadastrarUsuarios();
         document.getElementById("id_user").value = id;
         document.getElementById("user_nome_cad").value = nome;
@@ -33,6 +33,7 @@ function editarUsuario(id,nome,login,senha,celular,telefone,permissao){
         document.getElementById("user_senha_cad").value = senha;
         document.getElementById("user_celular_cad").value = celular;
         document.getElementById("user_telefone_cad").value = telefone;
+        document.getElementById("user_revenda_cad").value = revenda;
         document.getElementById("user_permissao_cad").options[permissao].selected = true;
         document.getElementById("cad_usuario_cmd").value = "trataEditarUsuario";
         document.getElementById("cad_usuario_title").innerHTML = "Edição de Usuário:";
