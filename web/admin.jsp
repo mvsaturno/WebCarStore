@@ -291,8 +291,10 @@
 
                 <label for="user_telefone_cad">Telefone:</label>
                 <input name="user_telefone_cad" id="user_telefone_cad" type="tel" size="20" required/><br/>
-
+                
+                <label for="user_permissao_cad">Permissão:</label>
                 <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
+                
 
                 <label for="user_permissao_cad">Permissão:</label>
                 <label class="usuario_label"> 
