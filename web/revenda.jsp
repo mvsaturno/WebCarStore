@@ -23,8 +23,8 @@
 <%@page import="dao.RevendaDAO"%>
 <div id="menu_admin">
     <ul>
-        <li><a href="#" onclick="usuarios()">Revenda</a></li>
-        <li><a href="#" onclick="revendas()">Anuncios</a></li>
+        <li><a href="#" onclick="revendas()">Revenda</a></li>
+        <li><a href="#" onclick="anuncios()">Anuncios</a></li>
         <!-- <li><a href="#" onclick="veiculos()">Veiculos</a></li>
         <li><a href="#" onclick="layouts()">Layouts</a></li>
         <li><a href="#" onclick="planos()">Planos</a></li> -->
