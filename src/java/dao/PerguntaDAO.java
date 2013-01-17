@@ -57,26 +57,15 @@ public class PerguntaDAO implements InterfaceDAO{
 
     @Override
     public ArrayList pesquisarTudo() throws SQLException {
-        ArrayList revList = new ArrayList();
+        ArrayList AnList = new ArrayList();
         Connection conexao = DBConnection.getInstance();
         String sql = (String) dados.get("SelectPerguntaAnuncio");
         PreparedStatement pstmt = conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         
         while (rs.next()){
-            Revenda r = new Revenda();
-            r.setId(rs.getInt("id_revenda"));
-            r.setCNPJ(rs.getLong("cnpj"));
-            r.setNome(rs.getString("nome"));
-            r.setEmail(rs.getString("mail"));
-            r.setEndereco(rs.getString("endereco"));
-            r.setNumero(rs.getInt("numero"));
-            r.setCidade(rs.getString("cidade"));
-            r.setEstado(rs.getString("estado"));
-            r.setBairro(rs.getString("bairro"));
-            r.setData_cadastro(rs.getString("data_cadastro"));
-            r.setFone(rs.getLong("telefone"));
-            revList.add(r);
+            Anuncio a = new Anuncio();
+            
         }
         pstmt.close();
         return revList;
