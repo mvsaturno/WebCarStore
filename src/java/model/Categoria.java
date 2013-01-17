@@ -33,7 +33,7 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return super.toString();
+        return this.nome;
     }
     
     

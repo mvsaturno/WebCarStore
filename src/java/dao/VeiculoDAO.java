@@ -46,7 +46,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         cstmt.registerOutParameter(1, Types.INTEGER);
         cstmt.setInt(2, vel.getIdModelo());
         cstmt.setInt(3, vel.getIdCombustivel());
-        cstmt.setInt(4, vel.getCategoria());
+        cstmt.setInt(4, vel.getCategoria().getIdCategoria());
         cstmt.setInt(5, vel.getIdCor());
         cstmt.setInt(6, vel.getAno());
         cstmt.setString(7, vel.getMotor());
@@ -267,12 +267,21 @@ public class VeiculoDAO  implements InterfaceDAO{
             v.setId(rs.getInt("id_veiculo"));
             v.setIdModelo(rs.getInt("id_modelo"));
             v.setIdCombustivel(rs.getInt("cod_combustivel"));
-            v.setCategoria(rs.getInt("id_categoria"));
             v.setIdCor(rs.getInt("id_cor"));
             v.setAno(rs.getInt("ano"));
             v.setMotor(rs.getString("motor"));
             v.setValor(rs.getDouble("valor"));
             v.setKm(rs.getDouble("quilometragem"));
+            v.setModelo(this.pesquisarModeloId(rs.getInt("id_modelo")));
+            v.setCor(this.pesquisarCorId(rs.getInt("id_cor")));
+            Categoria cat = new Categoria();
+            cat.setIdCategoria(rs.getInt("id_categoria"));
+            cat.setNome(this.pesquisarCategoriaId(rs.getInt("id_categoria")));
+            v.setCategoria(cat);
+            Combustivel fuel = new Combustivel();
+            fuel.setIdCombustivel(rs.getInt("cod_combustivel"));
+            fuel.setNome(this.pesquisarCombustivelId(rs.getInt("cod_combustivel")));
+            v.setCombustivel(fuel);
             velList.add(v);
         }
         //pstmt.close();
@@ -314,7 +323,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, veiculo.getIdModelo());
         stmt.setInt(2, veiculo.getIdCombustivel());
-        stmt.setInt(3, veiculo.getCategoria());
+        stmt.setInt(3, veiculo.getCategoria().getIdCategoria());
         stmt.setInt(4, veiculo.getIdCor());
         stmt.setInt(5, veiculo.getAno());
         stmt.setString(6, veiculo.getMotor());
