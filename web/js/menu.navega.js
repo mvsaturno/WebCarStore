@@ -180,6 +180,9 @@ function cadastrarAnuncios(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
 	$('#cadastrarAnuncios').stop().slideDown();
+        
+        document.getElementById("cad_anuncio_cmd").value = "trataCadastroAnuncio";
+        document.getElementById("cad_anuncio_title").innerHTML = "Cadastro de Anúncio:";
 }
 
 function editarAnuncio(id, data, veiculo, getStatus, valor, destaque){
@@ -201,6 +204,8 @@ function editarAnuncio(id, data, veiculo, getStatus, valor, destaque){
             anun_select.options[0].selected = true
         else
             anun_select.options[1].selected = true;
+        document.getElementById("cad_anuncio_cmd").value = "trataEditarAnuncio";
+        document.getElementById("cad_anuncio_title").innerHTML = "Edição de Anúncio:"; 
 }
 
 
