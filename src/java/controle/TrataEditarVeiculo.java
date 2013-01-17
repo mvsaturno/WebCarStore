@@ -22,7 +22,7 @@ public class TrataEditarVeiculo extends Comando {
         try {
             getResponse().setContentType("text/html;charset=UTF-8");
             
-            int id = Integer.parseInt(getRequest().getParameter("id_veiculo_alt"));
+            int id = Integer.parseInt(getRequest().getParameter("id_veiculo"));
             int modelo = Integer.parseInt(getRequest().getParameter("veiculo_modelo_select")); 
             int ano= Integer.parseInt(getRequest().getParameter("veiculo_ano_select"));
             int categoria= Integer.parseInt(getRequest().getParameter("veiculo_categoria_select"));        

@@ -40,6 +40,7 @@ public class TrataCadastroVeiculo extends Comando {
             double quilometragem=Double.parseDouble(getRequest().getParameter("veiculo_quilometragem_cad")); 
             double valor=Double.parseDouble(getRequest().getParameter("veiculo_valor_cad"));
             String motor=getRequest().getParameter("veiculo_motor_cad");
+            String[] itensOp=getRequest().getParameterValues("veiculo_itens_op");
             Veiculo vel=new Veiculo();
             
             
@@ -52,6 +53,7 @@ public class TrataCadastroVeiculo extends Comando {
             vel.setKm(quilometragem);
             vel.setValor(valor);
             vel.setMotor(motor);
+            vel.setOpcionais(itensOp);
             
             
             VeiculoDAO veiculo = new VeiculoDAO();

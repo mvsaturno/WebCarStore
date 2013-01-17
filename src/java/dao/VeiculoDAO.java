@@ -6,10 +6,12 @@ package dao;
 
 import database.DBConnection;
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -38,32 +40,35 @@ public class VeiculoDAO  implements InterfaceDAO{
     public boolean inserir(Object obj) throws SQLException {
         Veiculo vel = (Veiculo) obj;
         Connection conexao = DBConnection.getInstance();
-        //ordem dos parametros:id_modelo, cod_combustivel, id_categoria, id_cor, ano, motor, valor, quilometragem
-        String sql = (String) dados.get("Insert.Veiculo");
+             
+        String call =(String) dados.get("Insert.Veiculo.Function");
+        CallableStatement cstmt=conexao.prepareCall(call);
+        cstmt.registerOutParameter(1, Types.INTEGER);
+        cstmt.setInt(2, vel.getIdModelo());
+        cstmt.setInt(3, vel.getIdCombustivel());
+        cstmt.setInt(4, vel.getCategoria());
+        cstmt.setInt(5, vel.getIdCor());
+        cstmt.setInt(6, vel.getAno());
+        cstmt.setString(7, vel.getMotor());
+        cstmt.setDouble(8, vel.getValor());
+        cstmt.setDouble(9, vel.getKm());
+        cstmt.executeUpdate();
         
-        PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setInt(1, vel.getIdModelo());
-        stmt.setInt(2, vel.getIdCombustivel());
-        stmt.setInt(3, vel.getCategoria());
-        stmt.setInt(4, vel.getIdCor());
-        stmt.setInt(5, vel.getAno());
-        stmt.setString(6, vel.getMotor());
-        stmt.setDouble(7, vel.getValor());
-        stmt.setDouble(8, vel.getKm());
+        vel.setId(cstmt.getInt(1));
+               
+        cstmt.close();  
         
-        
-        stmt.execute();
+        String[] opcionais=vel.getOpcionais();
 
+        for (int i = 0; i < opcionais.length; i++ ){     
         
-       // ResultSet rs = stmt.getResultSet();
-       // vel.setId(rs.getInt(1));
-        
-        /*sql = (String) dados.get("Insert.VeiculoItens");
-        
-        stmt = conexao.prepareStatement(sql);       
+        String sql = (String) dados.get("Insert.VeiculoItens");
+        PreparedStatement stmt=conexao.prepareStatement(sql);       
         stmt.setInt(1, vel.getId());
-        stmt.setInt(2, 1);
-        stmt.execute();*/
+        stmt.setString(2,opcionais[i]);
+        stmt.execute();
+        
+        }
         //conexao.close();
         
         return true;
@@ -105,7 +110,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         Item item = (Item) obj;
         Connection conexao = DBConnection.getInstance();
         
-        String sql = (String) dados.get("Insert.Item.Function");
+        String sql = (String) dados.get("Insert.Item");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
         

@@ -17,7 +17,7 @@ public class Veiculo {
     private int idModelo;
     private int ano;
     private String motor;
-    private String opcionais;
+    private String[] opcionais;
     private String cor;
     private int idCor;
     private Combustivel combustivel= new Combustivel();
@@ -32,7 +32,7 @@ public class Veiculo {
     public Veiculo() {
     }
 
-    public Veiculo(String nome, String modelo, int ano, String motor, String opcionais, String cor, String combustivel, String marca, double valor, String[] fotos, int categoria, double km) {
+    public Veiculo(String nome, String modelo, int ano, String motor, String[] opcionais, String cor, String combustivel, String marca, double valor, String[] fotos, int categoria, double km) {
         this.nome = nome;
         this.modelo = modelo;
         this.ano = ano;
@@ -47,7 +47,7 @@ public class Veiculo {
         this.km = km;
     }
 
-    public Veiculo(int id, String nome, String modelo, int ano, String motor, String opcionais, String cor, String combustivel, String marca, double valor, String[] fotos, int categoria, double km) {
+    public Veiculo(int id, String nome, String modelo, int ano, String motor, String[] opcionais, String cor, String combustivel, String marca, double valor, String[] fotos, int categoria, double km) {
         this.id = id;
         this.nome = nome;
         this.modelo = modelo;
@@ -140,7 +140,7 @@ public class Veiculo {
         this.nome = nome;
     }
 
-    public void setOpcionais(String opcionais) {
+    public void setOpcionais(String[] opcionais) {
         this.opcionais = opcionais;
     }
 
@@ -208,7 +208,7 @@ public class Veiculo {
         return nome;
     }
 
-    public String getOpcionais() {
+    public String[] getOpcionais() {
         return opcionais;
     }
 
