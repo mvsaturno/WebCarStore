@@ -11,24 +11,23 @@ package model;
 public class Pergunta {
     int id_pergunta, id_resposta;
     String pergunta;
-    Usuario cliente, vendedor;
+    Usuario cliente;
 
     public Pergunta() {
     }
 
-    public Pergunta(int id_pergunta, int id_resposta, String pergunta, Usuario cliente, Usuario vendedor) {
+    public Pergunta(int id_pergunta, int id_resposta, String pergunta, Usuario cliente) {
         this.id_pergunta = id_pergunta;
         this.id_resposta = id_resposta;
         this.pergunta = pergunta;
         this.cliente = cliente;
-        this.vendedor = vendedor;
     }
     
-    public Pergunta(int id_resposta, String pergunta, Usuario cliente, Usuario vendedor) {
+    public Pergunta(int id_resposta, String pergunta, Usuario cliente) {
         this.id_resposta = id_resposta;
         this.pergunta = pergunta;
         this.cliente = cliente;
-        this.vendedor = vendedor;
+        
     }
     
     public Usuario getCliente() {
@@ -43,10 +42,6 @@ public class Pergunta {
         return pergunta;
     }
 
-    public Usuario getVendedor() {
-        return vendedor;
-    }
-
     public void setCliente(Usuario cliente) {
         this.cliente = cliente;
     }
@@ -57,10 +52,6 @@ public class Pergunta {
 
     public void setPergunta(String pergunta) {
         this.pergunta = pergunta;
-    }
-
-    public void setVendedor(Usuario vendedor) {
-        this.vendedor = vendedor;
     }
 
 }
