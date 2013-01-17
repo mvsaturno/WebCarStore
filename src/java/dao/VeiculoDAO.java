@@ -12,10 +12,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Categoria;
 import model.Combustivel;
 import model.Cor;
 import model.Item;
+import model.Revenda;
+import model.Usuario;
 import model.Veiculo;
 import util.PropertiesManager;
 
@@ -49,7 +53,18 @@ public class VeiculoDAO  implements InterfaceDAO{
         
         
         stmt.execute();
-        stmt.close();
+
+        
+       // ResultSet rs = stmt.getResultSet();
+       // vel.setId(rs.getInt(1));
+        
+        /*sql = (String) dados.get("Insert.VeiculoItens");
+        
+        stmt = conexao.prepareStatement(sql);       
+        stmt.setInt(1, vel.getId());
+        stmt.setInt(2, 1);
+        stmt.execute();*/
+        //conexao.close();
         
         return true;
     }
@@ -66,7 +81,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         
         
         stmt.execute();
-        stmt.close();
+        //conexao.close();
         return true;
     }
     
@@ -82,7 +97,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         stmt.setInt(1,vel.getIdMarca());
         
         stmt.execute();
-        stmt.close();
+        //conexao.close();
         return true;
     }
     
@@ -90,16 +105,38 @@ public class VeiculoDAO  implements InterfaceDAO{
         Item item = (Item) obj;
         Connection conexao = DBConnection.getInstance();
         
-        String sql = (String) dados.get("Insert.Item");
+        String sql = (String) dados.get("Insert.Item.Function");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
         
         stmt.setString(1,item.getNome());
+       
         
         stmt.execute();
         stmt.close();
         return true;
     }
+    
+    public ArrayList pesquisarItems() throws SQLException {
+        ArrayList itemList = new ArrayList();
+        Item item = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectAll.Item");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()){
+            item = new Item();
+            item.setNome(rs.getString("descricao"));
+            item.setIdItem(rs.getInt("cod_item"));
+            itemList.add(item);
+        }    
+            
+        
+        //pstmt.close();
+        return itemList;
+    }
+    
     
     
     public ArrayList pesquisarMarcas() throws SQLException {
@@ -138,7 +175,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             modeloList.add(veiculo);
         }        
         
-        pstmt.close();
+        //pstmt.close();
         return modeloList;
     }
     
@@ -176,7 +213,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             categoriaList.add(categoria);
         }        
         
-        pstmt.close();
+        //pstmt.close();
         return categoriaList;
     }
      
@@ -195,7 +232,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             corList.add(cor);
         }        
         
-        pstmt.close();
+        //pstmt.close();
         return corList;
     }
 
@@ -233,7 +270,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             v.setKm(rs.getDouble("quilometragem"));
             velList.add(v);
         }
-        pstmt.close();
+        //pstmt.close();
         return velList;
     }
 
