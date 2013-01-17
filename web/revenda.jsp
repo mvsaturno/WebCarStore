@@ -32,7 +32,7 @@
 <div id="menu_admin">
     <ul>
         <li><a href="#" onclick="revendas()">Revenda</a></li>
-        <li><a href="#" onclick="layouts()">Layout do Site</a></li>
+        <li><a href="#" onclick="layouts()">Site Layout</a></li>
         <!-- <li><a href="#" onclick="veiculos()">Veiculos</a></li>
         <li><a href="#" onclick="layouts()">Layouts</a></li>
         <li><a href="#" onclick="planos()">Planos</a></li> -->
@@ -51,7 +51,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Endereço</th>
+                <th>EndereÃ§o</th>
                 <th>Numero</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
@@ -99,7 +99,7 @@
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" id="revenda_nome_cad" type="text" size="50" required/><br/>
 
-                <label for="revenda_end">Endereço:</label>
+                <label for="revenda_end">EndereÃ§o:</label>
                 <input name="revenda_end" id="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
@@ -150,7 +150,7 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" id="revenda_inativo_cad" type="radio" value="2"> Não<br/>
+                <input name="revenda_ativo_cad" id="revenda_inativo_cad" type="radio" value="2"> NÃ£o<br/>
 
                 <input name="id_revenda" type="hidden" id="id_revenda" value="">       
                 <input id="cad_revenda_cmd" type="hidden" name="cmd" value='trataCadastroRevenda'>
@@ -161,7 +161,7 @@
         
     </div>
     <div class="divs formulario" id="selecionarLayout">
-        <h3 id="cad_revenda_title">Seleção de Layout:</h3>
+        <h3 id="cad_revenda_title">Selecionar Layout:</h3>
         <label>Modelo:</label>
                 <%
                     ArrayList listaTemplates = new TemplateDAO().pesquisarTudo();
