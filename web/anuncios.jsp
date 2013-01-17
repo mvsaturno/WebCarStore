@@ -18,13 +18,13 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/menu.navega.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="css/anuncio.css" />
+        <link rel="stylesheet" type="text/css" href="css/layout2.css" />
     </head>
     <body>
         <div id="tudo">
             <div id="topo">
-                <div class="img_topo"><img src="img/logo.png" alt="WebCar Store" border="1" /></div>
-                <p class="titulo"><span>Webcar Revenda</span> - The world's most powerful resale</p>
+                <div class="img_topo"><img src="img/logo.png" alt="WebCar Store" border="0" /></div>
+                <p class="titulo"><span>Webcar Revenda</span> <br/>The world's most powerful resale</p>
             </div>                                                
 
             <div id="anunciosh">
@@ -36,16 +36,18 @@
                                      
                 <div class="anunciosh_box">
                     <div class="anunciosh_box_in">
-                        <p class="anunciosh_veiculo"><c:out value="${anuncio.veiculo.marca}"/></p>                                            
-                        <p class="anunciosh_ano"><c:out value="${anuncio.data_inicio}"/></p>                    
-                        <p class="anunciosh_valor"><c:out value="${anuncio.valor_anuncio}"/></p>
+                        <p class="anunciosh_marca">Marca -</p>
+                        <p class="anunciosh_modelo">Modelo</p>
+                        <p class="anunciosh_ano">Ano</p>                    
+                        <p class="anunciosh_valor">R$ Valor</p>
                         <a href="" class="anunciosh_interesse">Informar Interesse</a>
                     </div>
                 </div>
                 </c:forEach>
             </div>
 
-            <div id="perguntas">                               
+            <div id="rodape"> 
+                Webcar Store - 2012
             </div>
 
         </div>

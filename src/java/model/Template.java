@@ -12,6 +12,7 @@ public class Template {
     private int id;
     private String folha_estilo;
     private String nome;
+    private String descricao;
 
     public Template() {
     }
@@ -43,6 +44,14 @@ public class Template {
 
     public void setFolha_estilo(String folha_estilo) {
         this.folha_estilo = folha_estilo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
