@@ -55,7 +55,7 @@ function cadastrarVeiculos(){
 
 }
 
-function editarVeiculo(id,modelo,combustivel,categoria,cor,ano,motor,valor,km){
+function editarVeiculo(id,modelo,combustivel,categoria,cor,ano,motor,valor,km,opcionais){
         cadastrarVeiculos();
         var veic_select;
         document.getElementById("id_veiculo").value = id;
