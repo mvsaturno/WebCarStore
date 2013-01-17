@@ -28,11 +28,12 @@ ol, ul { list-style: none; }
 
 
 body {
-    background: #eee;
+    background: #69f;
 }
 
 #tudo {
     width: 980px;
+    background: #fff;
     position: relative;
     margin: 10px auto;
     font-family: arial;
@@ -40,45 +41,44 @@ body {
 }
 
 #topo {
-    background: #fff;
+    background: #eef;
     width: 980px;
-    height: 300px;
+    height: 290px;
+    border-bottom: double 2px #16f;
 }
 
 .img_topo {
-    float: left;
-    width: 350px;
-    border: 1px dotted red;
+    float: left;   
+    /*border: 1px dotted red;*/
 }
 
 .titulo {
     float: left;
-    padding: 60px;
+    padding: 60px 50px;
     font-size: 30px;
-    width: 450px;
-    border: 1px dotted #0f0;
+    width: 550px;
+    /*border: 1px dotted #0f0;*/
     text-align: center;
+    color: #149;
 }
 
 .titulo span {
     font-weight: bold;
     font-size: 45px;
-}
-
-#topo {
-    margin: 10px;
+    color: #000;
 }
 
 
 #anunciosh {
     clear: both;
-    border: #0f0 solid 1px;
-    width: 980px;   
+    /*border: #0f0 solid 1px;*/
+    width: 980px;
+    margin: 10px;
     position: relative;
 }
 
 .anunciosh_box {
-    border: #f00 solid 1px;
+    border: #666 solid 1px;
     float: left;
     background: #eee;
     padding: 5px;
@@ -89,7 +89,7 @@ body {
 
 
 .anunciosh_box_in {
-    border: #0f0 solid 1px;
+    /*border: #0f0 solid 1px;*/
     position: relative;
     padding: 5px;
     width: 290px;
@@ -97,18 +97,58 @@ body {
     color:#333;
 }
 
+.anunciosh_marca {
+    color:#036;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size:24px;
+    font-weight: bold;
+}
+
+.anunciosh_modelo {
+    color:#036;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    font-size:22px;
+}
+
+.anunciosh_ano {
+    color:#036;
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    font-size:22px;
+}
+
+.anunciosh_valor {
+    color:#000;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 .anunciosh_box_in:hover {background: #fff;}
 
 
 .anunciosh_box_in a {
-    text-decoration: none;
-    color:#f00;
-    font-size:110%;
+    color:#16f;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size:16px;
     font-weight: bold;
+    font-style: italic;
     display: block;
 }
 
-.anunciosh_box_in a:hover {color:#036;}
+.anunciosh_box_in a:hover {
+    color:#036;
+    font-weight: bold;
+}
 
 
 .anunciosh_box_in .anunciosh_interesse {
@@ -116,8 +156,13 @@ body {
 }
 
 
-#perguntas {
+#rodape {
     clear:both;
-    width: 200px;
-    height: 100px;
+    width: 960px;
+    height: 50px;
+    background: #69f;
+    color: #fff;
+    padding-top: 15px;
+    text-align: center;
+    margin: 10px;
 }
