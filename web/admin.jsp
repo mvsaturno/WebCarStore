@@ -28,14 +28,10 @@
         <h3>Gerenciamento de Usuários:</h3>
         <br/>
         <input type="text" placeholder="Procurar"/>
-
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
             <span>Cadastar novo usuário</span>
         </a>
-
-        <br/>
-        <br/>
-
+        <br/><br/>
         <table>
             <tr class="gray2">
                 <th>Nome</th>
