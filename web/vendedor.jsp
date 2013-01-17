@@ -98,7 +98,7 @@
                     session.setAttribute("listaVeiculos", listaVeiculos);
                     ArrayList listaStatus = new AnuncioDAO().pesquisarTudoStatus();
                     session.setAttribute("listaStatus", listaStatus);
-                %>  
+                %>   
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_select_cad">
                         <c:forEach items="${listaVeiculos}" var="veiculo">
