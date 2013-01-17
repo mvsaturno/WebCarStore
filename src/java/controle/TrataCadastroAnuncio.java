@@ -4,6 +4,8 @@
  */
 package controle;
 
+import dao.AnuncioDAO;
+import dao.RevendaDAO;
 import dao.VeiculoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,6 +13,8 @@ import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
+import model.Anuncio;
+import model.Revenda;
 import model.Veiculo;
 
 /**
@@ -27,37 +31,27 @@ public class TrataCadastroAnuncio extends Comando {
             getResponse().setContentType("text/html");
 
             HttpSession session = getRequest().getSession(false);
+
+            int id_veiculo = Integer.parseInt(getRequest().getParameter("veiculo_select_cad"));
+            String data_inicio = getRequest().getParameter("data_inicio_anuncio_cad");
+            int status = Integer.parseInt(getRequest().getParameter("status_select_cad"));
+            double valor_anuncio = Double.parseDouble(getRequest().getParameter("valor_anuncio_cad"));
+            int destaque = Integer.parseInt(getRequest().getParameter("status_anuncio_cad"));
+            int id_revenda = Integer.parseInt(getRequest().getParameter("id_anuncio_revenda"));
+
+            Veiculo veiculo = (Veiculo) new VeiculoDAO().pesquisarChave(id_veiculo);
+            Revenda revenda = (Revenda) new RevendaDAO().pesquisarChave(id_revenda);
             
-Insert.Anuncio=INSERT INTO ANUNCIO (id_anuncio, id_veiculo, data, id_status, valor_vendido, destaque, id_revenda) values (SEQ_ANUNCIO.nextval,?,?,?,?,?,?)
             
+            Anuncio anun = new Anuncio(veiculo,data_inicio,status,valor_anuncio,destaque,revenda);
+          
+            AnuncioDAO cadAnuncio = new AnuncioDAO();
 
-            int veiculo = Integer.parseInt(getRequest().getParameter("veiculo_modelo_select"));
-            int ano = Integer.parseInt(getRequest().getParameter("veiculo_ano_select"));
-            int categoria = Integer.parseInt(getRequest().getParameter("veiculo_categoria_select"));
-            int combustivel = Integer.parseInt(getRequest().getParameter("veiculo_combustivel_select"));
-            int cor = Integer.parseInt(getRequest().getParameter("veiculo_cor_select"));
-            double quilometragem = Double.parseDouble(getRequest().getParameter("veiculo_quilometragem_cad"));
-            double valor = Double.parseDouble(getRequest().getParameter("veiculo_valor_cad"));
-            String motor = getRequest().getParameter("veiculo_motor_cad");
-            Veiculo vel = new Veiculo();
-
-            vel.setIdModelo(modelo);
-            vel.setAno(ano);
-            vel.setCategoria(categoria);
-            vel.setIdCombustivel(combustivel);
-            vel.setIdCor(cor);
-            vel.setKm(quilometragem);
-            vel.setValor(valor);
-            vel.setMotor(motor);
-
-
-            VeiculoDAO veiculo = new VeiculoDAO();
-
+            
             String msg = "";
 
-            if (veiculo.inserir(vel)) {
+            if (cadAnuncio.inserir(anun)) {
                 msg = "Inserido com sucesso!";
-                //atualizar sessão com marcas cadastradas
             } else {
                 msg = "Erro na inserção!";
             }
@@ -65,8 +59,6 @@ Insert.Anuncio=INSERT INTO ANUNCIO (id_anuncio, id_veiculo, data, id_status, val
             RequestDispatcher rd = getRequest().getRequestDispatcher("/sistema.jsp");
             rd.forward(getRequest(), getResponse());
 
-
-            // getResponse().sendRedirect("/WEB-INF/cms_admin.jsp");  
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
