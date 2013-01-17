@@ -143,6 +143,24 @@ public class RevendaDAO implements InterfaceDAO{
     
     @Override
     public boolean editar(Object obj) throws SQLException {
+        Revenda rev = (Revenda) obj;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("Update.Revenda");
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setString(1, rev.getNome());
+        stmt.setLong(2, rev.getCNPJ());
+        stmt.setString(3, rev.getEmail());
+        stmt.setString(4, rev.getEndereco());
+        stmt.setInt(5, rev.getNumero());
+        stmt.setString(6, rev.getCidade());
+        stmt.setString(7, rev.getEstado());
+        stmt.setString(8, rev.getBairro());
+        stmt.setLong(9, rev.getFone());
+        stmt.setInt(10, rev.getAtivo());
+        stmt.setInt(11, rev.getId());
+
+        stmt.execute();
+        stmt.close();
         return true;
     }
 }

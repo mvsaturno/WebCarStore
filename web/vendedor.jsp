@@ -24,6 +24,7 @@
 </div>
 
 <div id="conteudo">
+        
     <div class="divs listagem" id="anuncios">
         <h3>Gerenciamento de Anúncios</h3>
         <br/>
@@ -64,11 +65,12 @@
                 <%}%>
                 <td><%=anuncio.getId()%></td>
                 <td><%=anuncio.getData_inicio()%></td>
-                <td><%=cmVeiculo.pesquisarMarcaId(cmVeiculo.pesquisarMarcaByModelo(anuncio.getVeiculo().getIdModelo()))%> - <%=cmVeiculo.pesquisarModeloId(anuncio.getVeiculo().getIdModelo())%> - <%=anuncio.getVeiculo().getAno()%>) %></td>
-                <td><%=cmAnuncio.statusId(anuncio.getStatus())%></td>
+                <td><%=cmVeiculo.pesquisarMarcaId(cmVeiculo.pesquisarMarcaByModelo(anuncio.getVeiculo().getIdModelo()))%> - <%=cmVeiculo.pesquisarModeloId(anuncio.getVeiculo().getIdModelo())%> - <%=anuncio.getVeiculo().getAno()%></td>
+                <td><%=anuncio.getValor_anuncio()%></td>
                 <td><% if (anuncio.getDestaque() == 1) {%>
                     SIM <%}else{%>Não<%}%>
                 </td>
+                <td><%=cmAnuncio.statusId(anuncio.getStatus())%></td>
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarAnuncio()'/></td>                   
 
@@ -84,8 +86,6 @@
                 } %>
         </table>
     </div>
-
-        
         
     <div class="divs" id="cadastrarAnuncios">
         <h3 id="cad_anuncio_title">Cadastro de Anúncio:</h3>
@@ -98,7 +98,7 @@
                     session.setAttribute("listaVeiculos", listaVeiculos);
                     ArrayList listaStatus = new AnuncioDAO().pesquisarTudoStatus();
                     session.setAttribute("listaStatus", listaStatus);
-                %>  
+                %>   
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_select_cad">
                         <c:forEach items="${listaVeiculos}" var="veiculo">
@@ -128,7 +128,9 @@
                 <input name="Salvar" type="submit" value="Salvar"/>               
             </fieldset>                  
         </form>
-    </div>    
+    </div> 
+        
+       
     
     
     <div class="divs listagem" id="visitas">

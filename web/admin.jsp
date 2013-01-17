@@ -25,12 +25,12 @@
 
 <div id="conteudo">
     <div class="divs listagem" id="usuarios">
-        <h3>Gerenciamento de Usu�rios:</h3>
+        <h3>Gerenciamento de Usuários:</h3>
         <br/>
         <input type="text" placeholder="Procurar"/>
 
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
-            <span>Cadastar novo usu�rio</span>
+            <span>Cadastar novo usuário</span>
         </a>
 
         <br/>
@@ -41,7 +41,7 @@
                 <th>Nome</th>
                 <th>Revenda</th>
                 <th>Login</th>
-                <th>Permiss�o</th>
+                <th>Permissão</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
@@ -98,7 +98,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Endere�o</th>
+                <th>Endereço</th>
                 <th>Numero</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
@@ -135,7 +135,7 @@
                 <td><%=revenda.getData_cadastro()%></td>
 
                 <td>
-                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarRevenda("<%=revenda.getId()%>","<%=revenda.getCNPJ()%>","<%=revenda.getNome()%>","<%=revenda.getFone()%>","<%=revenda.getEmail()%>","<%=revenda.getEndereco()%>","<%=revenda.getNumero()%>","<%=revenda.getBairro()%>","<%=revenda.getCidade()%>","<%=revenda.getEstado()%>")'/>
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarRevenda("<%=revenda.getId()%>","<%=revenda.getCNPJ()%>","<%=revenda.getNome()%>","<%=revenda.getFone()%>","<%=revenda.getEmail()%>","<%=revenda.getEndereco()%>","<%=revenda.getNumero()%>","<%=revenda.getBairro()%>","<%=revenda.getCidade()%>","<%=revenda.getEstado()%>", "<%=revenda.getAtivo()%>")'/>
                 </td>
                 <td class="img_crud">
                     <form method="post" action="FrontController">
@@ -151,15 +151,15 @@
             %>
 
             <%--
-            /* Ainda n�o rolou com foreach!
-        <!--forEach, implementa um la�o  para fazer a intera��o ArrayList contido no objeto de requisi��o -->
+            /* Ainda não rolou com foreach!
+        <!--forEach, implementa um laço  para fazer a interação ArrayList contido no objeto de requisição -->
         
         
         <c:forEach items="${listaRevendas}" var="revenda">
 
                 <tr>
 
-                    <!--A tag out � respons�vel por gerar uma String de sa�da na tela -->
+                    <!--A tag out é responsável por gerar uma String de saída na tela -->
 
                     <td><c:out value="${revenda.cnpj}"/></td>
                     
@@ -192,7 +192,7 @@
 
 
         <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
-            <span>Cadastar ve�culos</span>
+            <span>Cadastar veículos</span>
         </a>
         <a href="#" onclick="cadastrarModelos()" class="btn_cadastrar">
             <span>Cadastar modelos</span>
@@ -207,10 +207,10 @@
         <br>
         <table>
             <tr class="gray2">
-                <th>ID Ve�culo</th>
+                <th>ID Veículo</th>
                 <th>Marca</th>
                 <th>Modelo</th>
-                <th>Combust�vel</th>
+                <th>Combustível</th>
                 <th>Categoria</th>
                 <th>Cor</th>
                 <th>Ano</th>
@@ -308,7 +308,7 @@
                 </select> <br/>
 
 
-                <label for="user_permissao_cad">Permiss�o:</label>
+                <label for="user_permissao_cad">Permissão:</label>
                 <label class="usuario_label"> 
                     <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                         <option value=""></option>
@@ -331,13 +331,13 @@
         <br/>
         <form method="post" action="FrontController">
             <fieldset>
-                <label for="revenda_descricao_cad">CNPJ:</label>
+                <label for="revenda_cnpj_cad">CNPJ:</label>
                 <input name="revenda_cnpj_cad" id="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="number" size="50" required autofocus/><br/>
 
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" id="revenda_nome_cad" type="text" size="50" required/><br/>
 
-                <label for="revenda_end">Endere�o:</label>
+                <label for="revenda_end">Endereço:</label>
                 <input name="revenda_end" id="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
@@ -388,7 +388,7 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="2"> N�o<br/>
+                <input name="revenda_ativo_cad" id="revenda_inativo_cad" type="radio" value="2"> Não<br/>
 
                 <input name="id_revenda" type="hidden" id="id_revenda" value="">       
                 <input id="cad_revenda_cmd" type="hidden" name="cmd" value='trataCadastroRevenda'>
@@ -399,7 +399,7 @@
     </div>
 
     <div class="divs formulario" id="cadastrarVeiculos">
-        <h3 id="cad_veiculo_title">Cadastro de Ve�culo:</h3>
+        <h3 id="cad_veiculo_title">Cadastro de Veículo:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>                                 
@@ -418,7 +418,7 @@
                 </label>
                 <br/>
 
-                <label>Combust�vel:</label>
+                <label>Combustível:</label>
                 <%
                     ArrayList listaCombustiveis = new VeiculoDAO().pesquisarCombustiveis();
                     session.setAttribute("listaCombustiveis", listaCombustiveis);
