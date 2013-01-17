@@ -8,39 +8,40 @@ package model;
  *
  * @author saturno
  */
-public class Pergunta {
-    int id_pergunta, id_resposta;
-    String pergunta;
+public class Resposta {
+    int id_resposta;
+    int id_pergunta;
+    String resposta;
     Usuario cliente, vendedor;
 
-    public Pergunta() {
+    public Resposta() {
     }
 
-    public Pergunta(int id_pergunta, int id_resposta, String pergunta, Usuario cliente, Usuario vendedor) {
+    public Resposta(int id_resposta, int id_pergunta, String resposta, Usuario cliente, Usuario vendedor) {
+        this.id_resposta = id_resposta;
         this.id_pergunta = id_pergunta;
-        this.id_resposta = id_resposta;
-        this.pergunta = pergunta;
+        this.resposta = resposta;
         this.cliente = cliente;
         this.vendedor = vendedor;
     }
     
-    public Pergunta(int id_resposta, String pergunta, Usuario cliente, Usuario vendedor) {
-        this.id_resposta = id_resposta;
-        this.pergunta = pergunta;
+    public Resposta(int id_pergunta, String resposta, Usuario cliente, Usuario vendedor) {
+        this.id_pergunta = id_pergunta;
+        this.resposta = resposta;
         this.cliente = cliente;
         this.vendedor = vendedor;
     }
-    
+
     public Usuario getCliente() {
         return cliente;
     }
 
-    public int getId_pergunta() {
-        return id_pergunta;
+    public int getId_resposta() {
+        return id_resposta;
     }
 
     public String getPergunta() {
-        return pergunta;
+        return resposta;
     }
 
     public Usuario getVendedor() {
@@ -51,12 +52,12 @@ public class Pergunta {
         this.cliente = cliente;
     }
 
-    public void setId_pergunta(int id_pergunta) {
-        this.id_pergunta = id_pergunta;
+    public void setId_resposta(int id_resposta) {
+        this.id_resposta = id_resposta;
     }
 
-    public void setPergunta(String pergunta) {
-        this.pergunta = pergunta;
+    public void setPergunta(String resposta) {
+        this.resposta = resposta;
     }
 
     public void setVendedor(Usuario vendedor) {
