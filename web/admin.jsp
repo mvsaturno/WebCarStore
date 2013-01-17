@@ -479,7 +479,18 @@
 
                 <label for="veiculo_quilometragem_cad">Quilometragem</label>
                 <input name="veiculo_quilometragem_cad" id="veiculo_quilometragem_cad" type="text" size="50" required/><br/>          
-
+                
+                <label for="veiculo_itens_op">Itens Opcionais</label>
+                <%
+                    ArrayList listaItensOp = new VeiculoDAO().pesquisarItems();
+                    session.setAttribute("listaItensOp", listaItensOp);
+                %> 
+                <select name="veiculo_itens_op" multiple="true">
+                    <c:forEach items="${listaItensOp}" var="item">
+                            <option value='<c:out value="${item.idItem}"/>'><c:out value="${item.nome}"/></option>
+                        </c:forEach> 
+                </select><br/>
+                
                 <input name="id_veiculo" type="hidden" id="id_veiculo" value="">       
                 <input id="cad_veiculo_cmd" type="hidden" name="cmd" value='trataCadastroVeiculo'>
                 <input name="Salvar" type="submit" value="Salvar"/>  
