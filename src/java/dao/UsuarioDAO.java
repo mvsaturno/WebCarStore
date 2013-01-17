@@ -46,7 +46,7 @@ public class UsuarioDAO implements InterfaceDAO{
         stmt.setLong(6, user.getTelefone());
         stmt.setInt(7, user.getRevenda().getId());
         stmt.execute();
-        //conexao.close();
+        stmt.close();
         return true;
     }
 
@@ -59,7 +59,7 @@ public class UsuarioDAO implements InterfaceDAO{
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
         stmt.execute();
-       // conexao.close();
+        stmt.close();
         return true;
     }
 
@@ -103,7 +103,7 @@ public class UsuarioDAO implements InterfaceDAO{
             
             
         
-        //pstmt.close();
+        pstmt.close();
         return userList;
     }
 
@@ -140,7 +140,7 @@ public class UsuarioDAO implements InterfaceDAO{
  }
     @Override
     public boolean editar(Object obj) throws SQLException {
-         Usuario user = (Usuario) obj;
+        Usuario user = (Usuario) obj;
         Connection conexao = DBConnection.getInstance();
         
         String sql = (String) dados.get("Update.Usuario");
@@ -156,7 +156,7 @@ public class UsuarioDAO implements InterfaceDAO{
         stmt.setInt(7, user.getRevenda().getId());
         stmt.setInt(8, user.getId());
         stmt.execute();
-        //conexao.close();
+        stmt.close();
         return true;
     }
     
@@ -189,19 +189,21 @@ public class UsuarioDAO implements InterfaceDAO{
             usuario.setRevenda(revenda);
             
         }
-        //pstmt.close();
+        pstmt.close();
         return usuario;
     }
     
-    /*public int permissaoUsuario(String login, String senha) throws SQLException{
+    public String pesquisarPermissaoId(int id) throws SQLException{
+        String desc = null;
         Connection conexao = DBConnection.getInstance();
-        int permissao;
-        String sql = (String) dados.get("SelectPermissao.Usuario");
+        String sql = (String) dados.get("SelectById.TipoUsuario");
         PreparedStatement pstmt = conexao.prepareStatement(sql);
-        pstmt.setString(1, login);
-        pstmt.setString(2, senha);
+        pstmt.setInt(1,id);
         ResultSet rs = pstmt.executeQuery();
-        permissao = rs.getInt(1);
-        return permissao;
-    }*/
+        while (rs.next()){
+            desc = rs.getString("descricao");
+        }        
+        pstmt.close();
+        return desc;
+    }
 }

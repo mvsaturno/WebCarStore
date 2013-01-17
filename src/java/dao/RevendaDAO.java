@@ -44,12 +44,20 @@ public class RevendaDAO implements InterfaceDAO{
         stmt.setLong(9, rev.getFone());
         stmt.setInt(10, rev.getAtivo());
         stmt.execute();
-        conexao.close();
+        stmt.close();
         return true;
     }
 
     @Override
     public boolean excluir(Object obj) throws SQLException {
+        Integer num = (Integer) obj;
+        int id = num.intValue();
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("Inativa.Revenda");
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
         return true;
     }
 
@@ -129,6 +137,7 @@ public class RevendaDAO implements InterfaceDAO{
             r.setData_cadastro(rs.getString("data_cadastro"));
             r.setFone(rs.getLong("telefone"));
         }
+        pstmt.close();
         return r;
     }
     

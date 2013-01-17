@@ -53,6 +53,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         
         
         stmt.execute();
+
         
        // ResultSet rs = stmt.getResultSet();
        // vel.setId(rs.getInt(1));
@@ -112,7 +113,7 @@ public class VeiculoDAO  implements InterfaceDAO{
        
         
         stmt.execute();
-        //conexao.close();
+        stmt.close();
         return true;
     }
     
@@ -155,7 +156,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             
             
         
-        //pstmt.close();
+        pstmt.close();
         return marcaList;
     }
     
@@ -193,7 +194,7 @@ public class VeiculoDAO  implements InterfaceDAO{
             combustivelList.add(combustivel);
         }        
         
-        //pstmt.close();
+        pstmt.close();
         return combustivelList;
     }
 
@@ -237,7 +238,15 @@ public class VeiculoDAO  implements InterfaceDAO{
 
     @Override
     public boolean excluir(Object obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Integer num = (Integer) obj;
+        int id = num.intValue();
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("Deleta.Veiculo");
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
+        return true;
     }
 
     @Override
@@ -247,10 +256,18 @@ public class VeiculoDAO  implements InterfaceDAO{
         String sql = (String) dados.get("SelectAll.Veiculo");
         PreparedStatement pstmt = conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
-        
+
         while (rs.next()){
             Veiculo v = new Veiculo();
-            v.setId(rs.getInt(1));
+            v.setId(rs.getInt("id_veiculo"));
+            v.setIdModelo(rs.getInt("id_modelo"));
+            v.setIdCombustivel(rs.getInt("cod_combustivel"));
+            v.setCategoria(rs.getInt("id_categoria"));
+            v.setIdCor(rs.getInt("id_cor"));
+            v.setAno(rs.getInt("ano"));
+            v.setMotor(rs.getString("motor"));
+            v.setValor(rs.getDouble("valor"));
+            v.setKm(rs.getDouble("quilometragem"));
             velList.add(v);
         }
         //pstmt.close();
@@ -259,17 +276,131 @@ public class VeiculoDAO  implements InterfaceDAO{
 
     @Override
     public Object pesquisarChave(int chave) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Veiculo veiculo = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectById.Veiculo");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1, chave);
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()){
+            veiculo.setId(rs.getInt("id_veiculo"));
+            veiculo.setIdModelo(rs.getInt("id_modelo"));
+            veiculo.setIdCombustivel(rs.getInt("cod_combustivel"));
+            veiculo.setCategoria(rs.getInt("id_categoria"));
+            veiculo.setIdCor(rs.getInt("id_cor"));
+            veiculo.setAno(rs.getInt("ano"));
+            veiculo.setMotor(rs.getString("motor"));
+            veiculo.setValor(rs.getDouble("valor"));
+            veiculo.setKm(rs.getDouble("quilometragem"));
+        }
+        pstmt.close();
+        return veiculo;
     }
 
     @Override
     public boolean editar(Object obj) throws SQLException {
+        Veiculo veiculo = (Veiculo) obj;
+        Connection conexao = DBConnection.getInstance();
+        
+        String sql = (String) dados.get("Update.Veiculo");
+        
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, veiculo.getIdModelo());
+        stmt.setInt(2, veiculo.getIdCombustivel());
+        stmt.setInt(3, veiculo.getCategoria());
+        stmt.setInt(4, veiculo.getIdCor());
+        stmt.setInt(5, veiculo.getAno());
+        stmt.setString(6, veiculo.getMotor());
+        stmt.setDouble(7, veiculo.getValor());
+        stmt.setDouble(8, veiculo.getKm());
+        stmt.setInt(9, veiculo.getId());
+        stmt.execute();
+        stmt.close();
         return true;
     }
-
     
-
+    public String pesquisarModeloId(int id) throws SQLException{
+        String desc = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectById.Modelo");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1,id);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            desc = rs.getString("descricao");
+        }        
+        pstmt.close();
+        return desc;
+    }
     
- 
+    public int pesquisarMarcaByModelo(int mod) throws SQLException{
+        int id = 0;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectByModelo.Marca");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1,mod);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            id = rs.getInt("id_marca");
+        }        
+        pstmt.close();
+        return id;
+    }
     
+    public String pesquisarMarcaId(int id) throws SQLException{
+        String desc = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectById.Marca");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1,id);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            desc = rs.getString("descricao");
+        }        
+        pstmt.close();
+        return desc;
+    }
+    
+    public String pesquisarCombustivelId(int id) throws SQLException{
+        String desc = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectById.Combustivel");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1,id);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            desc = rs.getString("descricao");
+        }        
+        pstmt.close();
+        return desc;
+    }
+    
+    public String pesquisarCorId(int id) throws SQLException{
+        String desc = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectById.Cor");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1,id);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            desc = rs.getString("descricao");
+        }        
+        pstmt.close();
+        return desc;
+    }
+    
+    public String pesquisarCategoriaId(int id) throws SQLException{
+        String desc = null;
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("SelectById.Categoria");
+        PreparedStatement pstmt = conexao.prepareStatement(sql);
+        pstmt.setInt(1,id);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()){
+            desc = rs.getString("descricao");
+        }        
+        pstmt.close();
+        return desc;
+    }
 }

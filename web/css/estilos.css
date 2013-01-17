@@ -161,6 +161,10 @@ menu_admin ul {
     margin: 15px auto;
 }
 
+.cancel{
+    margin-left: 5px;
+}
+
 .btn_cadastrar{
     background: url('../img/cadastrar.png') no-repeat right bottom;
     padding-right: 35px;

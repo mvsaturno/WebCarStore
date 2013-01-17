@@ -25,7 +25,7 @@ function cadastrarUsuarios(){
         document.getElementById("cad_usuario_title").innerHTML = "Cadastro de Usuário:";       
 }
 
-function editarUsuario(id,nome,login,senha,celular,telefone,permissao){
+function editarUsuario(id,nome,login,senha,celular,telefone,revenda,permissao){
         cadastrarUsuarios();
         document.getElementById("id_user").value = id;
         document.getElementById("user_nome_cad").value = nome;
@@ -33,6 +33,7 @@ function editarUsuario(id,nome,login,senha,celular,telefone,permissao){
         document.getElementById("user_senha_cad").value = senha;
         document.getElementById("user_celular_cad").value = celular;
         document.getElementById("user_telefone_cad").value = telefone;
+        document.getElementById("user_revenda_cad").value = revenda;
         document.getElementById("user_permissao_cad").options[permissao].selected = true;
         document.getElementById("cad_usuario_cmd").value = "trataEditarUsuario";
         document.getElementById("cad_usuario_title").innerHTML = "Edição de Usuário:";
@@ -42,7 +43,60 @@ function cadastrarVeiculos(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
 	$('#cadastrarVeiculos').stop().slideDown();
+        var arr = new Array();  
+        arr = document.getElementsByTagName("input");            
+        for (var i = 0; i < arr.length; i++) {
+            if ((arr[i].type != "submit")&&(arr[i].type != "hidden")&&(arr[i].type != "button")&&(arr[i].type != "image")){
+                arr[i].value = "";
+            }
+        }
+        document.getElementById("cad_veiculo_cmd").value = "trataCadastroVeiculo";
+        document.getElementById("cad_veiculo_title").innerHTML = "Cadastro de Veículo:";       
+
 }
+
+function editarVeiculo(id,modelo,combustivel,categoria,cor,ano,motor,valor,km){
+        cadastrarVeiculos();
+        var veic_select;
+        document.getElementById("id_veiculo").value = id;
+        
+        veic_select = document.getElementById("veiculo_modelo_select");        
+        for(i=0;i<veic_select.length;i++){
+            if(veic_select.options[i].value == modelo){
+                veic_select.options[i].selected = true;
+            }
+        }
+        veic_select = document.getElementById("veiculo_combustivel_select");        
+        for(i=0;i<veic_select.length;i++){
+            if(veic_select.options[i].value == combustivel){
+                veic_select.options[i].selected = true;
+            }
+        }
+        veic_select = document.getElementById("veiculo_categoria_select");
+        for(i=0;i<veic_select.length;i++){
+            if(veic_select.options[i].value == categoria){
+                veic_select.options[i].selected = true;
+            }
+        }
+        veic_select = document.getElementById("veiculo_cor_select");        
+        for(i=0;i<veic_select.length;i++){
+            if(veic_select.options[i].value == cor){
+                veic_select.options[i].selected = true;
+            }
+        }
+        veic_select = document.getElementById("veiculo_ano_select");        
+        for(i=0;i<veic_select.length;i++){
+            if(veic_select.options[i].value == ano){
+                veic_select.options[i].selected = true;
+            }
+        }       
+        document.getElementById("veiculo_motor_cad").value = motor;
+        document.getElementById("veiculo_valor_cad").value = valor;
+        document.getElementById("veiculo_quilometragem_cad").value = km;
+        document.getElementById("cad_veiculo_cmd").value = "trataEditarVeiculo";
+        document.getElementById("cad_veiculo_title").innerHTML = "Edição de Veículo";
+}
+
 
 function cadastrarModelos(){
 	window.scrollTo(0,200);
@@ -66,6 +120,33 @@ function cadastrarRevendas(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
 	$('#cadastrarRevendas').stop().slideDown();
+        
+        document.getElementById("cad_revenda_cmd").value = "trataCadastroRevenda";
+        document.getElementById("cad_revenda_title").innerHTML = "Cadastro de Revenda:";
+}
+
+function editarRevenda(id,cnpj,nome,telefone,email,endereco,numero,bairro,cidade,estado){
+        cadastrarRevendas();
+        document.getElementById("id_revenda").value = id;
+        document.getElementById("revenda_cnpj_cad").value = cnpj;
+        document.getElementById("revenda_nome_cad").value = nome;
+        document.getElementById("revenda_end").value = endereco;
+        document.getElementById("revenda_nro").value = numero;
+        document.getElementById("revenda_bairro").value = bairro;
+        document.getElementById("revenda_cidade").value = cidade;        
+        /*document.getElementById("revenda_uf").options[estado].selected = true;*/
+        var uf_select = document.getElementById("revenda_uf");        
+        for(i=0;i<uf_select.length;i++){
+            if(uf_select.options[i].value == estado){
+                uf_select.options[i].selected = true;
+            }
+        }
+        document.getElementById("revenda_telefone_cad").value = telefone;
+        document.getElementById("revenda_mail_cad").value = email;
+        document.getElementById("revenda_ativo_cad").value = 1;
+        document.getElementById("cad_revenda_cmd").value = "trataEditarRevenda";
+        document.getElementById("cad_revenda_title").innerHTML = "Edição de Revenda:";
+        
 }
 
 function revendas(){
