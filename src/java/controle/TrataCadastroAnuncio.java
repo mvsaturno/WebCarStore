@@ -40,10 +40,6 @@ public class TrataCadastroAnuncio extends Comando {
             Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
             
             int id_veiculo = Integer.parseInt(getRequest().getParameter("veiculo_select_cad"));
-            String data_inicio = getRequest().getParameter("data_inicio_anuncio_cad");
-            Date data = new SimpleDateFormat("dd/MM/yyyy").parse(data_inicio);  
-            String dataBanco = new SimpleDateFormat("dd-MM-yyyy").format(data);
-            
             int status = Integer.parseInt(getRequest().getParameter("status_select_cad"));
             double valor_anuncio = Double.parseDouble(getRequest().getParameter("valor_anuncio_cad"));
             int destaque = Integer.parseInt(getRequest().getParameter("status_anuncio_cad"));
@@ -53,7 +49,12 @@ public class TrataCadastroAnuncio extends Comando {
             Revenda revenda = (Revenda) new RevendaDAO().pesquisarChave(id_revenda);
             
             
-            Anuncio anun = new Anuncio(veiculo,dataBanco,status,valor_anuncio,destaque,revenda);
+            Anuncio anun = new Anuncio();
+            anun.setVeiculo(veiculo);
+            anun.setStatus(status);
+            anun.setValor_anuncio(valor_anuncio);
+            anun.setDestaque(destaque);
+            anun.setRevenda(revenda);
           
             AnuncioDAO cadAnuncio = new AnuncioDAO();
 
@@ -67,10 +68,7 @@ public class TrataCadastroAnuncio extends Comando {
             }
             getRequest().setAttribute("mensagem", msg);
             RequestDispatcher rd = getRequest().getRequestDispatcher("/sistema.jsp");
-            rd.forward(getRequest(), getResponse());
-
-        } catch (ParseException ex) {
-            Logger.getLogger(TrataCadastroAnuncio.class.getName()).log(Level.SEVERE, null, ex);
+            rd.forward(getRequest(), getResponse()); 
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }

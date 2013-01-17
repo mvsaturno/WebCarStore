@@ -33,17 +33,12 @@ public class TrataEditarAnuncio extends Comando{
     public void execute() throws ServletException, IOException, SQLException, ClassNotFoundException {
         getResponse().setContentType("text/html;charset=UTF-8");
         PrintWriter out = getResponse().getWriter();
-        try {
             getResponse().setContentType("text/html");
             
             HttpSession session = getRequest().getSession(false);
             Usuario usuarioLogado = (Usuario) session.getAttribute("usuario");
             
             int id_veiculo = Integer.parseInt(getRequest().getParameter("veiculo_select_cad"));
-            String data_inicio = getRequest().getParameter("data_inicio_anuncio_cad");
-            Date data = new SimpleDateFormat("dd/MM/yyyy").parse(data_inicio);  
-            String dataBanco = new SimpleDateFormat("dd-MM-yyyy").format(data_inicio);
-            
             int status = Integer.parseInt(getRequest().getParameter("status_select_cad"));
             double valor_anuncio = Double.parseDouble(getRequest().getParameter("valor_anuncio_cad"));
             int destaque = Integer.parseInt(getRequest().getParameter("status_anuncio_cad"));
@@ -52,8 +47,14 @@ public class TrataEditarAnuncio extends Comando{
             Veiculo veiculo = (Veiculo) new VeiculoDAO().pesquisarChave(id_veiculo);
             Revenda revenda = (Revenda) new RevendaDAO().pesquisarChave(id_revenda);
             
-            Anuncio edit = new Anuncio(veiculo, data_inicio, status, valor_anuncio, destaque, revenda);
-            edit.setId(id_revenda);
+            Anuncio edit = new Anuncio();
+            //veiculo, status, valor_anuncio, destaque, revenda
+            edit.setId(id_veiculo);
+            edit.setVeiculo(veiculo);
+            edit.setValor_anuncio(valor_anuncio);
+            edit.setStatus(status);
+            edit.setDestaque(destaque);
+            edit.setRevenda(revenda);
             AnuncioDAO admin = new AnuncioDAO();
             String msg = "";
             if (admin.editar(edit)) {
@@ -66,9 +67,4 @@ public class TrataEditarAnuncio extends Comando{
             RequestDispatcher rd = getRequest().getRequestDispatcher("/sistema.jsp");
             rd.forward(getRequest(), getResponse());
     }
-        catch (ParseException ex) {    
-            Logger.getLogger(TrataEditarAnuncio.class.getName()).log(Level.SEVERE, null, ex);
-        }    
-}
-    
 }
