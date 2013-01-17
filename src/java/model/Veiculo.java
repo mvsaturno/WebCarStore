@@ -20,12 +20,12 @@ public class Veiculo {
     private String[] opcionais;
     private String cor;
     private int idCor;
-    private Combustivel combustivel= new Combustivel();
+    private Combustivel combustivel;
     private int idMarca;
     private String marca;
     private double valor;
     private String[] fotos;
-    private Categoria categoria=new Categoria();
+    private Categoria categoria;
     private double km;
     /*private Lista atributos;*/ //Reservado à outros.
 
@@ -91,18 +91,6 @@ public class Veiculo {
         this.ano = ano;
     }
 
-    public void setCategoria(int categoria) {
-        this.categoria.setIdCategoria(categoria);
-    }
-
-    public void setCombustivel(String combustivel) {
-        this.combustivel.setNome(combustivel);
-    }
-    
-    public void setIdCombustivel(int combustivel) {
-        this.combustivel.setIdCombustivel(combustivel);
-    }
-
     public void setCor(String cor) {
         this.cor = cor;
     }
@@ -147,6 +135,22 @@ public class Veiculo {
     public void setValor(double valor) {
         this.valor = valor;
     }
+    
+    public Combustivel getCombustivel() {
+        return combustivel;
+    }
+
+    public void setCombustivel(Combustivel combustivel) {
+        this.combustivel = combustivel;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public int getAno() {
         return ano;
@@ -154,14 +158,6 @@ public class Veiculo {
 
     public int getIdCor() {
         return idCor;
-    }
-
-    public int getCategoria() {
-        return categoria.getIdCategoria();
-    }
-
-    public String getCombustivel() {
-        return combustivel.getNome();
     }
     
     public int getIdCombustivel() {
