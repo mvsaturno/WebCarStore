@@ -24,7 +24,7 @@ import util.PropertiesManager;
  */
 public class UsuarioDAO implements InterfaceDAO{
     private HashMap dados;
-
+    
     public UsuarioDAO() throws IOException {
         dados = new PropertiesManager("sql.properties").readPropertiesFile();
     }
@@ -205,5 +205,5 @@ public class UsuarioDAO implements InterfaceDAO{
         }        
         pstmt.close();
         return desc;
-    }
+    } 
 }
