@@ -65,11 +65,12 @@
                 <%}%>
                 <td><%=anuncio.getId()%></td>
                 <td><%=anuncio.getData_inicio()%></td>
-                <td><%=cmVeiculo.pesquisarMarcaId(cmVeiculo.pesquisarMarcaByModelo(anuncio.getVeiculo().getIdModelo()))%> - <%=cmVeiculo.pesquisarModeloId(anuncio.getVeiculo().getIdModelo())%> - <%=anuncio.getVeiculo().getAno()%>) %></td>
-                <td><%=cmAnuncio.statusId(anuncio.getStatus())%></td>
+                <td><%=cmVeiculo.pesquisarMarcaId(cmVeiculo.pesquisarMarcaByModelo(anuncio.getVeiculo().getIdModelo()))%> - <%=cmVeiculo.pesquisarModeloId(anuncio.getVeiculo().getIdModelo())%> - <%=anuncio.getVeiculo().getAno()%></td>
+                <td><%=anuncio.getValor_anuncio()%></td>
                 <td><% if (anuncio.getDestaque() == 1) {%>
                     SIM <%}else{%>Não<%}%>
                 </td>
+                <td><%=cmAnuncio.statusId(anuncio.getStatus())%></td>
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarAnuncio()'/></td>                   
 
