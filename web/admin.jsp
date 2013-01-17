@@ -1,4 +1,4 @@
-﻿<%@page import="model.Revenda"%>
+<%@page import="model.Revenda"%>
 <%@page import="dao.RevendaDAO"%>
 <%@page import="model.Veiculo"%>
 <%@page import="controle.TrataListaMarcas"%>

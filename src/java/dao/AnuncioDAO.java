@@ -215,6 +215,7 @@ public class AnuncioDAO implements InterfaceDAO {
         ResultSet rs = pstmt.executeQuery();
         
         while (rs.next()){
+            status = new Status();
             status.setIdStatus(rs.getInt("id_status"));
             status.setDescricao(rs.getString("descricao"));
             statusList.add(status);
