@@ -53,6 +53,7 @@ public class TrataCadastroVeiculo extends Comando {
             vel.setValor(valor);
             vel.setMotor(motor);
             
+            
             VeiculoDAO veiculo = new VeiculoDAO();
             
             String msg = "";

@@ -25,11 +25,11 @@
 
 <div id="conteudo">
     <div class="divs listagem" id="usuarios">
-        <h3>Gerenciamento de Usuários:</h3>
+        <h3>Gerenciamento de Usuï¿½rios:</h3>
         <br/>
         <input type="text" placeholder="Procurar"/>
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
-            <span>Cadastar novo usuário</span>
+            <span>Cadastar novo usuï¿½rio</span>
         </a>
         <br/><br/>
         <table>
@@ -37,7 +37,7 @@
                 <th>Nome</th>
                 <th>Revenda</th>
                 <th>Login</th>
-                <th>Permissão</th>
+                <th>Permissï¿½o</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
@@ -94,7 +94,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Endereço</th>
+                <th>Endereï¿½o</th>
                 <th>Numero</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
@@ -147,15 +147,15 @@
             %>
 
             <%--
-            /* Ainda não rolou com foreach!
-        <!--forEach, implementa um laço  para fazer a interação ArrayList contido no objeto de requisição -->
+            /* Ainda nï¿½o rolou com foreach!
+        <!--forEach, implementa um laï¿½o  para fazer a interaï¿½ï¿½o ArrayList contido no objeto de requisiï¿½ï¿½o -->
         
         
         <c:forEach items="${listaRevendas}" var="revenda">
 
                 <tr>
 
-                    <!--A tag out é responsável por gerar uma String de saída na tela -->
+                    <!--A tag out ï¿½ responsï¿½vel por gerar uma String de saï¿½da na tela -->
 
                     <td><c:out value="${revenda.cnpj}"/></td>
                     
@@ -188,7 +188,7 @@
 
 
         <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
-            <span>Cadastar veículos</span>
+            <span>Cadastar veï¿½culos</span>
         </a>
         <a href="#" onclick="cadastrarModelos()" class="btn_cadastrar">
             <span>Cadastar modelos</span>
@@ -203,10 +203,10 @@
         <br>
         <table>
             <tr class="gray2">
-                <th>ID Veículo</th>
+                <th>ID Veï¿½culo</th>
                 <th>Marca</th>
                 <th>Modelo</th>
-                <th>Combustível</th>
+                <th>Combustï¿½vel</th>
                 <th>Categoria</th>
                 <th>Cor</th>
                 <th>Ano</th>
@@ -304,7 +304,7 @@
                 </select> <br/>
 
 
-                <label for="user_permissao_cad">Permissão:</label>
+                <label for="user_permissao_cad">Permissï¿½o:</label>
                 <label class="usuario_label"> 
                     <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                         <option value=""></option>
@@ -333,7 +333,7 @@
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" id="revenda_nome_cad" type="text" size="50" required/><br/>
 
-                <label for="revenda_end">Endereço:</label>
+                <label for="revenda_end">Endereï¿½o:</label>
                 <input name="revenda_end" id="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
@@ -384,7 +384,7 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="2"> Não<br/>
+                <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="2"> Nï¿½o<br/>
 
                 <input name="id_revenda" type="hidden" id="id_revenda" value="">       
                 <input id="cad_revenda_cmd" type="hidden" name="cmd" value='trataCadastroRevenda'>
@@ -395,7 +395,7 @@
     </div>
 
     <div class="divs formulario" id="cadastrarVeiculos">
-        <h3 id="cad_veiculo_title">Cadastro de Veículo:</h3>
+        <h3 id="cad_veiculo_title">Cadastro de Veï¿½culo:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>                                 
@@ -414,7 +414,7 @@
                 </label>
                 <br/>
 
-                <label>Combustível:</label>
+                <label>Combustï¿½vel:</label>
                 <%
                     ArrayList listaCombustiveis = new VeiculoDAO().pesquisarCombustiveis();
                     session.setAttribute("listaCombustiveis", listaCombustiveis);
