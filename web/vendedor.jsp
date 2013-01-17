@@ -120,11 +120,11 @@
                 <label>Data do Anúncio:</label>
                 <input type="date" id="data_inicio_anuncio_cad" name="data_inicio_anuncio_cad"><br>
                 <label>Valor:</label>
-                <input type="text" id="valor_anuncio_cad" name="valor_anuncio_cad" id="valor_anuncio_cad"><br>
+                <input type="text" id="valor_anuncio_cad" name="valor_anuncio_cad"><br>
                 
                 <label>Destaque?</label><br/>
-                <input name="anuncio_destaque" id="anuncio_destaque" type="radio" value="1"> Sim<br/>
-                <input name="anuncio_normal" id="anuncio_normal" type="radio" value="2"> Não<br/>
+                <input name="destaque" id="anuncio_destaque" type="radio" value="1" > Sim<br/>
+                <input name="destaque" id="anuncio_normal" type="radio" value="2"> Não<br/>
                 <input type="hidden" value="<%= usuario.getRevenda().getId()%>">
                 <br/>
                 <input name="id_anuncio" type="hidden" id="id_anuncio" value="">
