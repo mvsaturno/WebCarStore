@@ -46,7 +46,7 @@
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
-
+            
             <%
                 int line = 0;
                 Usuario usuarioLogado = (Usuario) usuario;
@@ -326,7 +326,7 @@
                 <input name="revenda_end" id="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
-                <input name="revenda_nro" id="revenda_nro" type="number" size="4" required/><br/>
+                <input name="revenda_nro" id="revenda_nro" type="number" required/><br/>
 
                 <label for="revenda_bairro">Bairro:</label>
                 <input name="revenda_bairro" id="revenda_bairro" type="text" size="50" required/><br/>
