@@ -125,7 +125,7 @@ function cadastrarRevendas(){
         document.getElementById("cad_revenda_title").innerHTML = "Cadastro de Revenda:";
 }
 
-function editarRevenda(id,cnpj,nome,telefone,email,endereco,numero,bairro,cidade,estado){
+function editarRevenda(id,cnpj,nome,telefone,email,endereco,numero,bairro,cidade,estado, ativo){
         cadastrarRevendas();
         document.getElementById("id_revenda").value = id;
         document.getElementById("revenda_cnpj_cad").value = cnpj;
@@ -134,16 +134,21 @@ function editarRevenda(id,cnpj,nome,telefone,email,endereco,numero,bairro,cidade
         document.getElementById("revenda_nro").value = numero;
         document.getElementById("revenda_bairro").value = bairro;
         document.getElementById("revenda_cidade").value = cidade;        
-        /*document.getElementById("revenda_uf").options[estado].selected = true;*/
+        document.getElementById("revenda_uf").value = estado;
+        /*
         var uf_select = document.getElementById("revenda_uf");        
         for(i=0;i<uf_select.length;i++){
             if(uf_select.options[i].value == estado){
                 uf_select.options[i].selected = true;
             }
-        }
+        }*/
         document.getElementById("revenda_telefone_cad").value = telefone;
         document.getElementById("revenda_mail_cad").value = email;
-        document.getElementById("revenda_ativo_cad").value = 1;
+        if (ativo == 1) {
+        $("#revenda_inativo_cad").attr('checked', true);
+        } else {
+        $("#revenda_ativo_cad").attr('checked', true);
+        }
         document.getElementById("cad_revenda_cmd").value = "trataEditarRevenda";
         document.getElementById("cad_revenda_title").innerHTML = "Edição de Revenda:";
         

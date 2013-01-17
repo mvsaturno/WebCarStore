@@ -35,6 +35,7 @@ public class FrontController extends HttpServlet {
         comandos.put("trataCadastroMarca","controle.TrataCadastroMarca");
         comandos.put("trataCadastroModelo","controle.TrataCadastroModelo");
         comandos.put("trataCadastroRevenda","controle.TrataCadastroRevenda");
+        comandos.put("trataEditarRevenda","controle.TrataEditarRevenda");
         comandos.put("trataExcluirRevenda","controle.TrataExcluirRevenda");
         comandos.put("trataCadastroVeiculo","controle.TrataCadastroVeiculo");
         comandos.put("trataCadastroItem","controle.TrataCadastroItem");

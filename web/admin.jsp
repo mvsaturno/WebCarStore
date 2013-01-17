@@ -135,7 +135,7 @@
                 <td><%=revenda.getData_cadastro()%></td>
 
                 <td>
-                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarRevenda("<%=revenda.getId()%>","<%=revenda.getCNPJ()%>","<%=revenda.getNome()%>","<%=revenda.getFone()%>","<%=revenda.getEmail()%>","<%=revenda.getEndereco()%>","<%=revenda.getNumero()%>","<%=revenda.getBairro()%>","<%=revenda.getCidade()%>","<%=revenda.getEstado()%>")'/>
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarRevenda("<%=revenda.getId()%>","<%=revenda.getCNPJ()%>","<%=revenda.getNome()%>","<%=revenda.getFone()%>","<%=revenda.getEmail()%>","<%=revenda.getEndereco()%>","<%=revenda.getNumero()%>","<%=revenda.getBairro()%>","<%=revenda.getCidade()%>","<%=revenda.getEstado()%>", "<%=revenda.getAtivo()%>")'/>
                 </td>
                 <td class="img_crud">
                     <form method="post" action="FrontController">
@@ -331,7 +331,7 @@
         <br/>
         <form method="post" action="FrontController">
             <fieldset>
-                <label for="revenda_descricao_cad">CNPJ:</label>
+                <label for="revenda_cnpj_cad">CNPJ:</label>
                 <input name="revenda_cnpj_cad" id="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="number" size="50" required autofocus/><br/>
 
                 <label for="revenda_nome_cad">Nome da revenda:</label>
@@ -388,7 +388,7 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="2"> Não<br/>
+                <input name="revenda_ativo_cad" id="revenda_inativo_cad" type="radio" value="2"> Não<br/>
 
                 <input name="id_revenda" type="hidden" id="id_revenda" value="">       
                 <input id="cad_revenda_cmd" type="hidden" name="cmd" value='trataCadastroRevenda'>

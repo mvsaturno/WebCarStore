@@ -17,6 +17,8 @@
     26 - Alterar anuncios
 --%>
 
+<%@page import="javax.mail.Session"%>
+<%@page import="model.Usuario"%>
 <%@page import="model.Revenda"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
@@ -51,19 +53,17 @@
                 <th>Estado(UF)</th>
                 <th>Data Cadastro</th>
                 <th>Editar</th>
-                <th>Excluir</th>
             </tr>
 
 
             <%
+                Usuario usuarioLogado = (Usuario) usuario;
                 RevendaDAO comando = new RevendaDAO();
-                ArrayList revendas = comando.pesquisarTudo();
-                Iterator itr = revendas.iterator();
-                while (itr.hasNext()) {
-                    Revenda revenda = (Revenda) itr.next();
+                int id_revenda = (int) usuarioLogado.getRevenda().getId();
+                Revenda revenda =  (Revenda) comando.pesquisarChave(id_revenda);
             %>
 
-            <tr class="gray">
+            <tr class="white">
                 <td><%=revenda.getCNPJ()%></td>
                 <td><%=revenda.getNome()%></td>
                 <td><%=revenda.getFone()%></td>
@@ -78,15 +78,7 @@
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarRevenda("<%=revenda.getId()%>","<%=revenda.getCNPJ()%>","<%=revenda.getNome()%>","<%=revenda.getFone()%>","<%=revenda.getEmail()%>","<%=revenda.getEndereco()%>","<%=revenda.getNumero()%>","<%=revenda.getBairro()%>","<%=revenda.getCidade()%>","<%=revenda.getEstado()%>")'/>
                 </td>
-                <td class="img_crud">
-                    <form method="post" action="FrontController">
-                        <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
-                        <input type="hidden" name="cmd" value="trataExcluirRevenda">
-                        <input type="hidden" name="id_revenda_excluir" value="<%=revenda.getId()%>">
-                    </form>
-                </td>
             </tr>
-            <% } %>
 
     </table>
     </div>
