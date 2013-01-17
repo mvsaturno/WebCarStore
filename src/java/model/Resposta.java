@@ -31,9 +31,10 @@ public class Resposta {
         return id_resposta;
     }
 
-    public String getPergunta() {
+    public String getResposta() {
         return resposta;
     }
+   
 
     public Usuario getVendedor() {
         return vendedor;
