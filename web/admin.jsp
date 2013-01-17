@@ -25,11 +25,11 @@
 
 <div id="conteudo">
     <div class="divs listagem" id="usuarios">
-        <h3>Gerenciamento de Usu?rios:</h3>
+        <h3>Gerenciamento de Usuarios:</h3>
         <br/>
 
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
-            <span>Cadastar novo usu?rio</span>
+            <span>Cadastar novo usuario</span>
         </a>
 
         <br/>
@@ -97,7 +97,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Endere?o</th>
+                <th>Endereço</th>
                 <th>Numero</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
