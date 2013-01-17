@@ -28,26 +28,50 @@ ol, ul { list-style: none; }
 
 
 body {
-   
+    background: #eee;
 }
 
 #tudo {
     width: 980px;
     position: relative;
-    margin: 10px auto; 
-}
-
-.titulo {
-    float: right;
-    font-size: 30px;
+    margin: 10px auto;
+    font-family: arial;
+    border: dotted 1px #666;
 }
 
 #topo {
-   margin: 10px;
+    background: #fff;
+    width: 980px;
+    height: 300px;
+}
+
+.img_topo {
+    float: left;
+    width: 350px;
+    border: 1px dotted red;
+}
+
+.titulo {
+    float: left;
+    padding: 60px;
+    font-size: 30px;
+    width: 450px;
+    border: 1px dotted #0f0;
+    text-align: center;
+}
+
+.titulo span {
+    font-weight: bold;
+    font-size: 45px;
+}
+
+#topo {
+    margin: 10px;
 }
 
 
-#anunciosh {   
+#anunciosh {
+    clear: both;
     border: #0f0 solid 1px;
     width: 980px;   
     position: relative;
@@ -89,4 +113,11 @@ body {
 
 .anunciosh_box_in .anunciosh_interesse {
 
+}
+
+
+#perguntas {
+    clear:both;
+    width: 200px;
+    height: 100px;
 }
