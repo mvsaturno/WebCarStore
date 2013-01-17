@@ -4,6 +4,9 @@
     Author     : Cícero
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="dao.AnuncioDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>   
@@ -25,18 +28,21 @@
             </div>                                                
 
             <div id="anunciosh">
-                <% for (int n = 1; n <= 9; n++) {%>
-
+                <%
+                    ArrayList listaAnuncios = new AnuncioDAO().pesquisarTudo();
+                    session.setAttribute("listaAnuncios", listaAnuncios);
+                %>  
+                <c:forEach items="${listaAnuncios}" var="anuncio">
+                                     
                 <div class="anunciosh_box">
                     <div class="anunciosh_box_in">
-                        <p class="anunciosh_veiculo">Veiculo</p>                                            
-                        <p class="anunciosh_ano">Ano</p>                    
-                        <p class="anunciosh_valor">Valor</p>
+                        <p class="anunciosh_veiculo"><c:out value="${anuncio.veiculo.marca}"/></p>                                            
+                        <p class="anunciosh_ano"><c:out value="${anuncio.data_inicio}"/></p>                    
+                        <p class="anunciosh_valor"><c:out value="${anuncio.valor_anuncio}"/></p>
                         <a href="" class="anunciosh_interesse">Informar Interesse</a>
                     </div>
                 </div>
-
-                <% }%>
+                </c:forEach>
             </div>
 
             <div id="perguntas">                               

@@ -15,8 +15,8 @@
     <context-param>
         <param-name>url</param-name>
         <!--<param-value>jdbc:oracle:thin:@localhost:1521:XE</param-value>-->
-        <!--<param-value>jdbc:oracle:thin:@192.168.3.7:1521:XE</param-value> -->
-        <param-value>jdbc:oracle:thin:@aula.inf.poa.ifrs.edu.br:1521:XE</param-value>
+        <param-value>jdbc:oracle:thin:@192.168.3.7:1521:XE</param-value> 
+        <!--<param-value>jdbc:oracle:thin:@aula.inf.poa.ifrs.edu.br:1521:XE</param-value>-->
     </context-param>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
