@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import model.Pergunta;
 import model.Revenda;
 import util.PropertiesManager;
 
@@ -27,22 +28,15 @@ public class PerguntaDAO implements InterfaceDAO{
     
     @Override
     public boolean inserir(Object obj) throws SQLException {
-        Revenda rev = (Revenda) obj;
+        Pergunta perg = (Pergunta) obj;
         Connection conexao = DBConnection.getInstance();
         
-        String sql = (String) dados.get("Insert.Revenda");
+        String sql = (String) dados.get("Insert.Pergunta");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, rev.getNome());
-        stmt.setLong(2, rev.getCNPJ());
-        stmt.setString(3, rev.getEmail());
-        stmt.setString(4, rev.getEndereco());
-        stmt.setLong(5, rev.getNumero());
-        stmt.setString(6, rev.getCidade());
-        stmt.setString(7, rev.getEstado());
-        stmt.setString(8, rev.getBairro());
-        stmt.setLong(9, rev.getFone());
-        stmt.setInt(10, rev.getAtivo());
+        stmt.setString(1, perg.getPergunta());
+        stmt.setInt(2, perg.getCliente().getId());
+        stmt.setInt(3, perg.getId_anuncio());
         stmt.execute();
         stmt.close();
         return true;
@@ -53,7 +47,7 @@ public class PerguntaDAO implements InterfaceDAO{
         Integer num = (Integer) obj;
         int id = num.intValue();
         Connection conexao = DBConnection.getInstance();
-        String sql = (String) dados.get("Inativa.Revenda");
+        String sql = (String) dados.get("Deleta.Pergunta");
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
         stmt.execute();
@@ -65,7 +59,7 @@ public class PerguntaDAO implements InterfaceDAO{
     public ArrayList pesquisarTudo() throws SQLException {
         ArrayList revList = new ArrayList();
         Connection conexao = DBConnection.getInstance();
-        String sql = (String) dados.get("SelectAll.Revenda");
+        String sql = (String) dados.get("SelectPerguntaAnuncio");
         PreparedStatement pstmt = conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         
