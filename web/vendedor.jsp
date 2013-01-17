@@ -100,7 +100,7 @@
                     session.setAttribute("listaStatus", listaStatus);
                 %>   
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select_cad">
+                    <select class="veiculo_select" name="veiculo_select_cad" id="veiculo_select_cad">
                         <c:forEach items="${listaVeiculos}" var="veiculo">
                             <option value='<c:out value="${veiculo.id}"/>'><c:out value="${veiculo.id} - ${veiculo.modelo}/${veiculo.ano}"/></option>
                         </c:forEach>                  
@@ -109,7 +109,7 @@
                 <br/>
                 <label>Status:</label>
                 <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="status_select_cad">
+                    <select class="veiculo_select" name="status_select_cad" id="status_select_cad">
                         <c:forEach items="${listaStatus}" var="status">
                             <option value='<c:out value="${status.idStatus}"/>'><c:out value="${status.descricao}"/></option>
                         </c:forEach>                  
@@ -119,7 +119,7 @@
                 <label>Data do Anúncio:</label>
                 <input type="date" id="data_inicio_anuncio_cad" name="data_inicio_anuncio_cad"><br>
                 <label>Valor:</label>
-                <input type="text" id="valor_anuncio_cad" name="valor_anuncio_cad"><br>
+                <input type="text" id="valor_anuncio_cad" name="valor_anuncio_cad" id="valor_anuncio_cad"><br>
                 
                 <label>Destaque?</label><br/>
                 <input name="anuncio_destaque" id="anuncio_destaque" type="radio" value="1"> Sim<br/>
