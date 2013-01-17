@@ -34,9 +34,8 @@
 </div>
 
 <div id="conteudo">
-    
-    <div class="divs listagem" id="revendas">
 
+    <div class="divs listagem" id="revendas">
         <h3>Gerenciamento de Revendas</h3>
         <br/>
 
@@ -74,7 +73,7 @@
                 <td><%=revenda.getCidade()%></td>
                 <td><%=revenda.getEstado()%></td>
                 <td><%=revenda.getData_cadastro()%></td>
-                
+
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarRevenda("<%=revenda.getId()%>","<%=revenda.getCNPJ()%>","<%=revenda.getNome()%>","<%=revenda.getFone()%>","<%=revenda.getEmail()%>","<%=revenda.getEndereco()%>","<%=revenda.getNumero()%>","<%=revenda.getBairro()%>","<%=revenda.getCidade()%>","<%=revenda.getEstado()%>")'/>
                 </td>

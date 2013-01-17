@@ -24,6 +24,7 @@
 </div>
 
 <div id="conteudo">
+        
     <div class="divs listagem" id="anuncios">
         <h3>Gerenciamento de Anúncios</h3>
         <br/>
@@ -64,11 +65,12 @@
                 <%}%>
                 <td><%=anuncio.getId()%></td>
                 <td><%=anuncio.getData_inicio()%></td>
-                <td><%=cmVeiculo.pesquisarMarcaId(cmVeiculo.pesquisarMarcaByModelo(anuncio.getVeiculo().getIdModelo()))%> - <%=cmVeiculo.pesquisarModeloId(anuncio.getVeiculo().getIdModelo())%> - <%=anuncio.getVeiculo().getAno()%>) %></td>
-                <td><%=cmAnuncio.statusId(anuncio.getStatus())%></td>
+                <td><%=cmVeiculo.pesquisarMarcaId(cmVeiculo.pesquisarMarcaByModelo(anuncio.getVeiculo().getIdModelo()))%> - <%=cmVeiculo.pesquisarModeloId(anuncio.getVeiculo().getIdModelo())%> - <%=anuncio.getVeiculo().getAno()%></td>
+                <td><%=anuncio.getValor_anuncio()%></td>
                 <td><% if (anuncio.getDestaque() == 1) {%>
                     SIM <%}else{%>Não<%}%>
                 </td>
+                <td><%=cmAnuncio.statusId(anuncio.getStatus())%></td>
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarAnuncio()'/></td>                   
 
@@ -85,50 +87,9 @@
         </table>
     </div>
 
+    
         
-        
-    <div class="divs" id="cadastrarAnuncios">
-        <h3 id="cad_anuncio_title">Cadastro de Anúncio:</h3>
-        <br/>
-        <form method="post" action="FrontController">
-            <fieldset>
-                  <label>Veiculo:</label>
-                <%
-                    ArrayList listaVeiculos = new VeiculoDAO().pesquisarTudo();
-                    session.setAttribute("listaVeiculos", listaVeiculos);
-                    ArrayList listaStatus = new AnuncioDAO().pesquisarTudoStatus();
-                    session.setAttribute("listaStatus", listaStatus);
-                %>  
-                <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="veiculo_select_cad">
-                        <c:forEach items="${listaVeiculos}" var="veiculo">
-                            <option value='<c:out value="${veiculo.id}"/>'><c:out value="${veiculo.id} - ${veiculo.modelo}/${veiculo.ano}"/></option>
-                        </c:forEach>                  
-                    </select>
-                </label>
-                <br/>
-                <label>Status:</label>
-                <label class="veiculo_label"> 
-                    <select class="veiculo_select" name="status_select_cad">
-                        <c:forEach items="${listaStatus}" var="status">
-                            <option value='<c:out value="${status.idStatus}"/>'><c:out value="${status.descricao}"/></option>
-                        </c:forEach>                  
-                    </select>
-                </label>
-                <br>
-                <label>Data do Anúncio:</label>
-                <input type="date" id="data_inicio_anuncio_cad" name="data_inicio_anuncio_cad"><br>
-                <label>Valor:</label>
-                <input type="text" id="valor_anuncio_cad" name="valor_anuncio_cad"><br>
-                Ativo: Não <input type="range" min="0" max="1"> Sim
-                <input type="hidden" value="<%= usuario.getRevenda().getId()%>">
-                <br/>
-                <input name="id_anuncio" type="hidden" id="id_anuncio" value="">
-                <input id="cad_anuncio_cmd" type="hidden" name="cmd" value='trataCadastroAnuncio'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
-            </fieldset>                  
-        </form>
-    </div>    
+       
     
     
     <div class="divs listagem" id="visitas">

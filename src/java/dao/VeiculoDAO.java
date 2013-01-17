@@ -284,6 +284,7 @@ public class VeiculoDAO  implements InterfaceDAO{
         ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()){
+            veiculo = new Veiculo();
             veiculo.setId(rs.getInt("id_veiculo"));
             veiculo.setIdModelo(rs.getInt("id_modelo"));
             veiculo.setIdCombustivel(rs.getInt("cod_combustivel"));
