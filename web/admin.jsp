@@ -264,7 +264,8 @@
     </div>
 
     <div class="divs listagem" id="layouts">
-        Layouts
+        <h3 id="cad_usuario_title">Layouts</h3>
+        
     </div>
 
     <div class="divs listagem" id="planos">
@@ -307,7 +308,7 @@
                 </select> <br/>
 
 
-                <label for="user_permissao_cad">Permiss?o:</label>
+                <label for="user_permissao_cad">Permissão:</label>
                 <label class="usuario_label"> 
                     <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                         <option value=""></option>
@@ -336,10 +337,10 @@
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" id="revenda_nome_cad" type="text" size="50" required/><br/>
 
-                <label for="revenda_end">Endere?o:</label>
+                <label for="revenda_end">Endereço:</label>
                 <input name="revenda_end" id="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
-                <label for="revenda_nro">Numero:</label>
+                <label for="revenda_nro">Número:</label>
                 <input name="revenda_nro" id="revenda_nro" required/><br/>
 
                 <label for="revenda_bairro">Bairro:</label>
@@ -417,7 +418,7 @@
                 </label>
                 <br/>
 
-                <label>Combust?vel:</label>
+                <label>Combustível:</label>
                 <%
                     ArrayList listaCombustiveis = new VeiculoDAO().pesquisarCombustiveis();
                     session.setAttribute("listaCombustiveis", listaCombustiveis);
