@@ -27,7 +27,6 @@
     <div class="divs listagem" id="usuarios">
         <h3>Gerenciamento de Usu?rios:</h3>
         <br/>
-        <input type="text" placeholder="Procurar"/>
 
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
             <span>Cadastar novo usu?rio</span>
@@ -341,7 +340,7 @@
                 <input name="revenda_end" id="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
-                <input name="revenda_nro" id="revenda_nro" type="number" required/><br/>
+                <input name="revenda_nro" id="revenda_nro" required/><br/>
 
                 <label for="revenda_bairro">Bairro:</label>
                 <input name="revenda_bairro" id="revenda_bairro" type="text" size="50" required/><br/>

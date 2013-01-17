@@ -129,7 +129,7 @@
                             <option value="2"/>Não</option>
                     </select>
                 </label>
-                <input type="hidden" value="<%= usuario.getRevenda().getId()%>">
+                <input id="id_anuncio_revenda" type="hidden" value="<%= usuario.getRevenda().getId()%>">
                 <br/>
                 <input name="id_anuncio" type="hidden" id="id_anuncio" value="">
                 <input id="cad_anuncio_cmd" type="hidden" name="cmd" value='trataCadastroAnuncio'>
