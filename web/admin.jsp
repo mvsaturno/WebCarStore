@@ -9,7 +9,6 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.UsuarioDAO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
@@ -26,12 +25,12 @@
 
 <div id="conteudo">
     <div class="divs listagem" id="usuarios">
-        <h3>Gerenciamento de Usuários:</h3>
+        <h3>Gerenciamento de Usu�rios:</h3>
         <br/>
         <input type="text" placeholder="Procurar"/>
 
         <a href="#" onclick="cadastrarUsuarios()" class="btn_cadastrar">
-            <span>Cadastar novo usuário</span>
+            <span>Cadastar novo usu�rio</span>
         </a>
 
         <br/>
@@ -42,11 +41,11 @@
                 <th>Nome</th>
                 <th>Revenda</th>
                 <th>Login</th>
-                <th>Permissão</th>
+                <th>Permiss�o</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </tr>
-            
+
             <%
                 int line = 0;
                 Usuario usuarioLogado = (Usuario) usuario;
@@ -67,7 +66,7 @@
                 <td><%=user.getLogin()%></td>
                 <td><%=admin.pesquisarPermissaoId(user.getPermissao())%></td>
                 <td>
-                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarUsuario("<%=user.getId()%>","<%=user.getNome()%>","<%=user.getLogin()%>","<%=user.getSenha()%>","<%=user.getCelular()%>","<%=user.getTelefone()%>","<%=user.getPermissao()%>")'/>
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarUsuario("<%=user.getId()%>","<%=user.getNome()%>","<%=user.getLogin()%>","<%=user.getSenha()%>","<%=user.getCelular()%>","<%=user.getTelefone()%>","<%=user.getRevenda().getId()%>","<%=user.getPermissao()%>")'/>
                 </td>
 
                 <td class="img_crud">
@@ -99,7 +98,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
-                <th>Endereço</th>
+                <th>Endere�o</th>
                 <th>Numero</th>
                 <th>Bairro</th>
                 <th>Cidade</th>
@@ -134,14 +133,15 @@
                 <td><%=revenda.getCidade()%></td>
                 <td><%=revenda.getEstado()%></td>
                 <td><%=revenda.getData_cadastro()%></td>
-                
+
                 <td>
                     <img src="img/edit.png" border="0" alt="Editar" onclick='editarRevenda("<%=revenda.getId()%>","<%=revenda.getCNPJ()%>","<%=revenda.getNome()%>","<%=revenda.getFone()%>","<%=revenda.getEmail()%>","<%=revenda.getEndereco()%>","<%=revenda.getNumero()%>","<%=revenda.getBairro()%>","<%=revenda.getCidade()%>","<%=revenda.getEstado()%>")'/>
                 </td>
                 <td class="img_crud">
                     <form method="post" action="FrontController">
                         <input type="image" src="img/delete.png" alt="Excluir" title="Excluir" name="excluir">
-                        <input type="hidden" name="cmd" value="trataExcluirRevenda" value="<%=revenda.getId()%>">
+                        <input type="hidden" name="cmd" value="trataExcluirRevenda">
+                        <input type="hidden" name="id_revenda_excluir" value="<%=revenda.getId()%>">
                     </form>
                 </td>
             </tr>
@@ -151,15 +151,15 @@
             %>
 
             <%--
-            /* Ainda não rolou com foreach!
-        <!--forEach, implementa um laço  para fazer a interação ArrayList contido no objeto de requisição -->
+            /* Ainda n�o rolou com foreach!
+        <!--forEach, implementa um la�o  para fazer a intera��o ArrayList contido no objeto de requisi��o -->
         
         
         <c:forEach items="${listaRevendas}" var="revenda">
 
                 <tr>
 
-                    <!--A tag out é responsável por gerar uma String de saída na tela -->
+                    <!--A tag out � respons�vel por gerar uma String de sa�da na tela -->
 
                     <td><c:out value="${revenda.cnpj}"/></td>
                     
@@ -192,7 +192,7 @@
 
 
         <a href="#" onclick="cadastrarVeiculos()" class="btn_cadastrar">
-            <span>Cadastar veículos</span>
+            <span>Cadastar ve�culos</span>
         </a>
         <a href="#" onclick="cadastrarModelos()" class="btn_cadastrar">
             <span>Cadastar modelos</span>
@@ -207,10 +207,10 @@
         <br>
         <table>
             <tr class="gray2">
-                <th>ID Veículo</th>
+                <th>ID Ve�culo</th>
                 <th>Marca</th>
                 <th>Modelo</th>
-                <th>Combustível</th>
+                <th>Combust�vel</th>
                 <th>Categoria</th>
                 <th>Cor</th>
                 <th>Ano</th>
@@ -261,7 +261,7 @@
                 }
             %>
         </table>
-        
+
     </div>
 
     <div class="divs listagem" id="layouts">
@@ -292,9 +292,23 @@
                 <label for="user_telefone_cad">Telefone:</label>
                 <input name="user_telefone_cad" id="user_telefone_cad" type="tel" size="20" required/><br/>
 
-                <input type="hidden" name="user_revenda_cad" value="<%=usuario.getRevenda().getId()%>" >
+                <label for="user_revenda_cad">Revenda:</label>
+                <select name="user_revenda_cad"  id="user_revenda_cad">
+                    <%
+                        comando = new RevendaDAO();
+                        revendas = comando.pesquisarTudo();
+                        itr = revendas.iterator();
+                        while (itr.hasNext()) {
+                        Revenda revenda = (Revenda) itr.next();
+                    %>
 
-                <label for="user_permissao_cad">Permissão:</label>
+                    <option value="<%=revenda.getId()%>"><%=revenda.getNome()%></option>
+
+                    <% }%>
+                </select> <br/>
+
+
+                <label for="user_permissao_cad">Permiss�o:</label>
                 <label class="usuario_label"> 
                     <select class="usuario_select" name="user_permissao_cad" id="user_permissao_cad">
                         <option value=""></option>
@@ -306,7 +320,8 @@
                 <br/>
                 <input name="id_user" type="hidden" id="id_user" value="">
                 <input id="cad_usuario_cmd" type="hidden" name="cmd" value='trataCadastroUsuario'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="usuarios()" />
             </fieldset>                  
         </form>
     </div>
@@ -317,16 +332,16 @@
         <form method="post" action="FrontController">
             <fieldset>
                 <label for="revenda_descricao_cad">CNPJ:</label>
-                <input name="revenda_cnpj_cad" id="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="text" size="50" required autofocus/><br/>
+                <input name="revenda_cnpj_cad" id="revenda_cnpj_cad" placeholder="Informe o CNPJ (14) digitos" type="number" size="50" required autofocus/><br/>
 
                 <label for="revenda_nome_cad">Nome da revenda:</label>
                 <input name="revenda_nome_cad" id="revenda_nome_cad" type="text" size="50" required/><br/>
 
-                <label for="revenda_end">Endereço:</label>
+                <label for="revenda_end">Endere�o:</label>
                 <input name="revenda_end" id="revenda_end" placeholder="Rua, Logradouro, Avenida" type="text" size="50" required/><br/>
 
                 <label for="revenda_nro">Numero:</label>
-                <input name="revenda_nro" id="revenda_nro" type="number" required/><br/>
+                <input name="revenda_nro" id="revenda_nro" type="number" size="4" required/><br/>
 
                 <label for="revenda_bairro">Bairro:</label>
                 <input name="revenda_bairro" id="revenda_bairro" type="text" size="50" required/><br/>
@@ -373,17 +388,18 @@
 
                 <label for="revenda_ativo_cad">Ativo?</label><br/>         
                 <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="1"> Sim<br/>
-                <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="2"> Não<br/>
+                <input name="revenda_ativo_cad" id="revenda_ativo_cad" type="radio" value="2"> N�o<br/>
 
                 <input name="id_revenda" type="hidden" id="id_revenda" value="">       
                 <input id="cad_revenda_cmd" type="hidden" name="cmd" value='trataCadastroRevenda'>
-                <input name="Salvar" type="submit" value="Salvar"/>      
+                <input name="Salvar" type="submit" value="Salvar"/>   
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="revendas()" />
             </fieldset>                  
         </form>
     </div>
 
     <div class="divs formulario" id="cadastrarVeiculos">
-        <h3 id="cad_veiculo_title">Cadastro de Veículo:</h3>
+        <h3 id="cad_veiculo_title">Cadastro de Ve�culo:</h3>
         <br/>
         <form method="post" action="FrontController">
             <fieldset>                                 
@@ -402,7 +418,7 @@
                 </label>
                 <br/>
 
-                <label>Combustível:</label>
+                <label>Combust�vel:</label>
                 <%
                     ArrayList listaCombustiveis = new VeiculoDAO().pesquisarCombustiveis();
                     session.setAttribute("listaCombustiveis", listaCombustiveis);
@@ -466,7 +482,8 @@
 
                 <input name="id_veiculo" type="hidden" id="id_veiculo" value="">       
                 <input id="cad_veiculo_cmd" type="hidden" name="cmd" value='trataCadastroVeiculo'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>  
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="veiculos()" />
             </fieldset>                  
         </form>
     </div>
@@ -501,16 +518,17 @@
                     <%
                     }
                     %>
-                   --%>
-                   <c:forEach items="${listaMarcas}" var="veiculo">
-                       <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
-                   </c:forEach>     
+                        --%>
+                        <c:forEach items="${listaMarcas}" var="veiculo">
+                            <option value='<c:out value="${veiculo.idMarca}"/>'><c:out value="${veiculo.marca}"/></option>
+                        </c:forEach>     
                     </select>
                 </label>            
                 <br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroModelo'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="veiculos()" />
             </fieldset>                  
         </form>   
     </div>
@@ -526,7 +544,8 @@
                 <input name="veiculo_marca_cad" type="text" size="50" required autofocus/><br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroMarca'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>    
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="veiculos()" />
             </fieldset>                  
         </form>   
     </div>
@@ -540,7 +559,8 @@
                 <input name="veiculo_itens_cad" type="text" size="50" required autofocus/><br/>
 
                 <input type="hidden" name="cmd" value='trataCadastroItem'>
-                <input name="Salvar" type="submit" value="Salvar"/>               
+                <input name="Salvar" type="submit" value="Salvar"/>     
+                <input name="Cancelar" class="cancel" type="button" value="Cancelar" onclick="veiculos()" />
             </fieldset>                  
         </form>   
     </div>

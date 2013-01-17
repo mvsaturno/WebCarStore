@@ -50,6 +50,14 @@ public class RevendaDAO implements InterfaceDAO{
 
     @Override
     public boolean excluir(Object obj) throws SQLException {
+        Integer num = (Integer) obj;
+        int id = num.intValue();
+        Connection conexao = DBConnection.getInstance();
+        String sql = (String) dados.get("Inativa.Revenda");
+        PreparedStatement stmt = conexao.prepareStatement(sql);
+        stmt.setInt(1, id);
+        stmt.execute();
+        stmt.close();
         return true;
     }
 
