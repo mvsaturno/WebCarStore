@@ -33,7 +33,6 @@ public class Combustivel {
     
     @Override
     public String toString() {
-        return super.toString();
-        //Sobrescrever toString depois;
+        return this.nome;
     }
 }

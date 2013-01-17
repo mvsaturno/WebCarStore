@@ -103,7 +103,7 @@
                 <label class="veiculo_label"> 
                     <select class="veiculo_select" name="veiculo_select_cad" id="veiculo_select_cad">
                         <c:forEach items="${listaVeiculos}" var="veiculo">
-                            <option value='<c:out value="${veiculo.id}"/>'><c:out value="${veiculo.id} - ${veiculo.modelo}/${veiculo.ano}"/></option>
+                            <option value='<c:out value="${veiculo.id}"/>'><c:out value="${veiculo.id} - ${veiculo.modelo}, ${veiculo.cor}/${veiculo.ano}"/></option>
                         </c:forEach>                  
                     </select>
                 </label>
