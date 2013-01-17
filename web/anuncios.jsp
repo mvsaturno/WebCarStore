@@ -15,7 +15,7 @@
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/menu.navega.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="css/layout2.css" />
+        <link rel="stylesheet" type="text/css" href="css/layout1.css" />
     </head>
     <body>
         <div id="tudo">
