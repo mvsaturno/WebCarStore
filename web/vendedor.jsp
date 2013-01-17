@@ -72,7 +72,7 @@
                 </td>
                 <td><%=cmAnuncio.statusId(anuncio.getStatus())%></td>
                 <td>
-                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarAnuncio("<%=anuncio.getId()%>","<%=anuncio.getData_inicio()%>","<%=anuncio.getVeiculo().getId()%>","<%=anuncio.getStatus()%>","<%=anuncio.getValor_anuncio()%>","<%=anuncio.getDestaque()%>")'/></td>  
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarAnuncio("<%=anuncio.getId()%>","<%=anuncio.getVeiculo().getId()%>","<%=anuncio.getStatus()%>","<%=anuncio.getValor_anuncio()%>","<%=anuncio.getDestaque()%>")'/></td>  
                 <!-- //chamada no JS: editarAnuncio(id, data, veiculo, getStatus, valor, destaque); -->
 
                 <td class="img_crud">
@@ -116,12 +116,11 @@
                         </c:forEach>                  
                     </select>
                 </label>
-                <br>
+                <!-- <br>
                 <label>Data do Anúncio:</label>
-                <input type="date" id="data_inicio_anuncio_cad" name="data_inicio_anuncio_cad"><br>
+                <input type="date" id="data_inicio_anuncio_cad" name="data_inicio_anuncio_cad"><br>-->
                 <label>Valor:</label>
                 <input type="text" id="valor_anuncio_cad" name="valor_anuncio_cad" id="valor_anuncio_cad"><br>
-
                 <label>Destaque?</label>
                 <label  class="veiculo_label">
                     <select class="veiculo_select" name="status_anuncio_cad" id="status_anuncio_cad">                        

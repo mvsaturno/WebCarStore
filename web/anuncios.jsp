@@ -4,6 +4,12 @@
     Author     : Cícero
 --%>
 
+<%@page import="model.Usuario"%>
+<%@page import="model.Anuncio"%>
+<%@page import="java.util.Iterator"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="dao.AnuncioDAO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>   
@@ -25,19 +31,36 @@
             </div>                                                
 
             <div id="anunciosh">
-                <% for (int n = 1; n <= 9; n++) {%>
+                <%
+                    ArrayList listaAnuncios = new AnuncioDAO().pesquisarTudo();
+                    ArrayList anunciosRevenda=new ArrayList();
+                    
+                    Iterator itr = listaAnuncios.iterator();
+                    Usuario usuario=(Usuario) session.getAttribute("usuario");
+                    while (itr.hasNext()) {
+                        Anuncio anuncio = (Anuncio) itr.next();
+                        if(anuncio.getRevenda().getId() == usuario.getRevenda().getId()) 
+                        {
+                            anunciosRevenda.add(anuncio);
+                        }
+                        session.setAttribute("listaAnuncios", anunciosRevenda);
+                        
 
-                <div class="anunciosh_box">
-                    <div class="anunciosh_box_in">
-                        <p class="anunciosh_marca">Marca -</p>
-                        <p class="anunciosh_modelo">Modelo</p>
-                        <p class="anunciosh_ano">Ano</p>                    
-                        <p class="anunciosh_valor">R$ Valor</p>
-                        <a href="" class="anunciosh_interesse">Informar Interesse</a>
+                    }
+                %>  
+                 <c:forEach items="${listaAnuncios}" var="anuncio">
+
+                    <div class="anunciosh_box">
+                        <div class="anunciosh_box_in">
+                            <p class="anunciosh_marca"><c:out value="${anuncio.veiculo.marca}"/></p>
+                            <p class="anunciosh_modelo"><c:out value="${anuncio.veiculo.modelo}"/></p>
+                            <p class="anunciosh_ano"><c:out value="${anuncio.data_inicio}"/></p>                    
+                            <p class="anunciosh_valor"><c:out value="${anuncio.valor_anuncio}"/></p>
+                            <a href="" class="anunciosh_interesse">Informar Interesse</a>
+                        </div>
                     </div>
-                </div>
+                </c:forEach>
 
-                <% }%>
             </div>
 
             <div id="rodape"> 

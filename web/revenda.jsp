@@ -32,7 +32,7 @@
 <div id="menu_admin">
     <ul>
         <li><a href="#" onclick="revendas()">Revenda</a></li>
-        <li><a href="#" onclick="layouts()">Layout do Site</a></li>
+        <li><a href="#" onclick="layouts()">Site Layout</a></li>
         <!-- <li><a href="#" onclick="veiculos()">Veiculos</a></li>
         <li><a href="#" onclick="layouts()">Layouts</a></li>
         <li><a href="#" onclick="planos()">Planos</a></li> -->
