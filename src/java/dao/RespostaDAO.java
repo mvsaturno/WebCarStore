@@ -10,33 +10,33 @@ import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import model.Pergunta;
+import model.Resposta;
 import model.Revenda;
 import util.PropertiesManager;
 
 /**
  *
- * @author Saturno
+ * @author Jonas
  */
-public class PerguntaDAO implements InterfaceDAO{
+public class RespostaDAO implements InterfaceDAO{
 
     private HashMap dados;
 
-    public PerguntaDAO() throws IOException {
+    public RespostaDAO() throws IOException {
         dados = new PropertiesManager("sql.properties").readPropertiesFile();
     }
     
     @Override
     public boolean inserir(Object obj) throws SQLException {
-        Pergunta perg = (Pergunta) obj;
+        Resposta resposta = (Resposta) obj;
         Connection conexao = DBConnection.getInstance();
         
-        String sql = (String) dados.get("Insert.Pergunta");
+        String sql = (String) dados.get("Insert.Resposta");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, perg.getPergunta());
-        stmt.setInt(2, perg.getCliente().getId());
-        stmt.setInt(3, perg.getId_anuncio());
+        stmt.setString(1,resposta.getResposta()) ;
+        stmt.setInt(2,resposta.getVendedor().getId());
+        
         stmt.execute();
         stmt.close();
         return true;
@@ -47,7 +47,7 @@ public class PerguntaDAO implements InterfaceDAO{
         Integer num = (Integer) obj;
         int id = num.intValue();
         Connection conexao = DBConnection.getInstance();
-        String sql = (String) dados.get("Deleta.Pergunta");
+        String sql = (String) dados.get("Deleta.Resposta");
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, id);
         stmt.execute();
@@ -57,18 +57,23 @@ public class PerguntaDAO implements InterfaceDAO{
 
     @Override
     public ArrayList pesquisarTudo() throws SQLException {
-        ArrayList AnList = new ArrayList();
+        ArrayList respList = new ArrayList();
         Connection conexao = DBConnection.getInstance();
-        String sql = (String) dados.get("SelectPerguntaAnuncio");
+        String sql = (String) dados.get("SelectRespostaVendedor");
         PreparedStatement pstmt = conexao.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         
         while (rs.next()){
-            Anuncio a = new Anuncio();
+            Resposta r = new Resposta();
+            r.setId_resposta(rs.getInt("id_resposta"));
+            r.setResposta(rs.getString("descricao"));
+            r.setVendedor(rs.getInt("id_vendedor"));
             
+           
+            respList.add(r);
         }
         pstmt.close();
-        return revList;
+        return respList;
     }
 
     @Override

@@ -37,7 +37,6 @@
                     <h3>Sistema CMS</h3>
                 </div>
                 <div id="logado">
-                    <img src="img/user.png" alt="NomeUsuário" border="0" />
                     <div class="text"> 
                         Bem-vindo:<br/>
                         <span><%=usuario.getNome()%></span><br/>

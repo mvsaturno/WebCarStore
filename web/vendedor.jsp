@@ -72,7 +72,7 @@
                 </td>
                 <td><%=cmAnuncio.statusId(anuncio.getStatus())%></td>
                 <td>
-                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarAnuncio("<%=anuncio.getId()%>","<%=anuncio.getData_inicio()%>","<%=anuncio.getVeiculo()%>","<%=anuncio.getStatus()%>","<%=anuncio.getValor_anuncio()%>","<%=anuncio.getDestaque()%>")'/></td>  
+                    <img src="img/edit.png" border="0" alt="Editar" onclick='editarAnuncio("<%=anuncio.getId()%>","<%=anuncio.getData_inicio()%>","<%=anuncio.getVeiculo().getId()%>","<%=anuncio.getStatus()%>","<%=anuncio.getValor_anuncio()%>","<%=anuncio.getDestaque()%>")'/></td>  
                 <!-- //chamada no JS: editarAnuncio(id, data, veiculo, getStatus, valor, destaque); -->
 
                 <td class="img_crud">
