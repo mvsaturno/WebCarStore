@@ -134,14 +134,7 @@ function editarRevenda(id,cnpj,nome,telefone,email,endereco,numero,bairro,cidade
         document.getElementById("revenda_nro").value = numero;
         document.getElementById("revenda_bairro").value = bairro;
         document.getElementById("revenda_cidade").value = cidade;        
-        document.getElementById("revenda_uf").value = estado;
-        /*
-        var uf_select = document.getElementById("revenda_uf");        
-        for(i=0;i<uf_select.length;i++){
-            if(uf_select.options[i].value == estado){
-                uf_select.options[i].selected = true;
-            }
-        }*/
+        document.getElementById("revenda_uf").value = estado;      
         document.getElementById("revenda_telefone_cad").value = telefone;
         document.getElementById("revenda_mail_cad").value = email;
         if (ativo == 1) {
@@ -150,8 +143,7 @@ function editarRevenda(id,cnpj,nome,telefone,email,endereco,numero,bairro,cidade
         $("#revenda_ativo_cad").attr('checked', true);
         }
         document.getElementById("cad_revenda_cmd").value = "trataEditarRevenda";
-        document.getElementById("cad_revenda_title").innerHTML = "Edição de Revenda:";
-        
+        document.getElementById("cad_revenda_title").innerHTML = "Edição de Revenda:";        
 }
 
 function revendas(){
@@ -190,6 +182,28 @@ function cadastrarAnuncios(){
 	$('#cadastrarAnuncios').stop().slideDown();
 }
 
+function editarAnuncio(id, data, veiculo, getStatus, valor, destaque){
+        cadastrarAnuncios();       
+        var anun_select;
+        document.getElementById("id_anuncio").value = id;
+        
+        anun_select = document.getElementById("veiculo_select_cad");
+        for(i=0;i<anun_select.length;i++){
+            if(anun_select.options[i].value == veiculo){
+                anun_select.options[i].selected = true;
+            }
+        }        
+        document.getElementById("data_inicio_anuncio_cad").value = data;
+        document.getElementById("valor_anuncio_cad").value = valor;
+        
+        anun_select = document.getElementById("status_anuncio_cad");
+        if(anun_select.options[0].value == 'Sim')
+            anun_select.options[0].selected = true
+        else
+            anun_select.options[1].selected = true;
+}
+
+
 function visitas(){
 	window.scrollTo(0,200);
 	$('div.divs').stop().slideUp();
@@ -201,3 +215,4 @@ function cadastrarVisitas(){
 	$('div.divs').stop().slideUp();
 	$('#cadastrarVisitas').stop().slideDown();
 }
+

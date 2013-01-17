@@ -266,7 +266,10 @@ public class VeiculoDAO  implements InterfaceDAO{
             Veiculo v = new Veiculo();
             v.setId(rs.getInt("id_veiculo"));
             v.setIdModelo(rs.getInt("id_modelo"));
-            v.setIdCombustivel(rs.getInt("cod_combustivel"));
+            Combustivel fuel = new Combustivel();
+            fuel.setIdCombustivel(rs.getInt("cod_combustivel"));
+            fuel.setNome(this.pesquisarCombustivelId(rs.getInt("cod_combustivel")));
+            v.setCombustivel(fuel);
             v.setIdCor(rs.getInt("id_cor"));
             v.setAno(rs.getInt("ano"));
             v.setMotor(rs.getString("motor"));
@@ -278,10 +281,6 @@ public class VeiculoDAO  implements InterfaceDAO{
             cat.setIdCategoria(rs.getInt("id_categoria"));
             cat.setNome(this.pesquisarCategoriaId(rs.getInt("id_categoria")));
             v.setCategoria(cat);
-            Combustivel fuel = new Combustivel();
-            fuel.setIdCombustivel(rs.getInt("cod_combustivel"));
-            fuel.setNome(this.pesquisarCombustivelId(rs.getInt("cod_combustivel")));
-            v.setCombustivel(fuel);
             velList.add(v);
         }
         //pstmt.close();
@@ -301,8 +300,14 @@ public class VeiculoDAO  implements InterfaceDAO{
             veiculo = new Veiculo();
             veiculo.setId(rs.getInt("id_veiculo"));
             veiculo.setIdModelo(rs.getInt("id_modelo"));
-            veiculo.setIdCombustivel(rs.getInt("cod_combustivel"));
-            veiculo.setCategoria(rs.getInt("id_categoria"));
+            Combustivel fuel = new Combustivel();
+            fuel.setIdCombustivel(rs.getInt("cod_combustivel"));
+            fuel.setNome(this.pesquisarCombustivelId(rs.getInt("cod_combustivel")));
+            veiculo.setCombustivel(fuel);
+            Categoria cat = new Categoria();
+            cat.setIdCategoria(rs.getInt("id_categoria"));
+            cat.setNome(this.pesquisarCategoriaId(rs.getInt("id_categoria")));
+            veiculo.setCategoria(cat);
             veiculo.setIdCor(rs.getInt("id_cor"));
             veiculo.setAno(rs.getInt("ano"));
             veiculo.setMotor(rs.getString("motor"));

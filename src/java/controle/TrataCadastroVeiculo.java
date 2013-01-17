@@ -43,20 +43,24 @@ public class TrataCadastroVeiculo extends Comando {
             String[] itensOp=getRequest().getParameterValues("veiculo_itens_op");
             Veiculo vel=new Veiculo();
             
-            
+            VeiculoDAO veiculo = new VeiculoDAO();
             
             vel.setIdModelo(modelo);            
             vel.setAno(ano);  
-            vel.setCategoria(categoria);
-            vel.setIdCombustivel(combustivel);
+            Categoria cat = new Categoria();
+            cat.setIdCategoria(categoria);
+            cat.setNome(veiculo.pesquisarCategoriaId(categoria));
+            vel.setCategoria(cat);
+            Combustivel fuel = new Combustivel();
+            fuel.setIdCombustivel(combustivel);
+            fuel.setNome(veiculo.pesquisarCombustivelId(combustivel));
+            vel.setCombustivel(fuel);
             vel.setIdCor(cor);
             vel.setKm(quilometragem);
             vel.setValor(valor);
             vel.setMotor(motor);
             vel.setOpcionais(itensOp);
             
-            
-            VeiculoDAO veiculo = new VeiculoDAO();
             
             String msg = "";
           

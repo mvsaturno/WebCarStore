@@ -91,18 +91,6 @@ public class Veiculo {
         this.ano = ano;
     }
 
-    public void setCategoria(int categoria) {
-        this.categoria.setIdCategoria(categoria);
-    }
-
-    public void setCombustivel(String combustivel) {
-        this.combustivel.setNome(combustivel);
-    }
-    
-    public void setIdCombustivel(int combustivel) {
-        this.combustivel.setIdCombustivel(combustivel);
-    }
-
     public void setCor(String cor) {
         this.cor = cor;
     }

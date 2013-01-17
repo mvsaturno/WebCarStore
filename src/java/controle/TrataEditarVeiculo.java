@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import model.Categoria;
+import model.Combustivel;
 import model.Veiculo;
 
 /**
@@ -32,18 +34,23 @@ public class TrataEditarVeiculo extends Comando {
             double valor=Double.parseDouble(getRequest().getParameter("veiculo_valor_cad"));
             String motor=getRequest().getParameter("veiculo_motor_cad");
             Veiculo vel=new Veiculo();
-                
+            
+            VeiculoDAO veiculo = new VeiculoDAO();
             vel.setId(id);
             vel.setIdModelo(modelo);
-            vel.setAno(ano);  
-            vel.setCategoria(categoria);
-            vel.setIdCombustivel(combustivel);
+            vel.setAno(ano); 
+            Categoria cat = new Categoria();
+            cat.setIdCategoria(categoria);
+            cat.setNome(veiculo.pesquisarCategoriaId(categoria));
+            vel.setCategoria(cat);
+            Combustivel fuel = new Combustivel();
+            fuel.setIdCombustivel(combustivel);
+            fuel.setNome(veiculo.pesquisarCombustivelId(combustivel));
+            vel.setCombustivel(fuel);
             vel.setIdCor(cor);
             vel.setKm(quilometragem);
             vel.setValor(valor);
             vel.setMotor(motor);
-            
-            VeiculoDAO veiculo = new VeiculoDAO();
             
             String msg = "";
           
