@@ -32,60 +32,53 @@ body {
 }
 
 #tudo {
-  
+    width: 980px;
+    position: relative;
+    margin: 10px auto; 
+}
+
+.titulo {
+    float: right;
+    font-size: 30px;
+}
+
+#topo {
+   margin: 10px;
 }
 
 
-#topo {	/* border: #f00 solid 1px; */
-   
+#anunciosh {   
+    border: #0f0 solid 1px;
+    width: 980px;   
+    position: relative;
 }
-
-
-
-
-#anunciosh {
-    clear: both;
-    /* border: #0f0 solid 1px; */
-    width: 920px;
-    max-height: 400px;
-    margin-top: 20px;
-    margin-left: 40px;}
-
-.anunciosh_btn {padding: 25px;}
 
 .anunciosh_box {
-    /* border: #f00 solid 1px; */
+    border: #f00 solid 1px;
     float: left;
-    background: url(../images/bg_destaques.png) no-repeat;
-    padding: 10px 14px 0 0;
-    width: 290px;
-    height: 338px;}
+    background: #eee;
+    padding: 5px;
+    width: 300px;
+    height:250px;
+    margin: 5px;
+}
 
 
 .anunciosh_box_in {
-    /* border: #0f0 solid 1px; */
+    border: #0f0 solid 1px;
     position: relative;
-    margin: 1px 0 0 13px;
-    padding: 2px 5px;
-    width: 260px;
-    height: 304px;
-    color:#036;
+    padding: 5px;
+    width: 290px;
+    height: 240px;
+    color:#333;
 }
 
-.anunciosh_box_in:hover {background: #e1f0fc;}
+.anunciosh_box_in:hover {background: #fff;}
 
-
-
-.anunciosh_box_in .anunciosh_data {
-    padding: 1px;
-    font-weight: bold;
-    font-style: italic;
-    font-size: 125%;
-}
 
 .anunciosh_box_in a {
     text-decoration: none;
-    color:#06f;
+    color:#f00;
     font-size:110%;
     font-weight: bold;
     display: block;
@@ -95,44 +88,5 @@ body {
 
 
 .anunciosh_box_in .anunciosh_interesse {
-    position: absolute;
-    margin-top: -42px;
-    margin-left: 125px;
-    line-height: 70px;
-    width: 120px; height: 40px;
-    background: url(../images/bg_interesse.png) no-repeat right top;
-}
 
-.anunciosh_box_in .anunciosh_info {
-    position: absolute;
-    top: 195px;
-    left: 130px;
-    line-height: 190%;
-    width: 147px; height: 40px;
-    background: url(img/bg_lupa.png) no-repeat right top;
-}
-
-.anunciosh_box_in .anunciosh_info a {
-    color:#fff;
-    text-shadow: black 0.05em 0.05em 0.05em;
-    font-size:100%;
-    width: 147px; hWeight: 40px;
-    display: block;
-    font-weight: bold;
-}
-
-.anunciosh_box_in .anunciosh_info a:hover {color:#BBDBE0; display: block;}
-
-.anunciosh_box_in .anunciosh_info a:visited {color:#fff; text-shadow: black 0.05em 0.05em 0.05em;}
-
-
-.anunciosh_box_in .des_tipo {
-    padding-left: 5px;
-    font-size: 100%;
-}
-
-.anunciosh_box_in .des_dormgaragem {
-    padding-left: 5px;
-    font-size: 100%;
-    font-style: italic;
 }

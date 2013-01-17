@@ -20,27 +20,29 @@
     <body>
         <div id="tudo">
             <div id="topo">
-                <img src="img/logotipo.png" alt="WebCar Store" border="0" />
-
-            </div>
-
+                <img src="img/logo.png" alt="WebCar Store" border="0" />
+                <p class="titulo">Webcar Revenda - The world's most powerful resale</p>
+            </div>                                                
+             
             <div id="anunciosh">
+            <% for (int n=1; n<=9; n++) { %>
+            
                 <div class="anunciosh_box">
                     <div class="anunciosh_box_in">
-                        <p class="anunciosh_data">Data</p>                        
-                        <span class="anunciosh_info"><a href="">Veículo</a></span>
-                        <p class="des_cidadebairro">Valor</p>   
-                        <a href="" rel="facebox"><span class="anunciosh_interesse">Informar Interesse</span></a>
+                        <p class="anunciosh_veiculo">Veiculo</p>                                            
+                        <p class="anunciosh_ano">Ano</p>                    
+                        <p class="anunciosh_valor">Valor</p>
+                        <a href="" class="anunciosh_interesse">Informar Interesse</a>
                     </div>
                 </div>
-            </div> 
-            
-            <div id="perguntas">
-                
-                               
+                         
+            <% }%>
             </div>
             
-            
+            <div id="perguntas">                
+                               
+            </div>
+                     
         </div>
 
     </body>
