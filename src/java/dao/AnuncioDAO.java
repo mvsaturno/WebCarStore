@@ -41,11 +41,10 @@ public class AnuncioDAO implements InterfaceDAO {
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setInt(1, anuncio.getVeiculo().getId());
-        stmt.setString(2, anuncio.getData_inicio());
-        stmt.setInt(3, anuncio.getStatus());
-        stmt.setDouble(4, anuncio.getValor_anuncio());
-        stmt.setInt(5, anuncio.getDestaque());
-        stmt.setInt(6, anuncio.getRevenda().getId());
+        stmt.setInt(2, anuncio.getStatus());
+        stmt.setDouble(3, anuncio.getValor_anuncio());
+        stmt.setInt(4, anuncio.getDestaque());
+        stmt.setInt(5, anuncio.getRevenda().getId());
         stmt.execute();
         stmt.close();
         return true;
@@ -146,13 +145,19 @@ public class AnuncioDAO implements InterfaceDAO {
         String sql = (String) dados.get("Update.Anuncio");
         
         PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setInt(1,anuncio.getVeiculo().getId());
-        stmt.setString(2, anuncio.getData_inicio());
-        stmt.setInt(3, anuncio.getStatus());
-        stmt.setDouble(4, anuncio.getValor_anuncio());
-        stmt.setInt(5, anuncio.getDestaque());
-        stmt.setInt(6, anuncio.getRevenda().getId());
-        stmt.setInt(7, anuncio.getId());
+        
+        int id = anuncio.getVeiculo().getId();
+        int status = anuncio.getStatus();
+        double valor = anuncio.getValor_anuncio();
+        int destaque = anuncio.getDestaque();
+        int revenda = anuncio.getRevenda().getId();
+        int anuncia = anuncio.getId();
+        
+        stmt.setInt(1, anuncio.getStatus());
+        stmt.setDouble(2, anuncio.getValor_anuncio());
+        stmt.setInt(3, anuncio.getDestaque());
+        stmt.setInt(4, anuncio.getRevenda().getId());
+        stmt.setInt(5, anuncio.getId());
         stmt.execute();
         stmt.close();
         return true;

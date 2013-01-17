@@ -185,7 +185,7 @@ function cadastrarAnuncios(){
         document.getElementById("cad_anuncio_title").innerHTML = "Cadastro de Anúncio:";
 }
 
-function editarAnuncio(id, data, veiculo, getStatus, valor, destaque){
+function editarAnuncio(id, veiculo, getStatus, valor, destaque){
         cadastrarAnuncios();       
         var anun_select;
         document.getElementById("id_anuncio").value = id;
@@ -196,7 +196,6 @@ function editarAnuncio(id, data, veiculo, getStatus, valor, destaque){
                 anun_select.options[i].selected = true;
             }
         }        
-        document.getElementById("data_inicio_anuncio_cad").value = data;
         document.getElementById("valor_anuncio_cad").value = valor;
         
         anun_select = document.getElementById("status_anuncio_cad");
